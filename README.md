@@ -11,9 +11,9 @@ Each of the SQL scripts has a specific purpose as described below:
 
 ## JQuery and Bootstrap
 
-Minified versions of the JQuery Core and Validation libraries (including the "Additional Methods" library) have been included in the `<project-root>/src/main/webapp/js/` directory.
+Minified versions of the JQuery Core and Validation libraries have been included.
 
-Minified versions of the Bootstrap CSS and Javascript files have been included  in the `<project-root>/src/main/webapp/css/` and `<project-root>/src/main/webapp/js/` directories respectively.
+Minified versions of the Bootstrap CSS and Javascript files have been included.
 
 ## Ninject
 
