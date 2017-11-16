@@ -1,6 +1,16 @@
 ﻿body {
+   
 }
 
+.index-hero {
+    /*background-image: url(Duda-Cleveland-Skyline-32.jpg);*/
+    background-image: url(cle-skyline-night.jpeg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
 
 .poly-productions a {
     text-decoration: none;

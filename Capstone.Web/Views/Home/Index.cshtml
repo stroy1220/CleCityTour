@@ -4,15 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
 <html>
 <head>
+
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
         #map-canvas {
-            width: 900px;
+            width: 100%;
             height: 600px;
         }
 
@@ -150,7 +150,40 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </style>
 </head>
 <body>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map-canvas"></div>
+    <div class="index-hero jumbotron">
+        <div class="container text-center">
+            @*<form method="get" action="https://www.google.com/maps">
+                <input type="text" name="q" size="100" font-color="black" value="Search">
+            </form>*@
+            <form>
+                <div class="input-group">
+                    <input id="query1" type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-btn">
+                        <button id="hero-button" class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                <div id="map-canvas"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+     
+            $(document).ready(function(){
+                $('#query1').change(function () {                    
+                    var val = $('#query1').val();
+                    
+                    $('#pac-input').val(val);
+                });
+});
+</script>
 </body>
 </html>

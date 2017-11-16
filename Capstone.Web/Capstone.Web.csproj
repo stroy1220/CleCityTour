@@ -109,6 +109,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cle-skyline-night.jpeg" />
     <Content Include="Content\Duda-Cleveland-Skyline-32.jpg" />
     <Content Include="Content\styles.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
