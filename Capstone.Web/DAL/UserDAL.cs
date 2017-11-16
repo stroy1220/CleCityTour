@@ -27,6 +27,7 @@ namespace Capstone.Web.DAL
                     conn.Open();
 
                     SqlCommand cmd2 = new SqlCommand(SQL_CheckUserName, conn);
+                    cmd2.Parameters.AddWithValue("@userName", user.UserName);
                     int numberOfRows = (int)(cmd2.ExecuteScalar());
 
                     if (numberOfRows > 0)

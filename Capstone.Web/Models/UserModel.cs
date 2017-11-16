@@ -19,7 +19,7 @@ namespace Capstone.Web.Models
         //[RegularExpression("^(?=.[A-Z].[A-Z])(?=.[!@#$&])(?=.[0-9].[0-9])(?=.[a-z].[a-z].*[a-z]).{8}$", ErrorMessage = "your password sucks")]
         public string Password { get; set; }
 
-        [Required]
+        
         public string PasswordSalt { get; set; }
 
         public bool Admin { get; set; }
