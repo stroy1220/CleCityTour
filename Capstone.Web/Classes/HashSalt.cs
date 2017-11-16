@@ -11,35 +11,39 @@ namespace Capstone.Web.Classes
 {
     public class HashSalt
     {
-        static string HashPasswordWithMD5(string password)
+        private const int WorkFactor = 10000;
+
+        public string SaltValue { get; private set; }
+        
+        public string HashPassword(string plainTextPassword)
         {
-            MD5CryptoServiceProvider md5Provider = new MD5CryptoServiceProvider();
+            //Create the hashing provider
+            Rfc2898DeriveBytes rfc = new Rfc2898DeriveBytes(plainTextPassword, 8, WorkFactor);
 
-            byte[] source = ASCIIEncoding.ASCII.GetBytes(password);
-            byte[] hash = md5Provider.ComputeHash(source);
+            //Get the Hashed Password
+            byte[] hash = rfc.GetBytes(20);
 
+            //Set the SaltValue 
+            SaltValue = Convert.ToBase64String(rfc.Salt);
+
+            //Return the Hashed Password
             return Convert.ToBase64String(hash);
         }
 
-        static string HashPasswordWithPBKDF2(string password, byte[] salt, int workFactor)
+        public bool VerifyPasswordMatch(string existingHashedPassword, string plainTextPassword, string salt)
         {
-            // Creates the crypto service provider and provides the salt - usually used to check for a password match
-            Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, salt, workFactor);
+            byte[] saltArray = Convert.FromBase64String(salt);      //gets us the byte[] array representation
 
-            byte[] hash = rfc2898DeriveBytes.GetBytes(20);      //gets the hased password
+            //Create the hashing provider
+            Rfc2898DeriveBytes rfc = new Rfc2898DeriveBytes(plainTextPassword, saltArray, WorkFactor);
 
-            return Convert.ToBase64String(salt) + "|" + Convert.ToBase64String(hash);
-        }
+            //Get the hashed password
+            byte[] hash = rfc.GetBytes(20);
 
-        static string HashPasswordWithPBKDF2(string password, int saltSize, int workFactor)
-        {
-            //Creates the crypto service provider and says to use a random salt of size "saltSize"
-            Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, saltSize, workFactor);
+            //Compare the hashed password values
+            string newHashedPassword = Convert.ToBase64String(hash);
 
-            byte[] hash = rfc2898DeriveBytes.GetBytes(20);      //gets the hashed password
-            byte[] salt = rfc2898DeriveBytes.Salt;              //gets the random salt
-
-            return Convert.ToBase64String(salt) + "|" + Convert.ToBase64String(hash);
+            return (existingHashedPassword == newHashedPassword);
         }
     }
 }

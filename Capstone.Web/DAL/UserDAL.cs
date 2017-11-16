@@ -11,26 +11,23 @@ namespace Capstone.Web.DAL
 {
     public class UserDAL : IUserDAL
     {
-        string connectionString = ConfigurationManager.ConnectionStrings[""].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["CityTour"].ConnectionString;
         private const string SQL_SaveUser = "insert into userInfo values(@userName, @firstName, @lastName, @password, @passwordSalt, 0)";
         private const string SQL_DeleteUser = "delete * from userInfo where userName = @userName and password = @password";
         private const string SQL_UpdatePassword = "update password from userInfo where userName = @userName";
         private const string SQL_SelectUser = "select * from userInfo where userName = @userName";
         private const string SQL_CheckUserName = "select count(*) from userInfo where userName = @userName";
 
-
         public bool SaveUser(UserModel user)
         {
-
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
-
                     SqlCommand cmd2 = new SqlCommand(SQL_CheckUserName, conn);
+                    cmd2.Parameters.AddWithValue("@userName", user.UserName);
                     int numberOfRows = (int)(cmd2.ExecuteScalar());
 
                     if (numberOfRows > 0)

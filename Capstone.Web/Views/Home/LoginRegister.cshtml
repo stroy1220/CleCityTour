@@ -1,8 +1,52 @@
-﻿
+﻿@using Capstone.Web.Models;
+@model UserModel
 @{
     ViewBag.Title = "LoginRegister";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>LoginRegister</h2>
+<h2>Register</h2>
 
+<form action="@Url.Action("LoginRegister", "Home", new { logCode = 1})" method="post">
+    <div>
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new { placeholder = "minnie.mouse@aol.com" })
+        <span>@ViewBag.ErrorMessage</span>
+        @Html.ValidationMessageFor(m => m.UserName)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName)
+        @Html.ValidationMessageFor(m => m.FirstName)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName)
+        @Html.ValidationMessageFor(m => m.LastName)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    @*<div>
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @Html.PasswordFor(m => m.ConfirmPassword, new { placeHolder = "Re-Type Password", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+    </div>*@
+    <button>Submit</button>
+</form>
+
+<form action="@Url.Action("LoginRegister", "Home", new { logCode = 0})" method="post">
+    <div>
+        @Html.LabelFor(m => m.UserName, new { placeholder = "minnie.mouse@aol.com" })
+        @Html.TextBoxFor(m => m.UserName)
+        @Html.ValidationMessageFor(m => m.UserName)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    <button>Login</button>
+</form>
