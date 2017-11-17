@@ -48,7 +48,7 @@ namespace Capstone.Web.Controllers
         {
             PlacesDAL pdal = new PlacesDAL();
             List<PlacesModel> model = pdal.GetAllPlaces();
-            return View("Restaurant", model);
+            return View("Sports", model);
         }
 
         // GET: Home

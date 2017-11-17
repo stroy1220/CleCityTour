@@ -11,13 +11,12 @@ namespace Capstone.Web.DAL
 {
     public class PlacesDAL : IIPlacesDAL
     {
-        string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=CityTour;User ID=te_student;Password=sqlserver1";
-        //string connectionString = ConfigurationManager.ConnectionStrings["CityTour"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["CityTour"].ConnectionString;
         private const string SQL_CreatePlace = "insert into places values(@streetAddress, @city, @state, @latitude, @longitude, @googleID, @detail, @placeName, @category)";
         private const string SQL_DeletePlace = "delete * from places where id = @id";
         private const string SQL_GetAllPlaces = "select * from places";
         private const string SQL_GetSinglePlace = "select * from places where id = @id";
-        private const string SQL_UpdatePlace = "update places set  = @value where id = @id";
+        private const string SQL_UpdatePlace = "update places set  @column = @value where id = @id";
         public bool CreatePlace(PlacesModel place)
         {
             try
@@ -150,7 +149,7 @@ namespace Capstone.Web.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand($"update places set @column = @value WHERE id = @id", conn);
+                    SqlCommand cmd = new SqlCommand(SQL_UpdatePlace, conn);
 
                     cmd.Parameters.AddWithValue("@column", column);
                     cmd.Parameters.AddWithValue("@value", value);
