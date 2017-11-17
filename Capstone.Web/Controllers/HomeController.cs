@@ -13,10 +13,18 @@ namespace Capstone.Web.Controllers
     public class HomeController : Controller
     {
         private IUserDAL dal;
+        
 
         public HomeController(IUserDAL userDAL)
         {
             this.dal = userDAL;
+        }
+
+        public ActionResult Restaurant()
+        {
+            PlacesDAL pdal = new PlacesDAL();
+            List<PlacesModel> model =  pdal.GetAllPlaces();
+            return View("Restaurant", model);
         }
 
         // GET: Home
