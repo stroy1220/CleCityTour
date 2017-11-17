@@ -33,7 +33,7 @@ namespace Capstone.Web.DAL
                     cmd.Parameters.AddWithValue("@state", place.State);
                     cmd.Parameters.AddWithValue("@latitude", place.Latitude);
                     cmd.Parameters.AddWithValue("@longitude", place.Longitude);
-                    cmd.Parameters.AddWithValue("@googleID", place.StreetAddress);
+                    //cmd.Parameters.AddWithValue("@googleID", place.StreetAddress);
                     cmd.Parameters.AddWithValue("@detail", place.City);
                     cmd.Parameters.AddWithValue("@placeName", place.State);
                     cmd.Parameters.AddWithValue("@category", place.Latitude);
@@ -90,7 +90,7 @@ namespace Capstone.Web.DAL
                         place.State = Convert.ToString(reader["state"]);
                         place.Latitude = Convert.ToDecimal(reader["latitude"]);
                         place.Longitude = Convert.ToDecimal(reader["longitude"]);
-                        place.GoogleID = Convert.ToInt32(reader["googleID"]);
+                        //place.GoogleID = Convert.ToInt32(reader["googleID"]);
                         place.Detail = Convert.ToString(reader["detail"]);
                         place.PlaceName = Convert.ToString(reader["placeName"]);
                         place.Category = Convert.ToString(reader["category"]);
