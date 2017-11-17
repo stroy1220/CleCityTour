@@ -150,6 +150,7 @@
     <Compile Include="Classes\Password.cs" />
     <Compile Include="Classes\Places.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlaceController.cs" />
     <Compile Include="DAL\iPlacesDAL.cs" />
     <Compile Include="DAL\iUserDAL.cs" />
     <Compile Include="DAL\placesDAL.cs" />
@@ -184,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Place\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

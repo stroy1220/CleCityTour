@@ -7,7 +7,7 @@ using Capstone.Web.Models;
 
 namespace Capstone.Web.DAL
 {
-    public interface IIPlacesDAL
+    public interface IPlacesDAL
     {
         List<PlacesModel> GetAllPlaces();
         PlacesModel GetSinglePlace(int id);

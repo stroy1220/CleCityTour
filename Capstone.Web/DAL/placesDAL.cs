@@ -9,7 +9,7 @@ using Capstone.Web.DAL;
 
 namespace Capstone.Web.DAL
 {
-    public class PlacesDAL : IIPlacesDAL
+    public class PlacesDAL : IPlacesDAL
     {
         string connectionString = ConfigurationManager.ConnectionStrings["CityTour"].ConnectionString;
         private const string SQL_CreatePlace = "insert into places values(@streetAddress, @city, @state, @latitude, @longitude, @googleID, @detail, @placeName, @category)";

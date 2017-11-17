@@ -18,38 +18,7 @@ namespace Capstone.Web.Controllers
         public HomeController(IUserDAL userDAL)
         {
             this.dal = userDAL;
-        }
-
-        public ActionResult Restaurant()
-        {
-            PlacesDAL pdal = new PlacesDAL();
-            List<PlacesModel> model =  pdal.GetAllPlaces();
-            return View("Restaurant", model);
-        }
-        public ActionResult Shopping()
-        {
-            PlacesDAL pdal = new PlacesDAL();
-            List<PlacesModel> model = pdal.GetAllPlaces();
-            return View("Shopping", model);
-        }
-        public ActionResult Entertainment()
-        {
-            PlacesDAL pdal = new PlacesDAL();
-            List<PlacesModel> model = pdal.GetAllPlaces();
-            return View("Entertainment", model);
-        }
-        public ActionResult Landmarks()
-        {
-            PlacesDAL pdal = new PlacesDAL();
-            List<PlacesModel> model = pdal.GetAllPlaces();
-            return View("Landmarks", model);
-        }
-        public ActionResult Sports()
-        {
-            PlacesDAL pdal = new PlacesDAL();
-            List<PlacesModel> model = pdal.GetAllPlaces();
-            return View("Sports", model);
-        }
+        }    
 
         // GET: Home
         public ActionResult Index(string firstName = "")
