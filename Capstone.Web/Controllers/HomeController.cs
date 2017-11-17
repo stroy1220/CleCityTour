@@ -9,6 +9,7 @@ using Capstone.Web.Classes;
 
 namespace Capstone.Web.Controllers
 {
+
     public class HomeController : Controller
     {
         private IUserDAL dal;
@@ -19,8 +20,9 @@ namespace Capstone.Web.Controllers
         }
 
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(string firstName = "")
         {
+            ViewBag.FirstName = firstName;
             return View("Index");
         }
 
@@ -43,6 +45,7 @@ namespace Capstone.Web.Controllers
 
                     if (dal.SaveUser(newUser))
                     {
+                        ViewBag.FirstName = newUser.FirstName;
                         return RedirectToAction("Index");
                     }
                     else
@@ -56,16 +59,17 @@ namespace Capstone.Web.Controllers
                 return View("LoginRegister");
             }
             UserModel user = dal.SelectUser(newUser.UserName);
-            newUser = user;
-            if (ModelState.IsValid)
+            UserModel hashedUser = user;
+            if (newUser.UserName == user.UserName)
             {
                 HashSalt login = new HashSalt();
                 if (login.VerifyPasswordMatch(user.Password, newUser.Password, user.PasswordSalt))
                 {
-                    return RedirectToAction("Index");
+                   
+                    return RedirectToAction("Index", new { firstName = newUser.FirstName });
                 }
             }
-
+           
             return View("LoginRegister");
         }
     }

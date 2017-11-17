@@ -36,7 +36,12 @@
                     <li><a href="#">About Us</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Login</a></li>
+                    
+                    <li>@Html.ActionLink("Login", "LoginRegister", "Home")</li>
+                  
+                       
+                   <li>@ViewBag.FirstName</li>
+                       
                 </ul>
             </div>
         </div>
