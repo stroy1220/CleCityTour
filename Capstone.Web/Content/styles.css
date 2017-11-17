@@ -36,4 +36,12 @@
         margin: 0px auto;
         background-color: tomato;
     }
- 
+.restaurant-hero {
+    /*background-image: url(Duda-Cleveland-Skyline-32.jpg);*/
+    background-image: url(michael-symons-mabels-hero-.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 10%;
+    padding-bottom: 20%;
+}

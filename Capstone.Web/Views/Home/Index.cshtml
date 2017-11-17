@@ -155,25 +155,25 @@ google.maps.event.addDomListener(window, 'load', initialize);
             <h1 class="h1 text-uppercase index-hero-text-shadow">Where To Be In The CLE</h1>
             <p class="index-hero-text-shadow hidden-xs">Your Guide To The Best of Cleveland</p>
 
-</div>
+        </div>
     </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3 col-xs-6">
-                @*<a href="#">*@
-                @Html.ActionLink("Restaurants", "Restaurant", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="@Url.Action("Restaurant", "Home")">
+                @*@Html.ActionLink()*@
 
 
-                    <div class="callout-sm text-center">
-                        <img src="~/Content/michael-symons-mabels-hero-.jpg" alt="" width="75%" height="auto">
-                        <h2 class="h5">Restaurants</h2>
-                    </div>
+                <div class="callout-sm text-center">
+                    <img src="~/Content/michael-symons-mabels-hero-.jpg" alt="" width="75%" height="auto">
+                    <h2 class="h5">Restaurants</h2>
+                </div>
                 </a>
             </div>
 
 
             <div class="col-sm-3 col-xs-6">
-                <a href="#">
+                <a href="@Url.Action("Shopping", "Home")">
                     <div class="callout-sm text-center">
                         <img src="~/Content/tower-city-xmas.jpg" alt="" width="75%" height="auto" />
                         <h2 class="h5">Shopping</h2>
@@ -183,7 +183,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 
             <div class="col-sm-3 col-xs-6">
-                <a href="#">
+                <a href="@Url.Action("Sports", "Home")">
                     <div class="callout-sm text-center">
                         <img src="~/Content/quicken-loans2.jpg" alt="" width="75%" height="auto">
                         <h2 class="h5">Sports</h2>
@@ -193,7 +193,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 
             <div class="col-sm-3 col-xs-6">
-                <a href="#">
+                <a href="@Url.Action("Entertainment", "Home")">
                     <div class="callout-sm text-center">
                         <img src="~/Content/playhouse-square.jpg" alt="" width="75%" height="auto">
                         <h2 class="h5">Entertainment</h2>
@@ -202,6 +202,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
             </div>
         </div>
     </div>
-    
+
 </body>
 </html>
