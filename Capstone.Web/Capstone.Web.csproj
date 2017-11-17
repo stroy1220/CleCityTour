@@ -171,6 +171,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\LoginRegister.cshtml" />
     <Content Include="Views\Home\Restaurant.cshtml" />
+    <Content Include="Views\Home\Shopping.cshtml" />
+    <Content Include="Views\Home\Entertainment.cshtml" />
+    <Content Include="Views\Home\Landmarks.cshtml" />
+    <Content Include="Views\Home\Sports.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

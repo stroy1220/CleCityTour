@@ -1,0 +1,25 @@
+﻿@using Capstone.Web.Models;
+@model List<PlacesModel>
+
+
+@{
+    ViewBag.Title = "Landmarks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Landmarks</h2>
+
+@{foreach (var p in Model)
+    {
+        <p>@p.PlaceName</p>
+        <p>@p.StreetAddress</p>
+        <p>@p.City</p>
+        <p>@p.State</p>
+        <p>@p.Longitude</p>
+        <p>@p.Latitude</p>
+        <p>@p.Detail</p>
+        <p>@p.Category</p>
+
+    }
+}

@@ -35,8 +35,9 @@ longitude     varchar(max)		   not null,
 googleID      varchar(max) null,
 detail        varchar(max) null,
 placeName     varchar(max) not null,
-Category		varchar(max) not null,
-);
+Category      varchar(max) not null,
+);    
+
 
 create table itinerary
 (
