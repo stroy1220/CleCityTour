@@ -11,7 +11,7 @@ namespace Capstone.Web.DAL
     {
         List<PlacesModel> GetAllPlaces();
         PlacesModel GetSinglePlace(int id);
-        PlacesModel UpdatePlace(PlacesModel place);
+        bool UpdatePlace(int id, string value, string column);
         bool CreatePlace(PlacesModel place);
         bool DeletePlace(int id);
 
