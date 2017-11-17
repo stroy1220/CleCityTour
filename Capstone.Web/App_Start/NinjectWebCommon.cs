@@ -63,6 +63,7 @@ namespace Capstone.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUserDAL>().To<UserDAL>();
+            kernel.Bind<IIPlacesDAL>().To<PlacesDAL>();
         }        
     }
 }
