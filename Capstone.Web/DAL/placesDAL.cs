@@ -86,6 +86,7 @@ namespace Capstone.Web.DAL
                         PlacesModel place = new PlacesModel();
                         place.Id = Convert.ToInt32(reader["id"]);
                         place.StreetAddress = Convert.ToString(reader["streetAddress"]);
+                        place.City = Convert.ToString(reader["city"]);
                         place.State = Convert.ToString(reader["state"]);
                         place.Latitude = Convert.ToDecimal(reader["latitude"]);
                         place.Longitude = Convert.ToDecimal(reader["longitude"]);

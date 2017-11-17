@@ -1,5 +1,5 @@
 ﻿body {
-   margin-top: 70px;
+   margin-top: 50px;
 }
 
 .index-hero {
@@ -42,6 +42,13 @@
     background-size: cover;
     background-position: center;
     color: white;
-    padding-top: 10%;
+    padding-top: 15%;
     padding-bottom: 20%;
+}
+.hero-text-drop-shadow {
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4), 0px 8px 13px rgba(0,0,0,0.1), 0px 18px 23px rgba(0,0,0,0.1);
+}
+
+.desc-bump {
+    margin: 10px auto;
 }
