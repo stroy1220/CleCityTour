@@ -1,11 +1,26 @@
 ﻿@using Capstone.Web.Models;
-@model=List<PlacesModel>
+@model List<PlacesModel>
 
 
 @{
     ViewBag.Title = "Restaurant";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Html.ActionLink("Restaurants", "Restaurant", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
 
 <h2>Restaurant</h2>
 
+@{foreach (var p in Model)
+{
+    <p>@p.PlaceName</p>
+    <p>@p.StreetAddress</p>
+    <p>@p.City</p>
+    <p>@p.State</p>
+    <p>@p.Longitude</p>
+    <p>@p.Latitude</p>
+    <p>@p.Detail</p>
+    <p>@p.Category</p>
+
+    }
+}
