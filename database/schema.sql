@@ -38,6 +38,7 @@ placeName     varchar(max) not null,
 Category      varchar(max) not null,
 );    
 
+
 create table itinerary
 (
 id			  int		    primary key			identity(1,1),
