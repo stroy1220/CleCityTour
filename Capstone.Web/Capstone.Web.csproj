@@ -111,14 +111,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cle-skyline-night.jpeg" />
     <Content Include="Content\Duda-Cleveland-Skyline-32.jpg" />
-    <Content Include="Content\michael-symons-mabels-hero-.jpg" />
-    <Content Include="Content\playhouse-square.jpg" />
-    <Content Include="Content\Public_Square_-Terminal-2_1.jpg" />
-    <Content Include="Content\quicken-loans.jpg" />
-    <Content Include="Content\quicken-loans2.jpg" />
     <Content Include="Content\styles.css" />
-    <Content Include="Content\tower-city-xmas.jpg" />
-    <Content Include="Content\west-side-market.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -148,6 +141,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\HashSalt.cs" />
     <Compile Include="Classes\Password.cs" />
+    <Compile Include="Classes\Places.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\iPlacesDAL.cs" />
     <Compile Include="DAL\iUserDAL.cs" />
