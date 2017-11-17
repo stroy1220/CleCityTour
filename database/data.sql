@@ -13,6 +13,6 @@ select * from places;
 delete from places where id = 2
 alter table places alter column latitude varchar(max) not null
 
-update places set category =  where id =16
+update places set longitude = -81.699057 where id =18
 
-insert into places(streetAddress, city, state, latitude, longitude, detail, placeName, Category) values('700 W St Clair Ave', 'Cleveland', 'OH',41.49963580000001, -81.69923589999996, 'Bustling institution serving upscale seafood in an elegant, multilevel setting with skyline views', 'Blue Point Grill','Restaurant')
+insert into places(streetAddress, city, state, latitude, longitude, detail, placeName, Category) values('1 Center Ct', 'Cleveland', 'OH', 41.496873,  -81.689694,'Large indoor venue for pro sports such as hockey, basketball & arena football plus various concerts','Quicken Loans Arena','Sports')
