@@ -30,12 +30,13 @@ id			  int		  primary key			identity(1,1),
 streetAddress varchar(max) not null,
 city          varchar(max) not null,
 state		  varchar(max) not null,
-latitude	  int          not null,
-longitude     int		   not null,
+latitude	  varchar(max)          not null,
+longitude     varchar(max)		   not null,
 googleID      varchar(max) null,
 detail        varchar(max) null,
 placeName     varchar(max) not null,
-);
+Category      varchar(max) not null,
+);    
 
 create table itinerary
 (
