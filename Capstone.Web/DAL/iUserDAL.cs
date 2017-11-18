@@ -12,7 +12,5 @@ namespace Capstone.Web.DAL
         bool DeleteUser(string userName, string password);
         bool UpdatePassword(string userName);
         UserModel SelectUser(string userName);
-
-
     }
 }
