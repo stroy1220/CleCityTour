@@ -43,7 +43,7 @@ namespace Capstone.Web.DAL
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@passwordSalt", user.PasswordSalt);
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    return (rowsAffected > 0);
                 }
             }
             catch (SqlException ex)
