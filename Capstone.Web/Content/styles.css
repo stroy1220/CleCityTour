@@ -30,12 +30,21 @@
         text-decoration: none;
         color: black;
     }
-    .login{
+.login {
+    background-image: url(lebron.jpg);
+    background-size: cover;
+    background-position: top, center;
+    background-repeat: no-repeat;
+    color: white;
+    padding-top: 5%;
+    padding-bottom: 30%;
+}
+    /*.login{
         min-height:700px;
        /*max-width: 95%;*/
-        margin: 0px auto;
-        background-color: tomato;
-    }
+        /*margin: 0px auto;*/
+        /*background-color: tomato;
+    }*/
 .restaurant-hero {
     /*background-image: url(Duda-Cleveland-Skyline-32.jpg);*/
     background-image: url(michael-symons-mabels-hero-.jpg);
