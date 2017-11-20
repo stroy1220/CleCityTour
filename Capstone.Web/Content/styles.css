@@ -3,7 +3,6 @@
 }
 
 .index-hero {
-    /*background-image: url(Duda-Cleveland-Skyline-32.jpg);*/
     background-image: url(cle-skyline-night.jpeg);
     background-size: cover;
     background-position: center;
@@ -46,9 +45,41 @@
         /*margin: 0px auto;*/
         /*background-color: tomato;
     }*/
+.entertainment-hero {
+    background-image: url(playhouse-square.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 15%;
+    padding-bottom: 20%;
+}
+
+.landmarks-hero {
+    background-image: url(Public_Square_-Terminal-2_1.jpg);
+    background-size: cover;
+    background-position: top;
+    color: white;
+    padding-top: 15%;
+    padding-bottom: 20%;
+}
 .restaurant-hero {
-    /*background-image: url(Duda-Cleveland-Skyline-32.jpg);*/
     background-image: url(michael-symons-mabels-hero-.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 15%;
+    padding-bottom: 20%;
+}
+.shopping-hero {
+    background-image: url(tower-city-xmas.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 15%;
+    padding-bottom: 20%;
+}
+.sports-hero {
+    background-image: url(quicken-loans2.jpg);
     background-size: cover;
     background-position: center;
     color: white;
