@@ -18,10 +18,10 @@ namespace Capstone.Web.DAL
         private const string SQL_SelectUser = "select * from userInfo where userName = @userName";
         private const string SQL_CheckUserName = "select count(*) from userInfo where userName = @userName";
 
-        public UserDAL(string connectionString)
-        {
-            this.connectionString = connectionString;
-        }
+        //public UserDAL(string connectionString)
+        //{
+        //    this.connectionString = connectionString;
+        //}
 
         public bool SaveUser(UserModel user)
         {
