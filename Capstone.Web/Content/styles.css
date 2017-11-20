@@ -7,7 +7,7 @@
     background-image: url(cle-skyline-night.jpeg);
     background-size: cover;
     background-position: center;
-    color: white;
+    color: black;
     padding-top: 20%;
     padding-bottom: 20%;
 }
@@ -67,7 +67,7 @@
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
     .login {
-        background-image: url(lebron.jpg);
+        background-image: url(lebron-1024x768.jpg);
         background-size: cover;
         background-position: top, center;
         background-repeat: no-repeat;
