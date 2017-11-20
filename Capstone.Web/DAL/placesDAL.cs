@@ -17,6 +17,8 @@ namespace Capstone.Web.DAL
         private const string SQL_GetAllPlaces = "select * from places";
         private const string SQL_GetSinglePlace = "select * from places where id = @id";
         private const string SQL_UpdatePlace = "update places set  @column = @value where id = @id";
+        private object ViewBag;
+
         public bool CreatePlace(PlacesModel place)
         {
             try
@@ -36,6 +38,7 @@ namespace Capstone.Web.DAL
                     cmd.Parameters.AddWithValue("@detail", place.City);
                     cmd.Parameters.AddWithValue("@placeName", place.State);
                     cmd.Parameters.AddWithValue("@category", place.Latitude);
+                    cmd.Parameters.AddWithValue("@zip", place.Zip);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;
@@ -94,6 +97,7 @@ namespace Capstone.Web.DAL
                         place.Detail = Convert.ToString(reader["detail"]);
                         place.PlaceName = Convert.ToString(reader["placeName"]);
                         place.Category = Convert.ToString(reader["category"]);
+                        place.Zip = Convert.ToInt32(reader["zip"]);
 
                         places.Add(place);
                     }
@@ -130,6 +134,7 @@ namespace Capstone.Web.DAL
                         place.Detail = Convert.ToString(reader["detail"]);
                         place.PlaceName = Convert.ToString(reader["placeName"]);
                         place.Category = Convert.ToString(reader["category"]);
+                        place.Zip = Convert.ToInt32(reader["zip"]);
 
                       
                     }
@@ -155,7 +160,7 @@ namespace Capstone.Web.DAL
                     cmd.Parameters.AddWithValue("@column", column);
                     cmd.Parameters.AddWithValue("@value", value);
                     cmd.Parameters.AddWithValue("@id", id);
-          
+
                     int rowsAffected = cmd.ExecuteNonQuery();
                     return rowsAffected > 0;
                 }
@@ -165,5 +170,43 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
+
+        //public List<PlacesModel> ViewMapFromDB(string name, decimal latitude, decimal longitude, string description)
+        //{
+        //    try
+        //    {
+        //        string markers = "[";
+                
+        //        SqlCommand cmd = new SqlCommand(SQL_GetAllPlaces);
+        //        using (SqlConnection con = new SqlConnection(connectionString))
+        //        {
+        //            List<PlacesModel> map = new List<PlacesModel>();
+        //            cmd.Connection = con;
+        //            con.Open();
+        //            using (SqlDataReader sdr = cmd.ExecuteReader())
+        //            {
+                        
+        //                while (sdr.Read())
+        //                {
+        //                    markers += "{";
+        //                    markers += string.Format("'title': '{0}',", sdr["Name"]);
+        //                    markers += string.Format("'lat': '{0}',", sdr["Latitude"]);
+        //                    markers += string.Format("'lng': '{0}',", sdr["Longitude"]);
+        //                    markers += string.Format("'description': '{0}'", sdr["Description"]);
+        //                    markers += "},";
+        //                }
+        //            }
+        //            markers += "];";
+        //            ViewBag = markers;
+        //            return map;
+        //        }
+
+               
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw;
+        //    }
+       // }
     }
 }

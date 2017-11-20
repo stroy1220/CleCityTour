@@ -18,6 +18,7 @@ namespace Capstone.Web.Models
         public string Detail { get; set; }
         public string PlaceName { get; set; }
         public string Category { get; set; }
+        public int Zip { get; set; }
 
     }
 }

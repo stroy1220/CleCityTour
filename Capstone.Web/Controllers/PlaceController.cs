@@ -5,12 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using Capstone.Web.DAL;
 using Capstone.Web.Models;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Capstone.Web.Controllers
 {
     public class PlaceController : Controller
     {
-        private IPlacesDAL dal; 
+        private IPlacesDAL dal;
 
         public PlaceController(IPlacesDAL userDAL)
         {
@@ -47,5 +49,10 @@ namespace Capstone.Web.Controllers
             return View("Sports", model);
         }
 
+        //public ActionResult ViewMapFromDB()
+        //{
+        //    List<PlacesModel> model = dal.GetAllPlaces();
+        //    return View("ViewMapFromDB", model);
+        //}
     }
 }
