@@ -13,12 +13,12 @@ namespace Capstone.Web.Controllers
     public class HomeController : Controller
     {
         private IUserDAL dal;
-        
+
 
         public HomeController(IUserDAL userDAL)
         {
             this.dal = userDAL;
-        }    
+        }
 
         // GET: Home
         public ActionResult Index(string firstName = "")
@@ -59,18 +59,21 @@ namespace Capstone.Web.Controllers
                 //ViewBag.ErrorMessage = "This username is unavailable";
                 return View("LoginRegister");
             }
-            UserModel user = dal.SelectUser(newUser.UserName);
-            UserModel hashedUser = user;
-            if (newUser.UserName == user.UserName)
+            if (logCode == 0)
             {
-                HashSalt login = new HashSalt();
-                if (login.VerifyPasswordMatch(user.Password, newUser.Password, user.PasswordSalt))
+                UserModel user = dal.SelectUser(newUser.UserName);
+                UserModel hashedUser = user;
+                if (newUser.UserName == user.UserName)
                 {
-                   
-                    return RedirectToAction("Index", new { firstName = newUser.FirstName });
+                    HashSalt login = new HashSalt();
+                    if (login.VerifyPasswordMatch(user.Password, newUser.Password, user.PasswordSalt))
+                    {
+
+                        return RedirectToAction("Index", new { firstName = newUser.FirstName });
+                    }
                 }
             }
-           
+
             return View("LoginRegister");
         }
     }

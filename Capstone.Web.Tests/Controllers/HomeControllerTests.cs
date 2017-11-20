@@ -10,10 +10,11 @@ using Capstone.Web.DAL;
 using System.Data.SqlClient;
 using Moq;
 using Capstone.Web.Models;
+using System.Transactions;
 
 namespace Capstone.Web.Controllers.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class HomeControllerTests
     {
         private Mock<IUserDAL> mockUserDal = new Mock<IUserDAL>();
@@ -30,7 +31,7 @@ namespace Capstone.Web.Controllers.Tests
         }
 
 
-        [TestMethod()]
+        [TestMethod]
         public void HomeController_LoginAction_ReturnLoginRegisterView()
         {
             var controller = new HomeController(mockUserDal.Object);
@@ -44,7 +45,7 @@ namespace Capstone.Web.Controllers.Tests
         }
 
 
-        [TestMethod()]
+        [TestMethod]
         public void HomeController_LoginActionPost_ReturnsUserInfo()
         { 
             var newUser = new UserModel();
