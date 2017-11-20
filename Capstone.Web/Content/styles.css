@@ -39,6 +39,10 @@
     padding-top: 5%;
     padding-bottom: 30%;
 }
+
+    .login h3 {
+        color: white;
+    }
     /*.login{
         min-height:700px;
        /*max-width: 95%;*/
@@ -55,7 +59,7 @@
 }
 
 .landmarks-hero {
-    background-image: url(Public_Square_-Terminal-2_1.jpg);
+    background-image: url(public-square-terminal-1920x1281.jpg);
     background-size: cover;
     background-position: top;
     color: white;
@@ -94,6 +98,10 @@
     margin: 10px auto;
 }
 
+.landmark-detail {
+    text-align: center;
+}
+
 /*Media Queries*/
 
 /* Small Devices, Tablets */
@@ -103,9 +111,11 @@
         background-size: cover;
         background-position: top, center;
         background-repeat: no-repeat;
-        color: black;
         padding-top: 15%;
         padding-bottom: 30%;
+    }
+    .landmark-detail {
+        text-align: left;
     }
 }
 
@@ -116,7 +126,6 @@
         background-size: cover;
         background-position: top, center;
         background-repeat: no-repeat;
-        color: black;
         padding-top: 5%;
         padding-bottom: 30%;
     }
@@ -129,7 +138,6 @@
         background-size: cover;
         background-position: center, top;
         background-repeat: no-repeat;
-        color: black;
         padding-top: 15%;
         padding-bottom: 20%;
     }
