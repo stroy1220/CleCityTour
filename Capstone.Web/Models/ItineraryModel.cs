@@ -13,4 +13,5 @@ namespace Capstone.Web.Models
         public string Name { get; set; }
         public string StartLocation { get; set; }
         public DateTime Date { get; set; }
+
 }
