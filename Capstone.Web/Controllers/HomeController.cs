@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Capstone.Web.Classes;
+using System.ComponentModel;
 
 namespace Capstone.Web.Controllers
 {
@@ -21,9 +22,12 @@ namespace Capstone.Web.Controllers
         }
 
         // GET: Home
-        public ActionResult Index(string firstName = "")
+        public ActionResult Index([DefaultValue(0)]int logCode)
         {
-            ViewBag.FirstName = firstName;
+            if(logCode == 1)
+            {
+                Session["user"] = null;
+            }
             return View("Index");
         }
 
@@ -46,7 +50,10 @@ namespace Capstone.Web.Controllers
 
                     if (dal.SaveUser(newUser))
                     {
-                        //ViewBag.FirstName = newUser.FirstName;
+                        if (Session["user"] == null)
+                        {
+                            Session["user"] = newUser;
+                        }
                         return RedirectToAction("Index", new { firstName = newUser.FirstName });
                     }
                     else
@@ -56,7 +63,6 @@ namespace Capstone.Web.Controllers
                     }
 
                 }
-                //ViewBag.ErrorMessage = "This username is unavailable";
                 return View("LoginRegister");
             }
             if (logCode == 0)
@@ -68,7 +74,10 @@ namespace Capstone.Web.Controllers
                     HashSalt login = new HashSalt();
                     if (login.VerifyPasswordMatch(user.Password, newUser.Password, user.PasswordSalt))
                     {
-
+                        if (Session["user"] == null)
+                        {
+                            Session["user"] = user;
+                        }
                         return RedirectToAction("Index", new { firstName = newUser.FirstName });
                     }
                 }

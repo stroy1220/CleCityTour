@@ -43,3 +43,11 @@ insert into places(streetAddress, city, state, latitude, longitude, detail, plac
 insert into places(streetAddress, city, state, latitude, longitude, detail, placeName, Category) values('401 Euclid Ave', 'Cleveland', 'OH', 41.499746, -81.690662, 'Soaring, ornate indoor mall, opened in 1890, today housing the Hyatt hotel, shops & restaurants', 'The Arcade', 'Shopping')
 
 insert into places(streetAddress, city, state, latitude, longitude, detail, placeName, Category) values('230 W Huron Rd', 'Cleveland', 'OH', 41.496762, -81.694051, 'Tower City Center originally known as Cleveland Union Terminal is located on Public Square. Year built:1927 Area:15 acres', 'Tower City Center', 'Shopping')
+
+alter table places add zip int
+
+select * from places
+
+update places
+set zip = 44113
+where city = 'Cleveland';
