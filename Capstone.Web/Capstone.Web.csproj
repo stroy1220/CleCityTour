@@ -157,7 +157,9 @@
     <Compile Include="Classes\Places.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
+    <Compile Include="DAL\iItineraryDAL.cs" />
     <Compile Include="DAL\iPlacesDAL.cs" />
+    <Compile Include="DAL\ItineraryDAL.cs" />
     <Compile Include="DAL\iUserDAL.cs" />
     <Compile Include="DAL\placesDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
@@ -165,6 +167,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ItineraryModel.cs" />
+    <Compile Include="Models\ItineraryPlacesModel.cs" />
     <Compile Include="Models\PlacesModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

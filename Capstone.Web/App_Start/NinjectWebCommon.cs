@@ -64,6 +64,7 @@ namespace Capstone.Web.App_Start
         {
             kernel.Bind<IUserDAL>().To<UserDAL>();
             kernel.Bind<IPlacesDAL>().To<PlacesDAL>();
+            kernel.Bind<IItineraryDAL>().To<ItineraryDAL>();
         }        
     }
 }
