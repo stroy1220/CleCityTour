@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="row login">
 
-        <div class="col-md-offset-1 col-md-4 col-md-offset-1 text-center">
+        <div class="col-sm-4 col-md-5 text-center">
             <form action="@Url.Action("LoginRegister", "Home", new { logCode = 0})" method="post">
                 <h3>Login</h3>
                 <div class="input-lg">
@@ -23,7 +23,8 @@
             </form>
         </div>
 
-        <div class="col-md-offset-1 col-md-4 col-md-offset-1 text-center">
+        <div class="col-sm-4 col-md-3 text-center">
+
             <form action="@Url.Action("LoginRegister", "Home", new { logCode = 1})" method="post">
                 <h3>Register</h3>
 
@@ -45,11 +46,11 @@
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
                 @*<div>
-                        @Html.LabelFor(m => m.ConfirmPassword)
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { placeHolder = "Re-Type Password", @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.ConfirmPassword)
-                    </div>*@
-                <button class="btn btn-default" >Submit</button>
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { placeHolder = "Re-Type Password", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>*@
+                <button class="btn btn-default">Submit</button>
             </form>
         </div>
     </div>

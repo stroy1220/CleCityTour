@@ -31,7 +31,7 @@
         color: black;
     }
 .login {
-    background-image: url(lebron.jpg);
+    background-image: url(lebron-435x768.jpg);
     background-size: cover;
     background-position: top, center;
     background-repeat: no-repeat;
@@ -61,3 +61,45 @@
 .desc-bump {
     margin: 10px auto;
 }
+
+/*Media Queries*/
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    .login {
+        background-image: url(lebron.jpg);
+        background-size: cover;
+        background-position: top, center;
+        background-repeat: no-repeat;
+        color: white;
+        padding-top: 15%;
+        padding-bottom: 30%;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    .login {
+        background-image: url(lebron.jpg);
+        background-size: cover;
+        background-position: top, center;
+        background-repeat: no-repeat;
+        color: white;
+        padding-top: 5%;
+        padding-bottom: 30%;
+    }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    .login {
+        background-image: url(lebron-1920x1440.jpg);
+        background-size: cover;
+        background-position: center, top;
+        background-repeat: no-repeat;
+        color: white;
+        padding-top: 15%;
+        padding-bottom: 20%;
+    }
+}
+
