@@ -36,6 +36,7 @@
     background-position: top, center;
     background-repeat: no-repeat;
     color: black;
+    
     padding-top: 5%;
     padding-bottom: 30%;
 }
@@ -71,7 +72,7 @@
         background-size: cover;
         background-position: top, center;
         background-repeat: no-repeat;
-        color: white;
+        color: black;
         padding-top: 15%;
         padding-bottom: 30%;
     }
@@ -84,7 +85,7 @@
         background-size: cover;
         background-position: top, center;
         background-repeat: no-repeat;
-        color: white;
+        color: black;
         padding-top: 5%;
         padding-bottom: 30%;
     }
@@ -97,7 +98,7 @@
         background-size: cover;
         background-position: center, top;
         background-repeat: no-repeat;
-        color: white;
+        color: black;
         padding-top: 15%;
         padding-bottom: 20%;
     }
