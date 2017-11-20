@@ -7,7 +7,7 @@
     background-image: url(cle-skyline-night.jpeg);
     background-size: cover;
     background-position: center;
-    color: black;
+    color: white;
     padding-top: 20%;
     padding-bottom: 20%;
 }
@@ -35,7 +35,7 @@
     background-size: cover;
     background-position: top, center;
     background-repeat: no-repeat;
-    color: white;
+    color: black;
     padding-top: 5%;
     padding-bottom: 30%;
 }
