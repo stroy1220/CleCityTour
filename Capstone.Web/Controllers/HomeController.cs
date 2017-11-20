@@ -46,8 +46,8 @@ namespace Capstone.Web.Controllers
 
                     if (dal.SaveUser(newUser))
                     {
-                        ViewBag.FirstName = newUser.FirstName;
-                        return RedirectToAction("Index");
+                        //ViewBag.FirstName = newUser.FirstName;
+                        return RedirectToAction("Index", new { firstName = newUser.FirstName });
                     }
                     else
                     {
