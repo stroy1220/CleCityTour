@@ -38,6 +38,7 @@
                     <li><a href="@Url.Action("Entertainment", "Place")">Entertainment</a></li>
                     <li><a href="@Url.Action("Landmarks", "Place")">Landmarks</a></li>
 
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["user"] == null)
@@ -48,7 +49,9 @@
                     {
                         <li>@user.FirstName</li>
                         <li><a href=" @Url.Action("Index", "Home", new { logCode = 1 })">Logout</a></li>
+                        <li><a href="@Url.Action("UserDashboard", "Home")">Dashboard</a></li>
                     }
+
                 </ul>
             </div>
         </div>

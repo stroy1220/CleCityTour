@@ -186,6 +186,7 @@
     <Content Include="Views\Place\Landmarks.cshtml" />
     <Content Include="Views\Place\Sports.cshtml" />
     <Content Include="Views\Place\ItinPartial.cshtml" />
+    <Content Include="Views\Home\UserDashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

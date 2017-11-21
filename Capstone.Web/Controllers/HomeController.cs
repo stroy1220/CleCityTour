@@ -24,7 +24,7 @@ namespace Capstone.Web.Controllers
         // GET: Home
         public ActionResult Index([DefaultValue(0)]int logCode)
         {
-            if(logCode == 1)
+            if (logCode == 1)
             {
                 Session["user"] = null;
             }
@@ -84,6 +84,43 @@ namespace Capstone.Web.Controllers
             }
 
             return View("LoginRegister");
+        }
+
+        public ActionResult UserDashboard()
+        {
+            PlacesDAL pdal = new PlacesDAL();
+            if (Session["user"] != null)
+            {
+
+                List<ItineraryPlacesModel> model = new List<ItineraryPlacesModel>();
+                UserModel user = Session["user"] as UserModel;
+                ItineraryDAL itdal = new ItineraryDAL();
+                List<ItineraryModel> itinerary = itdal.GetAllItinerary(user.UserId);
+                List<int> listOfPlaceIds = itdal.GetItinerary(user.UserId);
+
+                foreach (var i in itinerary)
+                {
+                    ItineraryPlacesModel singleIntinForUser = new ItineraryPlacesModel();
+                    singleIntinForUser.Itinerary = i;
+                    List<PlacesModel> listOfPlacesInItin = new List<PlacesModel>();
+                    foreach (var singlePlaceId in listOfPlaceIds)
+                    {
+                        PlacesModel newPlaceFromItin = new PlacesModel();
+                        newPlaceFromItin = pdal.GetSinglePlace(singlePlaceId);
+                        listOfPlacesInItin.Add(newPlaceFromItin);
+                    }
+                    singleIntinForUser.Places = listOfPlacesInItin;
+                    model.Add(singleIntinForUser);
+                }
+
+
+
+                return View("UserDashboard", model);
+            }
+            else
+            {
+                return View("LoginRegister");
+            }
         }
     }
 }
