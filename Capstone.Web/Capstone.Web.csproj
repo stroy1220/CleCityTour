@@ -119,7 +119,7 @@
     <Content Include="Content\Duda-Cleveland-Skyline-32.jpg" />
     <Content Include="Content\michael-symons-mabels-hero-.jpg" />
     <Content Include="Content\playhouse-square.jpg" />
-    <Content Include="Content\Public_Square_-Terminal-2_1.jpg" />
+    <Content Include="Content\public-square-terminal-1920x1281.jpg" />
     <Content Include="Content\quicken-loans.jpg" />
     <Content Include="Content\quicken-loans2.jpg" />
     <Content Include="Content\styles.css" />
@@ -157,7 +157,9 @@
     <Compile Include="Classes\Places.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlaceController.cs" />
+    <Compile Include="DAL\iItineraryDAL.cs" />
     <Compile Include="DAL\iPlacesDAL.cs" />
+    <Compile Include="DAL\ItineraryDAL.cs" />
     <Compile Include="DAL\iUserDAL.cs" />
     <Compile Include="DAL\placesDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
@@ -165,6 +167,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ItineraryModel.cs" />
+    <Compile Include="Models\ItineraryPlacesModel.cs" />
     <Compile Include="Models\PlacesModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -182,6 +185,7 @@
     <Content Include="Views\Place\Entertainment.cshtml" />
     <Content Include="Views\Place\Landmarks.cshtml" />
     <Content Include="Views\Place\Sports.cshtml" />
+    <Content Include="Views\Shared\ItinPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

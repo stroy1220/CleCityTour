@@ -1,6 +1,8 @@
-﻿
+﻿@using Capstone.Web.Models;
+
 @{
     Layout = null;
+    UserModel user = Session["user"] as UserModel;
 }
 
 <!DOCTYPE html>
@@ -38,12 +40,15 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    
+                    @if (Session["user"] == null)
+                    {
                     <li>@Html.ActionLink("Login", "LoginRegister", "Home")</li>
-                  
-                       
-                   <li>@ViewBag.FirstName</li>
-                       
+                    }
+                    else
+                    {
+                        <li>@user.FirstName</li>
+                        <li><a href=" @Url.Action("Index", "Home", new { logCode = 1 })">Logout</a></li>
+                    }
                 </ul>
             </div>
         </div>
@@ -52,14 +57,14 @@
     @*<div class="container body-content">*@
     @RenderBody()
     <hr />
-    <footer>
+    <footer class="col-xs-12">
         <p class="text-center">
             <br />&copy; @DateTime.Now.Year &bull;
             <a class="poly-productions" href="https://www.linkedin.com/in/teddilyn-gavozzi/">Gavozzi </a>
             <a class="poly-productions" href="https://www.linkedin.com/in/peter-rader/">Rader </a>
             <a class="poly-productions" href="https://www.linkedin.com/in/richard-smith-ohio/"> Smith</a> &amp;
             <a class="poly-productions" href="https://www.linkedin.com/in/samanthatroy1220/">Troy</a> Production
-            <br/>Sales Assistance (800) 404-HTML &bull; Customer Service (301) 404-HTML
+            <br />Sales Assistance (800) 404-HTML <span class="hidden-xs">&bull;</span><span class="visible-xs"></span> Customer Service (301) 404-HTML
         </p>
 
     </footer>

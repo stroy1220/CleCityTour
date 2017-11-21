@@ -7,19 +7,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="shopping-hero jumbotron">
+    <div class="container text-center">
+        <h1 class="h1 text-uppercase hero-text-drop-shadow">Shopping</h1>
+    </div>
+</div>
 
-<h2>Shopping</h2>
-
-@{foreach (var p in Model)
-    {
-        <p>@p.PlaceName</p>
-        <p>@p.StreetAddress</p>
-        <p>@p.City</p>
-        <p>@p.State</p>
-        <p>@p.Longitude</p>
-        <p>@p.Latitude</p>
-        <p>@p.Detail</p>
-        <p>@p.Category</p>
-
-    }
-}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            @{foreach (var p in Model)
+                {
+                    if (p.Category == "Shopping")
+                    {
+                        <div class="col-xs-12 desc-bump">
+                            <div class="col-md-4">
+                                @*<img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap"/>*@
+                                <img class="img-responsive" src="~/Content/tower-city-xmas.jpg" alt="">
+                            </div>
+                            <div class="col-md-8 landmark-detail">
+                                <h3>@p.PlaceName</h3>
+                                <h4>@p.Detail</h4>
+                                <p>@p.StreetAddress<br />@p.City, @p.State, @p.Zip</p>
+                            </div>
+                            <hr />
+                        </div>
+                        @*<div class="clearfix"></div>*@
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>

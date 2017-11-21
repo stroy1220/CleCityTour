@@ -3,7 +3,6 @@
 }
 
 .index-hero {
-    /*background-image: url(Duda-Cleveland-Skyline-32.jpg);*/
     background-image: url(cle-skyline-night.jpeg);
     background-size: cover;
     background-position: center;
@@ -36,18 +35,55 @@
     background-position: top, center;
     background-repeat: no-repeat;
     color: black;
+    
     padding-top: 5%;
     padding-bottom: 30%;
 }
+
+    .login h3 {
+        color: white;
+    }
     /*.login{
         min-height:700px;
        /*max-width: 95%;*/
         /*margin: 0px auto;*/
         /*background-color: tomato;
     }*/
+.entertainment-hero {
+    background-image: url(playhouse-square.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 15%;
+    padding-bottom: 20%;
+}
+
+.landmarks-hero {
+    background-image: url(public-square-terminal-1920x1281.jpg);
+    background-size: cover;
+    background-position: top;
+    color: white;
+    padding-top: 15%;
+    padding-bottom: 20%;
+}
 .restaurant-hero {
-    /*background-image: url(Duda-Cleveland-Skyline-32.jpg);*/
     background-image: url(michael-symons-mabels-hero-.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 15%;
+    padding-bottom: 20%;
+}
+.shopping-hero {
+    background-image: url(tower-city-xmas.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 15%;
+    padding-bottom: 20%;
+}
+.sports-hero {
+    background-image: url(quicken-loans2.jpg);
     background-size: cover;
     background-position: center;
     color: white;
@@ -62,6 +98,10 @@
     margin: 10px auto;
 }
 
+.landmark-detail {
+    text-align: center;
+}
+
 /*Media Queries*/
 
 /* Small Devices, Tablets */
@@ -71,9 +111,11 @@
         background-size: cover;
         background-position: top, center;
         background-repeat: no-repeat;
-        color: white;
         padding-top: 15%;
         padding-bottom: 30%;
+    }
+    .landmark-detail {
+        text-align: left;
     }
 }
 
@@ -84,7 +126,6 @@
         background-size: cover;
         background-position: top, center;
         background-repeat: no-repeat;
-        color: white;
         padding-top: 5%;
         padding-bottom: 30%;
     }
@@ -97,7 +138,6 @@
         background-size: cover;
         background-position: center, top;
         background-repeat: no-repeat;
-        color: white;
         padding-top: 15%;
         padding-bottom: 20%;
     }

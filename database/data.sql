@@ -46,7 +46,7 @@ insert into places(streetAddress, city, state, latitude, longitude, detail, plac
 
 alter table places add zip int
 
- select * from places
+
 
  update places
  set zip = 44113
