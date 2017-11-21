@@ -120,7 +120,7 @@ namespace Capstone.Web.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(SQL_GetAllPlaces, conn);
+                    SqlCommand cmd = new SqlCommand(SQL_GetSinglePlace, conn);
                     cmd.Parameters.AddWithValue("@id", id);
 
                     SqlDataReader reader = cmd.ExecuteReader();

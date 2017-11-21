@@ -117,6 +117,7 @@ namespace Capstone.Web.DAL
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    conn.Open();
                     SqlCommand cmd = new SqlCommand(SQL_GetItinerary, conn);
                     cmd.Parameters.AddWithValue("@userId", id);
                     SqlDataReader reader = cmd.ExecuteReader();
