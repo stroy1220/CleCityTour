@@ -51,3 +51,20 @@ alter table places add zip int
  update places
  set zip = 44113
  where city = 'Cleveland'
+
+ select * from itinerary where userID = 1;
+
+ insert into itinerary values(1, 'fakename', 'fakestartlocation', '01/01/01');
+ insert into itinerary values(1, 'fakename2', 'fakestartlocation2', '01/01/01');
+
+
+ insert into itineraryPlaces values(2, 1)
+ insert into itineraryPlaces values(2, 2)
+ insert into itineraryPlaces values(2, 3)
+
+ insert into itineraryPlaces values(3, 4)
+ insert into itineraryPlaces values(3, 5)
+ insert into itineraryPlaces values(3, 6)
+
+ select * from itinerary where userId = 1 order by id desc
+
