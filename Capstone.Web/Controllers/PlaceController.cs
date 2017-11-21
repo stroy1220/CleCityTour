@@ -33,9 +33,6 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Entertainment()
         {
-            //ItineraryDAL itdal = new ItineraryDAL();
-            //UserModel user = Session["user"] as UserModel;
-            //List<PlacesModel> itinerary = itdal.GetItinerarty(user.UserId);
             List<PlacesModel> model = dal.GetAllPlaces();
             return View("Entertainment", model);
         }
@@ -51,5 +48,31 @@ namespace Capstone.Web.Controllers
             List<PlacesModel> model = dal.GetAllPlaces();
             return View("Sports", model);
         }
+
+        public ActionResult ItinPartial()
+        {
+            List<ItineraryPlacesModel> model = new List<ItineraryPlacesModel>();
+            UserModel user = Session["user"] as UserModel;
+            ItineraryDAL itdal = new ItineraryDAL();
+            List<ItineraryModel> itinerary = itdal.GetAllItinerary(user.UserId);
+            List<int> listOfPlaceIds = itdal.GetItinerary(user.UserId);
+
+            foreach (var i in itinerary)
+            {
+                ItineraryPlacesModel singleIntinForUser = new ItineraryPlacesModel();
+                singleIntinForUser.Itinerary = i;
+                List<PlacesModel> listOfPlacesInItin = new List<PlacesModel>();
+                foreach (var singlePlaceId in listOfPlaceIds)
+                {
+                    PlacesModel newPlaceFromItin = new PlacesModel();
+                    newPlaceFromItin = dal.GetSinglePlace(singlePlaceId);
+                    listOfPlacesInItin.Add(newPlaceFromItin);
+                }
+                singleIntinForUser.Places = listOfPlacesInItin;
+                model.Add(singleIntinForUser);
+            }
+            return View("ItinPartial", model);
+        }
+
     }
 }

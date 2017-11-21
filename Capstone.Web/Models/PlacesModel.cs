@@ -14,7 +14,7 @@ namespace Capstone.Web.Models
         public string State { get; set; }
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
-        public int GoogleID { get; set; }
+        public int? GoogleID { get; set; }
         public string Detail { get; set; }
         public string PlaceName { get; set; }
         public string Category { get; set; }

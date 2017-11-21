@@ -185,7 +185,7 @@
     <Content Include="Views\Place\Entertainment.cshtml" />
     <Content Include="Views\Place\Landmarks.cshtml" />
     <Content Include="Views\Place\Sports.cshtml" />
-    <Content Include="Views\Shared\ItinPartial.cshtml" />
+    <Content Include="Views\Place\ItinPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
