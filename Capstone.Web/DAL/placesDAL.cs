@@ -121,6 +121,8 @@ namespace Capstone.Web.DAL
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(SQL_GetAllPlaces, conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -130,7 +132,7 @@ namespace Capstone.Web.DAL
                         place.State = Convert.ToString(reader["state"]);
                         place.Latitude = Convert.ToDecimal(reader["latitude"]);
                         place.Longitude = Convert.ToDecimal(reader["longitude"]);
-                        place.GoogleID = Convert.ToInt32(reader["googleID"]);
+                        //place.GoogleID = Convert.ToInt32(reader["googleID"]);
                         place.Detail = Convert.ToString(reader["detail"]);
                         place.PlaceName = Convert.ToString(reader["placeName"]);
                         place.Category = Convert.ToString(reader["category"]);

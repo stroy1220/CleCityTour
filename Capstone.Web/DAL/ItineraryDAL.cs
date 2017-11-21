@@ -19,12 +19,11 @@ namespace Capstone.Web.DAL
         private const string SQL_CreateNeweItinerary = "insert into itinerary values(@userId, @name, @startLocation, @date)";
         private const string SQL_DeleteItinerary = "delete * from itinerary where id = @id";
         private const string SQL_RemovePlaceFromItinerary = "delete * from itineraryPlaces where placeId = @placeId";
-        private const string SQL_GetItinerary = "select * from places where id = (select placeId from itineraryPlaces where itineraryId = (select id from itinerary where id = @id))";
+        private const string SQL_GetItinerary = "select placeId from itineraryPlaces where itineraryID = (select max(id) from itinerary where userId = @userId)";
         private const string SQL_UpdateName = "update itinerary set name = @name where id = @id";
         private const string SQL_StartDate = "update itinerary set startDate = @startDate where id = @id";
         private const string SQL_UpdateLocation = "update itinerary set startLocation = @startLocation where id = @id";
-        private const string SQL_GetAllItinerary = "select * from itinerary where userId = @userId";
-
+        private const string SQL_GetAllItinerary = "select * from itinerary where userId = @userId order by id desc";
 
         public bool AddPlaceToItinerary(int itineraryId, int placeId)
         {
@@ -111,32 +110,22 @@ namespace Capstone.Web.DAL
             }
         }
 
-        public List<PlacesModel> GetItinerarty(int id)
+        public List<int> GetItinerary(int id)
         {
-            List<PlacesModel> output = new List<PlacesModel>();
+            List<int> output = new List<int>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(SQL_GetItinerary, conn);
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@userId", id);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        PlacesModel p = new PlacesModel();
-                        p.Category = Convert.ToString(reader["category"]);
-                        p.City = Convert.ToString(reader["city"]);
-                        p.StreetAddress = Convert.ToString(reader["streetAddress"]);
-                        p.State = Convert.ToString(reader["state"]);
-                        p.Latitude = Convert.ToDecimal(reader["latitude"]);
-                        p.Longitude = Convert.ToDecimal(reader["longitude"]);
-                        p.GoogleID = Convert.ToInt32(reader["googleID"]);
-                        p.Detail = Convert.ToString(reader["detail"]);
-                        p.PlaceName = Convert.ToString(reader["placeName"]);
-                        p.Zip = Convert.ToInt32(reader["zip"]);
-                        p.Id = Convert.ToInt32(reader["id"]);
+                        int p = 0;
+                        p = Convert.ToInt32(reader["placeId"]);
 
                         output.Add(p);
                     }
@@ -214,14 +203,32 @@ namespace Capstone.Web.DAL
         }
         public List<ItineraryModel> GetAllItinerary(int userId)
         {
+            List<ItineraryModel> output = new List<ItineraryModel>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetAllItinerary, conn);
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    SqlDataReader reader = cmd.ExecuteReader();
 
+                    while (reader.Read())
+                    {
+                        ItineraryModel p = new ItineraryModel();
+                        p.Id = Convert.ToInt32(reader["Id"]);
+                        p.UserId = Convert.ToInt32(reader["UserId"]);
+                        p.Name = Convert.ToString(reader["Name"]);
+                        p.StartLocation = Convert.ToString(reader["StartLocation"]);
+                        p.Date = Convert.ToDateTime(reader["Date"]);
+
+                        output.Add(p);
+                    }
                 }
+
+                return output;
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw;
             }

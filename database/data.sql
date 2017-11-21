@@ -46,7 +46,7 @@ insert into places(streetAddress, city, state, latitude, longitude, detail, plac
 
 alter table places add zip int
 
-
+select * from userInfo
 
  update places
  set zip = 44113
@@ -54,17 +54,18 @@ alter table places add zip int
 
  select * from itinerary where userID = 1;
 
- insert into itinerary values(1, 'fakename', 'fakestartlocation', '01/01/01');
- insert into itinerary values(1, 'fakename2', 'fakestartlocation2', '01/01/01');
+ insert into itinerary values(5, 'fakename', 'fakestartlocation', '01/01/01');
+ insert into itinerary values(5, 'fakename2', 'fakestartlocation2', '01/01/01');
 
 
- insert into itineraryPlaces values(2, 1)
- insert into itineraryPlaces values(2, 2)
- insert into itineraryPlaces values(2, 3)
+ insert into itineraryPlaces values(4, 1)
+ insert into itineraryPlaces values(4, 2)
+ insert into itineraryPlaces values(4, 3)
 
- insert into itineraryPlaces values(3, 4)
- insert into itineraryPlaces values(3, 5)
- insert into itineraryPlaces values(3, 6)
+ insert into itineraryPlaces values(5, 4)
+ insert into itineraryPlaces values(5, 5)
+ insert into itineraryPlaces values(5, 6)
 
- select * from itinerary where userId = 1 order by id desc
+ select * from itinerary where userId = 5 order by id desc
 
+ delete from userInfo where id = 1;

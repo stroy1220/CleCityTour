@@ -113,6 +113,7 @@ namespace Capstone.Web.DAL
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
+                        user.UserId = Convert.ToInt32(reader["id"]);
                         user.UserName = Convert.ToString(reader["userName"]);
                         user.FirstName = Convert.ToString(reader["firstName"]);
                         user.LastName = Convert.ToString(reader["lastName"]);
