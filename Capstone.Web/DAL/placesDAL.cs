@@ -170,43 +170,5 @@ namespace Capstone.Web.DAL
                 throw;
             }
         }
-
-        //public List<PlacesModel> ViewMapFromDB(string name, decimal latitude, decimal longitude, string description)
-        //{
-        //    try
-        //    {
-        //        string markers = "[";
-                
-        //        SqlCommand cmd = new SqlCommand(SQL_GetAllPlaces);
-        //        using (SqlConnection con = new SqlConnection(connectionString))
-        //        {
-        //            List<PlacesModel> map = new List<PlacesModel>();
-        //            cmd.Connection = con;
-        //            con.Open();
-        //            using (SqlDataReader sdr = cmd.ExecuteReader())
-        //            {
-                        
-        //                while (sdr.Read())
-        //                {
-        //                    markers += "{";
-        //                    markers += string.Format("'title': '{0}',", sdr["Name"]);
-        //                    markers += string.Format("'lat': '{0}',", sdr["Latitude"]);
-        //                    markers += string.Format("'lng': '{0}',", sdr["Longitude"]);
-        //                    markers += string.Format("'description': '{0}'", sdr["Description"]);
-        //                    markers += "},";
-        //                }
-        //            }
-        //            markers += "];";
-        //            ViewBag = markers;
-        //            return map;
-        //        }
-
-               
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw;
-        //    }
-       // }
     }
 }

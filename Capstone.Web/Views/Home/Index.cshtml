@@ -5,156 +5,181 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <html>
 
+
+
+
 <head>
-
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>From Info Windows to a Database: Saving User-Added Form Data</title>
     <style>
-        #map-canvas {
-            width: 100%;
-            height: 600px;
+        /* Always set the map height explicitly to define the size of the div
+            * element that contains the map. */
+        #map {
+            height: 100%;
         }
-
-        .controls {
-            margin-top: 16px;
-            border: 1px solid transparent;
-            border-radius: 2px 0 0 2px;
-            box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            height: 32px;
-            outline: none;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
-
-        #pac-input {
-            background-color: #fff;
-            font-family: Roboto;
-            font-size: 15px;
-            font-weight: 300;
-            margin-left: 12px;
-            padding: 0 11px 0 13px;
-            text-overflow: ellipsis;
-            width: 400px;
-        }
-
-            #pac-input:focus {
-                border-color: #4d90fe;
-            }
-
-        .pac-container {
-            font-family: Roboto;
-        }
-
-        #type-selector {
-            color: #fff;
-            background-color: #4d90fe;
-            padding: 5px 11px 0px 11px;
-        }
-
-            #type-selector label {
-                font-family: Roboto;
-                font-size: 13px;
-                font-weight: 300;
-            }
-    </style>
-
-    <title>Places search box</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc&libraries=places"></script>
-
-    <script>
-
-        // This example adds a search box to a map, using the Google Place Autocomplete
-        // feature. People can enter geographical searches. The search box will return a
-        // pick list containing a mix of places and predicted search terms.
-
-        function initialize() {
-
-            var markers = [];
-            var map = new google.maps.Map(document.getElementById('map-canvas'), {
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
-
-            var defaultBounds = new google.maps.LatLngBounds(
-                new google.maps.LatLng(41.495820, -81.702458),
-                new google.maps.LatLng(41.499320, -81.694361)
-            );
-            map.fitBounds(defaultBounds);
-
-            // Create the search box and link it to the UI element.
-            var input =  @*@type { HTMLInputElement }*@ (
-                document.getElementById('pac-input'));
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-            var searchBox = new google.maps.places.SearchBox(
-     @*@type { HTMLInputElement }*@ (input));
-
-            // [START region_getplaces]
-            // Listen for the event fired when the user selects an item from the
-            // pick list. Retrieve the matching places for that item.
-            google.maps.event.addListener(searchBox, 'places_changed', function () {
-                var places = searchBox.getPlaces();
-
-                if (places.length == 0) {
-                    return;
-                }
-                for (var i = 0, marker; marker = markers[i]; i++) {
-                    marker.setMap(null);
-                }
-
-                // For each place, get the icon, place name, and location.
-                markers = [];
-                var bounds = new google.maps.LatLngBounds();
-                for (var i = 0, place; place = places[i]; i++) {
-                    var image = {
-                        url: place.icon,
-                        size: new google.maps.Size(71, 71),
-                        origin: new google.maps.Point(0, 0),
-                        anchor: new google.maps.Point(17, 34),
-                        scaledSize: new google.maps.Size(25, 25)
-                    };
-
-                    // Create a marker for each place.
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        icon: image,
-                        title: place.name,
-                        position: place.geometry.location
-                    });
-
-                    markers.push(marker);
-
-                    bounds.extend(place.geometry.location);
-                }
-
-                map.fitBounds(bounds);
-            });
-            // [END region_getplaces]
-
-            // Bias the SearchBox results towards places that are within the bounds of the
-            // current map's viewport.
-            google.maps.event.addListener(map, 'bounds_changed', function () {
-                var bounds = map.getBounds();
-                searchBox.setBounds(bounds);
-            });
-        }
-
-        google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
-
-    <style>
-        #target {
-            width: 345px;
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
-    
+
+
+
+@*<html>
+
+    <head>
+
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <style>
+            #map-canvas {
+                width: 100%;
+                height: 600px;
+            }
+
+            .controls {
+                margin-top: 16px;
+                border: 1px solid transparent;
+                border-radius: 2px 0 0 2px;
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                height: 32px;
+                outline: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            }
+
+            #pac-input {
+                background-color: #fff;
+                font-family: Roboto;
+                font-size: 15px;
+                font-weight: 300;
+                margin-left: 12px;
+                padding: 0 11px 0 13px;
+                text-overflow: ellipsis;
+                width: 400px;
+            }
+
+                #pac-input:focus {
+                    border-color: #4d90fe;
+                }
+
+            .pac-container {
+                font-family: Roboto;
+            }
+
+            #type-selector {
+                color: #fff;
+                background-color: #4d90fe;
+                padding: 5px 11px 0px 11px;
+            }
+
+                #type-selector label {
+                    font-family: Roboto;
+                    font-size: 13px;
+                    font-weight: 300;
+                }
+        </style>
+
+        <title>Places search box</title>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc&libraries=places"></script>
+
+        <script>
+
+            // This example adds a search box to a map, using the Google Place Autocomplete
+            // feature. People can enter geographical searches. The search box will return a
+            // pick list containing a mix of places and predicted search terms.
+
+            function initialize() {
+
+                var markers = [];
+                var map = new google.maps.Map(document.getElementById('map-canvas'), {
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                });
+
+                var defaultBounds = new google.maps.LatLngBounds(
+                    new google.maps.LatLng(41.495820, -81.702458),
+                    new google.maps.LatLng(41.499320, -81.694361)
+                );
+                map.fitBounds(defaultBounds);
+
+                // Create the search box and link it to the UI element.
+                var input =  @* @type { HTMLInputElement } (
+                    document.getElementById('pac-input'));
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                var searchBox = new google.maps.places.SearchBox(
+         @* @type { HTMLInputElement }* (input));
+
+                // [START region_getplaces]
+                // Listen for the event fired when the user selects an item from the
+                // pick list. Retrieve the matching places for that item.
+                google.maps.event.addListener(searchBox, 'places_changed', function () {
+                    var places = searchBox.getPlaces();
+
+                    if (places.length == 0) {
+                        return;
+                    }
+                    for (var i = 0, marker; marker = markers[i]; i++) {
+                        marker.setMap(null);
+                    }
+
+                    // For each place, get the icon, place name, and location.
+                    markers = [];
+                    var bounds = new google.maps.LatLngBounds();
+                    for (var i = 0, place; place = places[i]; i++) {
+                        var image = {
+                            url: place.icon,
+                            size: new google.maps.Size(71, 71),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(25, 25)
+                        };
+
+                        // Create a marker for each place.
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            icon: image,
+                            title: place.name,
+                            position: place.geometry.location
+                        });
+
+                        markers.push(marker);
+
+                        bounds.extend(place.geometry.location);
+                    }
+
+                    map.fitBounds(bounds);
+                });
+                // [END region_getplaces]
+
+                // Bias the SearchBox results towards places that are within the bounds of the
+                // current map's viewport.
+                google.maps.event.addListener(map, 'bounds_changed', function () {
+                    var bounds = map.getBounds();
+                    searchBox.setBounds(bounds);
+                });
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+        </script>
+
+        <style>
+            #target {
+                width: 345px;
+            }
+        </style>
+    </head>*@
+
 <body>
 
-@*<body>*@
+
     <div class="index-hero jumbotron">
         <div class="container text-center">
             <h1 class="h1 text-uppercase index-hero-text-shadow">Where To Be In The CLE</h1>
@@ -166,13 +191,13 @@
         <div class="row">
             <div class="col-sm-3 col-xs-6">
                 <a href="@Url.Action("Restaurant", "Place")">
-                @*@Html.ActionLink()*@
+                    @*@Html.ActionLink()*@
 
 
-                <div class="callout-sm text-center">
-                    <img src="~/Content/michael-symons-mabels-hero-.jpg" alt="" width="75%" height="auto">
-                    <h2 class="h5">Restaurants</h2>
-                </div>
+                    <div class="callout-sm text-center">
+                        <img src="~/Content/michael-symons-mabels-hero-.jpg" alt="" width="75%" height="auto">
+                        <h2 class="h5">Restaurants</h2>
+                    </div>
                 </a>
             </div>
 
@@ -213,37 +238,138 @@
     </div>
 
 
-    @*map
-    <div id="dvMap" style="width: 500px; height: 500px">
-    </div>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc"></script>
-    <script type="text/javascript">
-        var markers = @Html.Raw(ViewBag.Markers);
-        window.onload = function () {
-            var mapOptions = {
-                center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
-                zoom: 8,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var infoWindow = new google.maps.InfoWindow();
-            var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-            for (i = 0; i < markers.length; i++) {
-                var data = markers[i]
-                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
-                var marker = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map,
-                    title: data.title
-                });
-                (function (marker, data) {
-                    google.maps.event.addListener(marker, "click", function (e) {
-                        infoWindow.setContent(data.description);
-                        infoWindow.open(map, marker);
-                    });
-                })(marker, data);
-            }
-        }
-    </script>*@
 
+
+
+
+
+    <div id="map" height="460px" width="100%"></div>
+    <div id="form">
+        <table>
+            <tr><td>Name:</td> <td><input type='text' id='name' /> </td> </tr>
+            <tr><td>Address:</td> <td><input type='text' id='address' /> </td> </tr>
+            <tr>
+                <td>Type:</td>
+                <td>
+                    <select id='type'>
+                        +
+                        <option value='Shopping' SELECTED>shopping</option>
+                        <option value='Restaurants'>restaurant</option>
+                        <option value='Sports'>sports</option>
+                        <option value='Entertainment'>entertainment</option>
+                        <option value='Landmarks'>landmarks</option>
+                    </select>
+                </td>
+            </tr>
+            <tr><td></td><td><input type='button' value='Save to Itinerary' onclick='saveData()' /></td>
+            <td><input type='button' value='Delete' onclick='DeleteMarkers()' /></td></tr>
+        </table>
+    </div>
+    <div id="message">Location saved</div>
+    <script>
+        var map;
+        var marker;
+        var infowindow;
+        var messagewindow;
+
+        function initMap() {
+            var ohio = { lat: 41.505493, lng: -81.681290 };
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: ohio,
+                zoom: 13
+            });
+
+            infowindow = new google.maps.InfoWindow({
+                content: document.getElementById('form')
+            });
+
+            messagewindow = new google.maps.InfoWindow({
+                content: document.getElementById('message')
+            });
+
+            //google.maps.event.addListener(map, 'click', function (event) {
+            //    marker = new google.maps.Marker({
+            //        position: event.latLng,
+            //        map: map
+            //    });
+      
+
+            google.maps.event.addListener(marker, "click", function () {
+                showMarkerDialog(marker.position, "marker");
+                marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+
+                    icon: redPin
+            });
+
+            google.maps.event.addListener(marker, "dblclick", function () {
+                // Add a alert: Are you sure you want to remove this marker?
+
+                marker.setMap(null);
+            });
+
+
+
+               
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(map, marker);
+
+                });
+            });
+        }
+        
+        function toggleMarker(marker, map) {
+            if (marker.getMap() == null)
+                marker.setMap(map); // marker isn't visible on map, so make it visible
+            else
+                marker.setMap(null); // marker is visible on map, so make it invisible
+        }
+
+        function saveData() {
+            var name = escape(document.getElementById('name').value);
+            var address = escape(document.getElementById('address').value);
+            var type = document.getElementById('type').value;
+            var latlng = marker.getPosition();
+            var url = 'phpsqlinfo_addrow.php?name=' + name + '&address=' + address +
+                '&type=' + type + '&lat=' + latlng.lat() + '&lng=' + latlng.lng();
+
+            downloadUrl(url, function (data, responseCode) {
+
+                if (responseCode == 200 && data.length <= 1) {
+                    infowindow.close();
+                    messagewindow.open(map, marker);
+                }
+            });
+        }
+
+        function downloadUrl(url, callback) {
+            var request = window.ActiveXObject ?
+                new ActiveXObject('Microsoft.XMLHTTP') :
+                new XMLHttpRequest;
+
+            request.onreadystatechange = function () {
+                if (request.readyState == 4) {
+                    request.onreadystatechange = doNothing;
+                    callback(request.responseText, request.status);
+                }
+            };
+
+            request.open('GET', url, true);
+            request.send(null);
+        }
+
+       
+
+        function doNothing() {
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc&callback=initMap">
+    </script>
 </body>
 </html>
+

@@ -48,11 +48,5 @@ namespace Capstone.Web.Controllers
             List<PlacesModel> model = dal.GetAllPlaces();
             return View("Sports", model);
         }
-
-        //public ActionResult ViewMapFromDB()
-        //{
-        //    List<PlacesModel> model = dal.GetAllPlaces();
-        //    return View("ViewMapFromDB", model);
-        //}
     }
 }
