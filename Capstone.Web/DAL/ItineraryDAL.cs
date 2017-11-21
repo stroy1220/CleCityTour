@@ -23,6 +23,7 @@ namespace Capstone.Web.DAL
         private const string SQL_UpdateName = "update itinerary set name = @name where id = @id";
         private const string SQL_StartDate = "update itinerary set startDate = @startDate where id = @id";
         private const string SQL_UpdateLocation = "update itinerary set startLocation = @startLocation where id = @id";
+        private const string SQL_GetAllItinerary = "select * from itinerary where userId = @userId";
 
 
         public bool AddPlaceToItinerary(int itineraryId, int placeId)
@@ -207,6 +208,20 @@ namespace Capstone.Web.DAL
                 }
             }
             catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+        public List<ItineraryModel> GetAllItinerary(int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                }
+            }
+            catch(SqlException ex)
             {
                 throw;
             }

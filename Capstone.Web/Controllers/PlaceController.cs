@@ -33,6 +33,9 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Entertainment()
         {
+            ItineraryDAL itdal = new ItineraryDAL();
+            UserModel user = Session["user"] as UserModel;
+            ItineraryModel itinerary = itdal.GetItinerarty(user.UserId);
             List<PlacesModel> model = dal.GetAllPlaces();
             return View("Entertainment", model);
         }
