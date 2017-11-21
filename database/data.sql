@@ -69,3 +69,5 @@ select * from userInfo
  select * from itinerary where userId = 5 order by id desc
 
  delete from userInfo where id = 1;
+
+ alter table places add userID int
