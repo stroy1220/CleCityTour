@@ -131,5 +131,14 @@ namespace Capstone.Web.Controllers
             return View("LoginRegister");
         }
 
+        public ActionResult SavedItinerary()
+        {
+            if (Session["user"] != null)
+            {
+                
+            }
+            return View();
+        }
+
     }
 }

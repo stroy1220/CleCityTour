@@ -44,11 +44,9 @@
                 //Attach click event handler to the marker.
                 google.maps.event.addListener(marker, "click", function (e) {
                     var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
-
                     content += `<br /><input data-id='name-${marker.id}' type = 'text' placeholder = 'Name your location' onclick = 'Save(${marker.id});' />`;
                     content += `<br /><input type = 'button' value = 'Save to Itinerary' onclick = 'SaveMarker(${marker.id}, ${location.lat()}, ${location.lng()});' value = 'Save' />`;
                     content += "<br /><input type = 'button' value = 'Delete' onclick = 'DeleteMarker(" + marker.id + ");' value = 'Delete' />";
-                   // <tr><td>Address:</td> <td><input type='text' id='address' /> </td> </tr>
                     var infoWindow = new google.maps.InfoWindow({
                         content: content
                     });
@@ -94,13 +92,30 @@
                 if (status === 'OK') {
 
                     var components = results[0].address_components;
-                    var city;
-                    var streetAddress;
-                    var streetName;
-                    var state;
-                    var zip;
-                    var fullAddress;
-                    var total;
+                    var city = $("#city").val();
+                    var streetAddress = $("#streetAddress").val();
+                    var streetName = $("#streetName").val();
+                    var state = $("#state").val();
+                    var zip = $("#zip").val();
+                    var fullAddress = $("#fullAddress").val();
+                    var total = $("#total").val();
+
+                    $.ajax({
+                        url: url,
+                        method: 'PUT',
+                        data: {
+                            streetAddress: fullAddress,
+                            city: city,
+                            state: state,
+                            latitude: lat,
+                            longitude: lng,
+                            placeName: name,
+                            zip: zip
+                        }
+                    }).then(function (data) {
+                        infoWindow('hide')
+                    });
+
                     $.each(components, function (index, component) {
                         if (component.types[0] === 'locality') {
                             city = component.long_name;
