@@ -219,7 +219,7 @@ namespace Capstone.Web.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.UserId = Convert.ToInt32(reader["UserId"]);
                         p.Name = Convert.ToString(reader["Name"]);
-                        p.StartLocation = Convert.ToString(reader["StartLocation"]);
+                        //p.StartLocation = Convert.ToString(reader["StartLocation"]);
                         p.Date = Convert.ToDateTime(reader["Date"]);
 
                         output.Add(p);

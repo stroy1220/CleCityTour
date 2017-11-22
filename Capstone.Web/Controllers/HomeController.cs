@@ -121,38 +121,38 @@ namespace Capstone.Web.Controllers
             }
         }
 
-        public ActionResult CreateItinerary()
-        {
-            PlacesDAL pdal = new PlacesDAL();
-            var places = pdal.GetAllPlaces();
-            List<SelectListItem> listOfPlaces = new List<SelectListItem>();
-            foreach (var place in places)
-            {
-                //string latLong = place.Latitude + "|" + place.Longitude;
-                listOfPlaces.Add(new SelectListItem() { Text = place.PlaceName, Value = place.Id });
-            }
-            ViewBag.Places = listOfPlaces;
+        //public ActionResult CreateItinerary()
+        //{
+        //    PlacesDAL pdal = new PlacesDAL();
+        //    var places = pdal.GetAllPlaces();
+        //    List<SelectListItem> listOfPlaces = new List<SelectListItem>();
+        //    foreach (var place in places)
+        //    {
+        //        //string latLong = place.Latitude + "|" + place.Longitude;
+        //        listOfPlaces.Add(new SelectListItem() { Text = place.PlaceName, Value = place.Id });
+        //    }
+        //    ViewBag.Places = listOfPlaces;
 
-            if (Session["user"] != null)
-            {
-                ItineraryModel model = new ItineraryModel();
-                return View("CreateItinerary", model);
-            }
-            return View("LoginRegister");
-        }
+        //    if (Session["user"] != null)
+        //    {
+        //        ItineraryModel model = new ItineraryModel();
+        //        return View("CreateItinerary", model);
+        //    }
+        //    return View("LoginRegister");
+        //}
 
-        [HttpPost]
-        public ActionResult SavedItinerary(PlacesModel newPlaceForUser)
-        {
-            if (Session["user"] != null)
-            {
-                UserModel user = Session["user"] as UserModel;
-                newPlaceForUser.userid = user.UserId;
-                var save = dal.SavePlaceForUser(newPlaceForUser);
-                return Json(new { result = "OK" });
-            }
-            return View("LoginRegister");
-        }
+        //[HttpPost]
+        //public ActionResult SavedItinerary(PlacesModel newPlaceForUser)
+        //{
+        //    if (Session["user"] != null)
+        //    {
+        //        UserModel user = Session["user"] as UserModel;
+        //        newPlaceForUser.userid = user.UserId;
+        //        var save = dal.SavePlaceForUser(newPlaceForUser);
+        //        return Json(new { result = "OK" });
+        //    }
+        //    return View("LoginRegister");
+        //}
 
 
         [HttpPost]
