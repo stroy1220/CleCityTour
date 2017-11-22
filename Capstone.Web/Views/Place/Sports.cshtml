@@ -39,6 +39,9 @@
         </div>
     </div>
 </div>
-<div>
-    @Html.Action("ItinPartial")
-</div>
+@if (Session["user"] != null)
+{
+    <div>
+        @Html.Action("ItinPartial")
+    </div>
+}
