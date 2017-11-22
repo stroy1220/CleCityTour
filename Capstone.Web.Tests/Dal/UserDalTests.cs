@@ -19,20 +19,20 @@ namespace Capstone.Web.Tests.Dal
     [TestClass]
     public class UserDalTests
     {
-        private string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=CityTour;User ID=te_student;Password=sqlserver1";
-        TransactionScope t;
+        //private string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=CityTour;User ID=te_student;Password=sqlserver1";
+        //TransactionScope t;
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            t = new TransactionScope();
-        }
+        //[TestInitialize]
+        //public void Initialize()
+        //{
+        //    t = new TransactionScope();
+        //}
 
-        [TestCleanup]
-        public void CleanUp()
-        {
-            t.Dispose();
-        }
+        //[TestCleanup]
+        //public void CleanUp()
+        //{
+        //    t.Dispose();
+        //}
 
         //[TestMethod]
         //public void SaveUserTest()

@@ -31,38 +31,38 @@ namespace Capstone.Web.Controllers.Tests
         //}
 
 
-        [TestMethod]
-        public void HomeController_LoginAction_ReturnLoginRegisterView()
-        {
-            var controller = new HomeController(mockUserDal.Object);
+        //[TestMethod]
+        //public void HomeController_LoginAction_ReturnLoginRegisterView()
+        //{
+        //    var controller = new HomeController(mockUserDal.Object);
 
-            var result = controller.LoginRegister() as ViewResult;
+        //    var result = controller.LoginRegister() as ViewResult;
 
-            mockUserDal.Setup(m => m.SelectUser(It.IsAny<string>())).Returns(new UserModel());
+        //    mockUserDal.Setup(m => m.SelectUser(It.IsAny<string>())).Returns(new UserModel());
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual("LoginRegister", result.ViewName);
-        }
+        //    Assert.IsNotNull(result);
+        //    Assert.AreEqual("LoginRegister", result.ViewName);
+        //}
 
 
-        [TestMethod]
-        public void HomeController_LoginActionPost_ReturnsUserInfo()
-        { 
-            var newUser = new UserModel();
-            newUser.UserName = "fakeUser@fakeEmail.com";
-            newUser.FirstName = "FakeFisrtName";
-            newUser.LastName = "FakeLastName";
-            newUser.Password = "FakePassWord123!";
-            newUser.PasswordSalt = "f1sdThz9oDg=";
+        //[TestMethod]
+        //public void HomeController_LoginActionPost_ReturnsUserInfo()
+        //{ 
+        //    var newUser = new UserModel();
+        //    newUser.UserName = "fakeUser@fakeEmail.com";
+        //    newUser.FirstName = "FakeFisrtName";
+        //    newUser.LastName = "FakeLastName";
+        //    newUser.Password = "FakePassWord123!";
+        //    newUser.PasswordSalt = "f1sdThz9oDg=";
 
-            var controller = new HomeController(mockUserDal.Object);
+        //    var controller = new HomeController(mockUserDal.Object);
 
-            var savedUser = mockUserDal.Setup(m => m.SelectUser(It.IsAny<string>())).Returns(newUser);
+        //    var savedUser = mockUserDal.Setup(m => m.SelectUser(It.IsAny<string>())).Returns(newUser);
 
-            var result = controller.LoginRegister(newUser, 0) as ViewResult;
+        //    var result = controller.LoginRegister(newUser, 0) as ViewResult;
 
-            Assert.AreEqual("fakeUser@fakeEmail.com", savedUser);
-            Assert.AreEqual("Index", result.ViewName);
-        }
+        //    Assert.AreEqual("fakeUser@fakeEmail.com", savedUser);
+        //    Assert.AreEqual("Index", result.ViewName);
+        //}
     }
 }
