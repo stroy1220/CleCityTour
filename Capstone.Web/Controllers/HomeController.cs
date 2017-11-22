@@ -113,8 +113,6 @@ namespace Capstone.Web.Controllers
                     model.Add(singleIntinForUser);
                 }
 
-
-
                 return View("UserDashboard", model);
             }
             else
@@ -122,5 +120,16 @@ namespace Capstone.Web.Controllers
                 return View("LoginRegister");
             }
         }
+
+        public ActionResult CreateItinerary()
+        {
+            if (Session["user"] != null)
+            { 
+            ItineraryModel model = new ItineraryModel();
+            return View("CreateItinerary", model);
+            }
+            return View("LoginRegister");
+        }
+
     }
 }

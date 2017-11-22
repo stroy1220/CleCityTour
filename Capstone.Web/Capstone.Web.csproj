@@ -187,6 +187,7 @@
     <Content Include="Views\Place\Sports.cshtml" />
     <Content Include="Views\Place\ItinPartial.cshtml" />
     <Content Include="Views\Home\UserDashboard.cshtml" />
+    <Content Include="Views\Home\CreateItinerary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
