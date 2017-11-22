@@ -128,8 +128,8 @@ namespace Capstone.Web.Controllers
             List<SelectListItem> listOfPlaces = new List<SelectListItem>();
             foreach (var place in places)
             {
-                string latLong = place.Latitude + "|" + place.Longitude;
-                listOfPlaces.Add(new SelectListItem() { Text = place.PlaceName, Value = latLong });
+                //string latLong = place.Latitude + "|" + place.Longitude;
+                listOfPlaces.Add(new SelectListItem() { Text = place.PlaceName, Value = place.Id });
             }
             ViewBag.Places = listOfPlaces;
 
@@ -153,10 +153,10 @@ namespace Capstone.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult CreateItinerary(ItineraryModel newItinerary, string latLong)
+        public ActionResult CreateItinerary(ItineraryModel newItinerary, int id)
         {
 
-            newItinerary.StartLocation = latLong;
+            newItinerary.StartLocation = id;
 
             UserModel user = Session["user"] as UserModel;
             newItinerary.UserId = user.UserId;
