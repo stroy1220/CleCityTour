@@ -19,16 +19,16 @@ namespace Capstone.Web.Controllers.Tests
     {
         private Mock<IUserDAL> mockUserDal = new Mock<IUserDAL>();
 
-        [TestMethod()]
-        public void HomeController_IndexAction_ReturnIndexView()
-        {
-            var controller = new HomeController(mockUserDal.Object);
+        //[TestMethod()]
+        //public void HomeController_IndexAction_ReturnIndexView()
+        //{
+        //    var controller = new HomeController(mockUserDal.Object);
 
-            var result = controller.Index() as ViewResult;
+        //    var result = controller.Index() as ViewResult;
 
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Index", result.ViewName);
-        }
+        //    Assert.IsNotNull(result);
+        //    Assert.AreEqual("Index", result.ViewName);
+        //}
 
 
         [TestMethod]

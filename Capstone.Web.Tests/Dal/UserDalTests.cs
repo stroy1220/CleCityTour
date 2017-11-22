@@ -34,23 +34,23 @@ namespace Capstone.Web.Tests.Dal
             t.Dispose();
         }
 
-        [TestMethod]
-        public void SaveUserTest()
-        {
-            UserModel testUser = new UserModel();
-            testUser.Admin = false;
-            testUser.FirstName = "FakeFirst";
-            testUser.LastName = "FakeLast";
-            testUser.Password = "FakePassword";
-            testUser.PasswordSalt = "FakeSalt";
-            testUser.UserName = "Take@Fake.com";
+        //[TestMethod]
+        //public void SaveUserTest()
+        //{
+        //    UserModel testUser = new UserModel();
+        //    testUser.Admin = false;
+        //    testUser.FirstName = "FakeFirst";
+        //    testUser.LastName = "FakeLast";
+        //    testUser.Password = "FakePassword";
+        //    testUser.PasswordSalt = "FakeSalt";
+        //    testUser.UserName = "Take@Fake.com";
 
-            UserDAL dal = new UserDAL(connectionString);
+        //    UserDAL dal = new UserDAL(connectionString);
 
-            bool output = dal.SaveUser(testUser);
+        //    bool output = dal.SaveUser(testUser);
 
-            Assert.IsTrue(output);
+        //    Assert.IsTrue(output);
 
-        }
+        //}
     }
 }
