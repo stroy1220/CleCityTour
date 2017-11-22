@@ -123,13 +123,37 @@ namespace Capstone.Web.Controllers
 
         public ActionResult CreateItinerary()
         {
+            PlacesDAL pdal = new PlacesDAL();
+            var places = pdal.GetAllPlaces();
+            List<SelectListItem> listOfPlaces = new List<SelectListItem>();
+            foreach (var place in places)
+            {
+                string latLong = place.Latitude + "|" + place.Longitude;
+                listOfPlaces.Add(new SelectListItem() { Text = place.PlaceName, Value = latLong });
+            }
+            ViewBag.Places = listOfPlaces;
+
             if (Session["user"] != null)
-            { 
-            ItineraryModel model = new ItineraryModel();
-            return View("CreateItinerary", model);
+            {
+                ItineraryModel model = new ItineraryModel();
+                return View("CreateItinerary", model);
             }
             return View("LoginRegister");
         }
 
+        [HttpPost]
+        public ActionResult CreateItinerary(ItineraryModel newItinerary, string latLong)
+        {
+
+            newItinerary.StartLocation = latLong;
+
+            UserModel user = Session["user"] as UserModel;
+            newItinerary.UserId = user.UserId;
+
+            ItineraryDAL idal = new ItineraryDAL();
+            idal.CreateNewItinerary(newItinerary);
+
+            return RedirectToAction("UserDashboard");
+        }
     }
 }
