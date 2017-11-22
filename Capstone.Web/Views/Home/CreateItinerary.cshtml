@@ -3,18 +3,27 @@
 @{
     ViewBag.Title = "CreateItinerary";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    Session["users"] = 
 }
 
 
-<h2>CreateItinerary</h2>
+<h2>Create Itinerary</h2>
 
-<form action="@Url.Action("UserDahsboard", "Home")" method="post">
+<form action="@Url.Action("CreateItinerary", "Home")" method="post">
     <div>
-        @Html.TextBoxFor()
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
     </div>
-
-
-
+    @*<div>
+        @Html.HiddenFor(m => m.UserId)
+    </div>*@
+    <div>
+        @Html.LabelFor(m => m.StartLocation)
+        @Html.DropDownList("latlong", ViewBag.Places as List<SelectListItem>, "Starting Location")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Date)
+        @Html.TextBoxFor(m => m.Date)
+    </div>
+    <button>Create Itinerary</button>
 </form>
+
