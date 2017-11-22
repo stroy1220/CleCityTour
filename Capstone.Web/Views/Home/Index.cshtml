@@ -10,7 +10,10 @@
 <head>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc&sensor=false"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    
     <script type="text/javascript">
+
+        var baseUrl = ""; //http://localhost:52923/
 
         var markers = [];
         var uniqueId = 1;
@@ -47,7 +50,12 @@
                     content += `<br /><input data-id='name-${marker.id}' type = 'text' placeholder = 'Name your location' onclick = 'Save(${marker.id});' />`;
                     content += `<br /><input type = 'button' value = 'Save to Itinerary' onclick = 'SaveMarker(${marker.id}, ${location.lat()}, ${location.lng()});' value = 'Save' />`;
                     content += "<br /><input type = 'button' value = 'Delete' onclick = 'DeleteMarker(" + marker.id + ");' value = 'Delete' />";
-                    var infoWindow = new google.maps.InfoWindow({
+
+                    if (infoWindow) {
+                        infoWindow.close();
+                    }
+
+                    infoWindow = new google.maps.InfoWindow({
                         content: content
                     });
                     infoWindow.open(map, marker);
@@ -61,6 +69,9 @@
 
 
         };
+
+        var infoWindow;
+
         function DeleteMarker(id) {
             //Find and remove the marker from the Array
             for (var i = 0; i < markers.length; i++) {
@@ -87,7 +98,10 @@
                     lng: parseFloat(lng)
                 }
             }, function (results, status) {
-                console.log(results);                
+                console.log(results);    
+
+                infoWindow.close();
+                infoWindow = null;
 
                 if (status === 'OK') {
 
@@ -101,7 +115,7 @@
                     var total = $("#total").val();
 
                     $.ajax({
-                        url: url,
+                        url: url + 'Home/SavedItinerary',
                         method: 'PUT',
                         data: {
                             streetAddress: fullAddress,
@@ -113,7 +127,7 @@
                             zip: zip
                         }
                     }).then(function (data) {
-                        infoWindow('hide')
+                        
                     });
 
                     $.each(components, function (index, component) {
