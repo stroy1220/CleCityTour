@@ -12,11 +12,12 @@ namespace Capstone.Web.DAL
     public class PlacesDAL : IPlacesDAL
     {
         string connectionString = ConfigurationManager.ConnectionStrings["CityTour"].ConnectionString;
-        private const string SQL_CreatePlace = "insert into places values(@streetAddress, @city, @state, @latitude, @longitude, @googleID, @detail, @placeName, @category)";
+        private const string SQL_CreatePlace = "insert into places values(@streetAddress, @city, @state, @latitude, @longitude, @googleID, @detail, @placeName, @category, @zip)";
         private const string SQL_DeletePlace = "delete * from places where id = @id";
         private const string SQL_GetAllPlaces = "select * from places";
         private const string SQL_GetSinglePlace = "select * from places where id = @id";
         private const string SQL_UpdatePlace = "update places set  @column = @value where id = @id";
+        private const string SQL_InsertUserPlace = "insert into places values(@streetAddress, @city, @state, @latitude, @longitude, @googleID, @detail, @placeName, @category, @zip, @userId)";
         private object ViewBag;
 
         public bool CreatePlace(PlacesModel place)
@@ -168,6 +169,37 @@ namespace Capstone.Web.DAL
                 }
             }
             catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+        public bool CreatePlaceForUser(PlacesModel place)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_InsertUserPlace, conn);
+
+                    cmd.Parameters.AddWithValue("@streetAddress", place.StreetAddress);
+                    cmd.Parameters.AddWithValue("@city", place.City);
+                    cmd.Parameters.AddWithValue("@state", place.State);
+                    cmd.Parameters.AddWithValue("@latitude", place.Latitude);
+                    cmd.Parameters.AddWithValue("@longitude", place.Longitude);
+                    //cmd.Parameters.AddWithValue("@googleID", place.StreetAddress);
+                    cmd.Parameters.AddWithValue("@detail", place.City);
+                    cmd.Parameters.AddWithValue("@placeName", place.State);
+                    cmd.Parameters.AddWithValue("@category", place.Latitude);
+                    cmd.Parameters.AddWithValue("@zip", place.Zip);
+                    cmd.Parameters.AddWithValue("@userId", place.UserId);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch(SqlException ex)
             {
                 throw;
             }

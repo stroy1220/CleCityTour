@@ -141,18 +141,19 @@ namespace Capstone.Web.Controllers
         //    return View("LoginRegister");
         //}
 
-        //[HttpPost]
-        //public ActionResult SavedItinerary(PlacesModel newPlaceForUser)
-        //{
-        //    if (Session["user"] != null)
-        //    {
-        //        UserModel user = Session["user"] as UserModel;
-        //        newPlaceForUser.userid = user.UserId;
-        //        var save = dal.SavePlaceForUser(newPlaceForUser);
-        //        return Json(new { result = "OK" });
-        //    }
-        //    return View("LoginRegister");
-        //}
+        [HttpPost]
+        public ActionResult SavedItinerary(PlacesModel newPlaceForUser)
+        {
+            if (Session["user"] != null)
+            {
+                PlacesDAL pdal = new PlacesDAL();
+                UserModel user = Session["user"] as UserModel;
+                newPlaceForUser.UserId = user.UserId;
+                var save = pdal.CreatePlaceForUser(newPlaceForUser);
+                return Json(new { result = "OK" });
+            }
+            return View("LoginRegister");
+        }
 
 
         [HttpPost]
