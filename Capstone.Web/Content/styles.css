@@ -1,6 +1,32 @@
 ﻿body {
    margin-top: 50px;
 }
+
+.itin-container {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: lightgray;
+    margin: 20px 0px;
+}
+
+.itin-item {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    margin: 10px 0px;
+}
+
+    .itin-item li {
+        list-style-type: none;
+    }
+
+    .itin-item img {
+        width: 150px;
+        height: auto;
+        margin-top: 10px;
+    }
+
+
 .partial-view-container {
     background-color: red;
     padding-top: 10px;

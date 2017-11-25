@@ -131,7 +131,7 @@ namespace Capstone.Web.Controllers
                 UserModel user = Session["user"] as UserModel;
                 newPlaceForUser.UserId = user.UserId;
                 var save = pdal.CreatePlaceForUser(newPlaceForUser);
-                var saveToItin = idal.AddPlaceToItinerary(,save);
+                //var saveToItin = idal.AddPlaceToItinerary(,save);
                 return Json(new { result = "OK" });
             }
             return View("LoginRegister");

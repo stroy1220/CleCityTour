@@ -38,12 +38,14 @@
             }
         </div>
     </div>
-    <div class="row partial-view-container">
+</div>
+<div class="container">
+    <div class="row itin-container">
         @if (Session["user"] != null)
         {
-            <div class="col-xs-12">
+            @*<div class="container">*@
                 @Html.Action("ItinPartial")
-            </div>
+            @*</div>*@
         }
     </div>
 
