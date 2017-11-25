@@ -38,11 +38,13 @@
             }
         </div>
     </div>
+    <div class="row partial-view-container">
+        @if (Session["user"] != null)
+        {
+            <div class="col-xs-12">
+                @Html.Action("ItinPartial")
+            </div>
+        }
+    </div>
 
 </div>
-@if (Session["user"] != null)
-{
-    <div>
-        @Html.Action("ItinPartial")
-    </div>
-}

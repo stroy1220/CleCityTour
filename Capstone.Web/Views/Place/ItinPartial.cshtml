@@ -1,16 +1,27 @@
 ﻿@using Capstone.Web.Models;
 @model List<ItineraryPlacesModel>
 
-<h2>partial view!!!!!!!!!</h2>
 
-@Model[0].Itinerary.Name
-@foreach (var m in Model[0].Places)
-{
-   <ul>
-       <li>@m.PlaceName</li>
-       <li>@m.StreetAddress</li>
-       <li>@m.City</li>
-       <li>@m.State</li>
-       <li>@m.Detail</li>
-   </ul>
-}
+<h3 class="text-center">Itinerary for @Model[0].Itinerary.Name</h3>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="row">
+            @*<h3 class="text-center"></h3>*@
+            @foreach (var m in Model[0].Places)
+            {
+                <div class="col-sm-5">
+                    <img class="img-responsive" src="~/Content/quicken-loans2.jpg" alt="">
+                </div>
+                <div class="col-sm-7">
+                    <h4>@m.PlaceName</h4>
+                    <p>@m.StreetAddress<br />@m.City, @m.State @m.Zip</p>
+                    @*<ul>
+                        <li class="partial-view"><h4>@m.PlaceName</h4></li>
+                        <li class="partial-view">@m.StreetAddress</li>
+                        <li class="partial-view">@m.City, @m.State @m.Zip</li>
+                    </ul>*@
+                </div>
+            }
+        </div>
+    </div>
+</div>

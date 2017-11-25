@@ -1,6 +1,19 @@
 ﻿body {
    margin-top: 50px;
 }
+.partial-view-container {
+    background-color: red;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.partial-view {
+    border: 1px solid black;
+    background-color: lightgrey;
+}
+.partial-view ul {
+    list-style-type: none;
+}
+
 
 .index-hero {
     background-image: url(cle-skyline-night.jpeg);
