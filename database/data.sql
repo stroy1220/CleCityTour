@@ -44,10 +44,10 @@ insert into places(streetAddress, city, state, latitude, longitude, detail, plac
 
 insert into places(streetAddress, city, state, latitude, longitude, detail, placeName, Category, Zip) values('230 W Huron Rd', 'Cleveland', 'OH', 41.496762, -81.694051, 'Tower City Center originally known as Cleveland Union Terminal is located on Public Square. Year built:1927 Area:15 acres', 'Tower City Center', 'Shopping', 44113)
 
- insert into itinerary values(1, 'fakename', 'fakestartlocation', '01/01/01');
- insert into itinerary values(1, 'fakename2', 'fakestartlocation2', '01/01/01');
- insert into itinerary values(2, 'fakename', 'fakestartlocation', '01/01/01');
- insert into itinerary values(2, 'fakename2', 'fakestartlocation2', '01/01/01');
+ insert into itinerary values(1, 'fakename', '01/01/01', '41.496873', '-81.689694'); 
+ insert into itinerary values(1, 'fakename2', '01/01/01','41.496873', '-81.689694');
+ insert into itinerary values(2, 'fakename', '01/01/01', '41.499374', '-81.690238'); 
+ insert into itinerary values(2, 'fakename2', '01/01/01', '41.499374', '-81.690238');
 
  insert into itineraryPlaces values(1, 1)
  insert into itineraryPlaces values(1, 2)
