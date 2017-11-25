@@ -16,7 +16,7 @@ namespace Capstone.Web.DAL
     {
         string connectionString = ConfigurationManager.ConnectionStrings["CityTour"].ConnectionString;
         private const string SQL_AddPlaceToItinerary = "insert into itineraryPlaces values(@itineraryId, @placesId)";
-        private const string SQL_CreateNeweItinerary = "insert into itinerary values(@userId, @name, @startLocation, @date)";
+        private const string SQL_CreateNeweItinerary = "insert into itinerary values(@userId, @name, @date, @StartLocationLong, @StartLocationLat)";
         private const string SQL_DeleteItinerary = "delete * from itinerary where id = @id";
         private const string SQL_RemovePlaceFromItinerary = "delete * from itineraryPlaces where placeId = @placeId";
         private const string SQL_GetItinerary = "select placeId from itineraryPlaces where itineraryID = (select max(id) from itinerary where userId = @userId)";
@@ -56,8 +56,9 @@ namespace Capstone.Web.DAL
                     SqlCommand cmd = new SqlCommand(SQL_CreateNeweItinerary, conn);
                     cmd.Parameters.AddWithValue("@userId", itinerary.UserId);
                     cmd.Parameters.AddWithValue("@name", itinerary.Name);
-                    cmd.Parameters.AddWithValue("@startLocation", itinerary.StartLocation);
                     cmd.Parameters.AddWithValue("@date", itinerary.Date);
+                    cmd.Parameters.AddWithValue("@StartLocationLong", itinerary.StartLocationLong);
+                    cmd.Parameters.AddWithValue("@StartLocationLat", itinerary.StartLocationLat);
 
 
                     int rowsAffected = cmd.ExecuteNonQuery();

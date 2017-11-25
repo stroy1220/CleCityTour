@@ -121,46 +121,52 @@ namespace Capstone.Web.Controllers
             }
         }
 
-        //public ActionResult CreateItinerary()
-        //{
-        //    PlacesDAL pdal = new PlacesDAL();
-        //    var places = pdal.GetAllPlaces();
-        //    List<SelectListItem> listOfPlaces = new List<SelectListItem>();
-        //    foreach (var place in places)
-        //    {
-        //        //string latLong = place.Latitude + "|" + place.Longitude;
-        //        listOfPlaces.Add(new SelectListItem() { Text = place.PlaceName, Value = place.Id });
-        //    }
-        //    ViewBag.Places = listOfPlaces;
-
-        //    if (Session["user"] != null)
-        //    {
-        //        ItineraryModel model = new ItineraryModel();
-        //        return View("CreateItinerary", model);
-        //    }
-        //    return View("LoginRegister");
-        //}
-
         [HttpPost]
         public ActionResult SavedItinerary(PlacesModel newPlaceForUser)
         {
             if (Session["user"] != null)
             {
                 PlacesDAL pdal = new PlacesDAL();
+                ItineraryDAL idal = new ItineraryDAL();
                 UserModel user = Session["user"] as UserModel;
                 newPlaceForUser.UserId = user.UserId;
                 var save = pdal.CreatePlaceForUser(newPlaceForUser);
+                var saveToItin = idal.AddPlaceToItinerary(,save);
                 return Json(new { result = "OK" });
             }
             return View("LoginRegister");
         }
 
+        public ActionResult CreateItinerary()
+        {
+            PlacesDAL pdal = new PlacesDAL();
+            var places = pdal.GetAllPlaces();
+            List<SelectListItem> listOfPlaces = new List<SelectListItem>();
+            foreach (var place in places)
+            {
+                //string latLong = place.Latitude + "|" + place.Longitude;
+                listOfPlaces.Add(new SelectListItem() { Text = place.PlaceName, Value = place.Id.ToString() });
+            }
+            ViewBag.Places = listOfPlaces;
+
+            if (Session["user"] != null)
+            {
+                ItineraryModel model = new ItineraryModel();
+                return View("CreateItinerary", model);
+            }
+            return View("LoginRegister");
+        }
 
         [HttpPost]
-        public ActionResult CreateItinerary(ItineraryModel newItinerary, int id)
+        public ActionResult CreateItinerary(ItineraryModel newItinerary, string id)
         {
+            PlacesDAL dal = new PlacesDAL();
+            PlacesModel p = new PlacesModel();
 
-            newItinerary.StartLocation = id;
+            p = dal.GetSinglePlace(Convert.ToInt32(id));
+
+            newItinerary.StartLocationLat = p.Latitude.ToString();
+            newItinerary.StartLocationLong = p.Longitude.ToString();
 
             UserModel user = Session["user"] as UserModel;
             newItinerary.UserId = user.UserId;

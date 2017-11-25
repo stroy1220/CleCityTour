@@ -14,7 +14,7 @@ namespace Capstone.Web.DAL
         bool UpdatePlace(int id, string value, string column);
         bool CreatePlace(PlacesModel place);
         bool DeletePlace(int id);
-        bool CreatePlaceForUser(PlacesModel place);
+        int CreatePlaceForUser(PlacesModel place);
 
     }
 }

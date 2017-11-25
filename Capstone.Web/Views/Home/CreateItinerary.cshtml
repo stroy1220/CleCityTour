@@ -17,8 +17,8 @@
         @Html.HiddenFor(m => m.UserId)
     </div>*@
     <div>
-        @Html.LabelFor(m => m.StartLocation)
-        @Html.DropDownList("latlong", ViewBag.Places as List<SelectListItem>, "Starting Location")
+        @Html.LabelFor(m => m.StartLocationLat)
+        @Html.DropDownList("id", ViewBag.Places as List<SelectListItem>, "Starting Location")
     </div>
     <div>
         @Html.LabelFor(m => m.Date)

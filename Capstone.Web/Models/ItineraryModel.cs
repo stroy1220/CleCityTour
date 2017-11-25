@@ -12,7 +12,8 @@ namespace Capstone.Web.Models
         public int Id { get; set; }
         public int UserId { get; set; }
         public string Name { get; set; }
-        public int StartLocation { get; set; }
+        public string StartLocationLat { get; set; }
+        public string StartLocationLong { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
