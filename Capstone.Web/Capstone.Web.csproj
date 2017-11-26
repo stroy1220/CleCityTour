@@ -125,6 +125,10 @@
     <Content Include="Content\places-pics\Franklin Castle.jpg" />
     <Content Include="Content\places-pics\Galleria at Erieview.jpg" />
     <Content Include="Content\places-pics\House of Blues.jpg" />
+    <Content Include="Content\places-pics\index-mabels.jpg" />
+    <Content Include="Content\places-pics\index-playhouse-square.jpg" />
+    <Content Include="Content\places-pics\index-quicken-loans2.jpg" />
+    <Content Include="Content\places-pics\index-tower-city.jpg" />
     <Content Include="Content\places-pics\Mabel%27s BBQ.jpg" />
     <Content Include="Content\places-pics\Nautica Entertainment Complex.jpg" />
     <Content Include="Content\places-pics\Playhouse Square.jpg" />
