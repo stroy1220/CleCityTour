@@ -106,6 +106,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\cleveland-sign.png" />
+    <Content Include="Content\cleveland-skyline-lakeview.png" />
     <Content Include="Content\lebron-1024x768.jpg" />
     <Content Include="Content\lebron-1920x1440.jpg" />
     <Content Include="Content\lebron-435x768.jpg" />
@@ -116,7 +118,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cle-skyline-night.jpeg" />
-    <Content Include="Content\Duda-Cleveland-Skyline-32.jpg" />
     <Content Include="Content\michael-symons-mabels-hero-.jpg" />
     <Content Include="Content\places-pics\A Christmas Story House.jpg" />
     <Content Include="Content\places-pics\Blue Point Grill.jpg" />
