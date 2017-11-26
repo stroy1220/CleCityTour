@@ -17,5 +17,6 @@ namespace Capstone.Web.DAL
         bool UpdateName(string name, int id);
         List<int> GetItinerary(int id);
         List<ItineraryModel> GetAllItinerary(int userId);
+        List<ItineraryPlacesModel> GetAllItineraryPlacesForUser(int userId);
     }
 }

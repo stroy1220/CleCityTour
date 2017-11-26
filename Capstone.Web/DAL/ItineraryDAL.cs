@@ -19,11 +19,14 @@ namespace Capstone.Web.DAL
         private const string SQL_CreateNeweItinerary = "insert into itinerary values(@userId, @name, @date, @StartLocationLong, @StartLocationLat)";
         private const string SQL_DeleteItinerary = "delete * from itinerary where id = @id";
         private const string SQL_RemovePlaceFromItinerary = "delete * from itineraryPlaces where placeId = @placeId";
-        private const string SQL_GetItinerary = "select placeId from itineraryPlaces where itineraryID = (select max(id) from itinerary where userId = @userId)";
         private const string SQL_UpdateName = "update itinerary set name = @name where id = @id";
         private const string SQL_StartDate = "update itinerary set startDate = @startDate where id = @id";
         private const string SQL_UpdateLocation = "update itinerary set startLocation = @startLocation where id = @id";
         private const string SQL_GetAllItinerary = "select * from itinerary where userId = @userId order by id desc";
+        private const string SQL_GetItinerary = "select placeId from itineraryPlaces where itineraryID = (select max(id) from itinerary where userId = @userId)";
+        private const string SQL_GetAllItineraryPlaces = "select * from itineraryPlaces where itineraryID = @itineraryId";
+
+
 
         public bool AddPlaceToItinerary(int itineraryId, int placeId)
         {
@@ -220,8 +223,10 @@ namespace Capstone.Web.DAL
                         p.Id = Convert.ToInt32(reader["Id"]);
                         p.UserId = Convert.ToInt32(reader["UserId"]);
                         p.Name = Convert.ToString(reader["Name"]);
-                        //p.StartLocation = Convert.ToString(reader["StartLocation"]);
                         p.Date = Convert.ToDateTime(reader["Date"]);
+                        p.StartLocationLat = Convert.ToString(reader["startLocationLat"]);
+                        p.StartLocationLong = Convert.ToString(reader["startLocationLong"]);
+
 
                         output.Add(p);
                     }
@@ -229,6 +234,93 @@ namespace Capstone.Web.DAL
 
                 return output;
             }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+        public List<ItineraryPlacesModel> GetAllItineraryPlacesForUser(int userId)
+        {
+            try
+            {
+                List<ItineraryPlacesModel> output = new List<ItineraryPlacesModel>();
+                PlacesDAL pdal = new PlacesDAL();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    ItineraryDAL idal = new ItineraryDAL();
+                    List<ItineraryModel> listOfItineraries = idal.GetAllItinerary(userId);
+                    for (int i = 0; i < listOfItineraries.Count; i++)
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand(SQL_GetAllItineraryPlaces, conn);
+                        cmd.Parameters.AddWithValue("@itineraryId", listOfItineraries[i].Id);
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        ItineraryPlacesModel it = new ItineraryPlacesModel();
+                        it.Itinerary = listOfItineraries[i];
+                        List<PlacesModel> placesList = new List<PlacesModel>();
+
+
+                        while (reader.Read())
+                        {
+                            PlacesModel place = new PlacesModel();
+                            int placeId = Convert.ToInt32(reader["placeId"]);
+                            place = pdal.GetSinglePlace(placeId);
+                        
+                            placesList.Add(place);
+                        }
+                        it.Places = placesList;
+                        output.Add(it);
+                        conn.Close();
+                    }
+                }
+                return output;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //ItineraryDAL idal = new ItineraryDAL();
+            //List<ItineraryModel> itineraryModels = idal.GetAllItinerary(userId);
+
+            //try
+            //{
+            //    List<int> output = new List<int>();
+            //    using (SqlConnection conn = new SqlConnection(connectionString))
+            //    {
+
+            //        conn.Open();
+            //        SqlCommand cmd2 = new SqlCommand(SQL_GetAllItineraryPlaces, conn);
+            //        SqlDataReader reader2 = cmd2.ExecuteReader();
+
+            //        foreach (var i in itineraryModels)
+            //        {
+            //            cmd2.Parameters.AddWithValue("@itineraryId", i.Id);
+
+            //            while(reader2.Read())
+            //            {
+            //                int placeId;
+            //                placeId = Convert.ToInt32(reader2["id"]);                     
+            //                output.Add(placeId);
+            //            }
+
+
+            //        }
+
+
+            //    }
+            //    return output;
+            //}
             catch (SqlException ex)
             {
                 throw;

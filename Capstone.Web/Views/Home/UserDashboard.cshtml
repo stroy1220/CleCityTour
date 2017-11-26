@@ -14,15 +14,25 @@
 
 @for (int i = 0; i < Model.Count; i++)
 {  <div>
-        @foreach (var t in Model[i].Places)
-        {
-        <div>
-            <p>@t.PlaceName</p>
-            <p>@t.StreetAddress @t.City , @t.State @t.Zip</p>
-            <p>@t.Detail</p>
-            <img src="@Url.Content("~/Content/" + t.PlaceName + ".jpg")"/>
-        </div>
-        }
+    <h2>
+        @Model[i].Itinerary.Name
+    </h2>
+       <div class="container">
+           <div class="row itin-container">
+               @foreach (var t in Model[i].Places)
+               {
+
+
+                   <p>@t.PlaceName</p>
+                   <p>@t.StreetAddress @t.City , @t.State @t.Zip</p>
+                   <p>@t.Detail</p>
+                   <img src="@Url.Content("~/Content/" + t.PlaceName + ".jpg")" />
+                   <hr />
+
+
+               }
+           </div>
+       </div>
     </div>
 }
     <html xmlns="http://www.w3.org/1999/xhtml">
