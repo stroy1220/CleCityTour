@@ -34,6 +34,7 @@ namespace Capstone.Web.Controllers
         public ActionResult Route()
         {
             return View("Route");
+
         }
 
         public ActionResult LoginRegister()
@@ -101,7 +102,7 @@ namespace Capstone.Web.Controllers
                 ItineraryDAL idal = new ItineraryDAL();
                 List<ItineraryPlacesModel> model = idal.GetAllItineraryPlacesForUser(user.UserId);
 
-                
+
 
                 return View("UserDashboard", model);
             }
@@ -122,7 +123,7 @@ namespace Capstone.Web.Controllers
                 newPlaceForUser.UserId = user.UserId;
                 List<ItineraryModel> userItinerary = idal.GetAllItinerary(user.UserId);
                 var save = pdal.CreatePlaceForUser(newPlaceForUser);
-                var saveToItin = idal.AddPlaceToItinerary(userItinerary[0].Id ,save);
+                var saveToItin = idal.AddPlaceToItinerary(userItinerary[0].Id, save);
                 return Json(new { result = "OK" });
             }
             return View("LoginRegister");
@@ -137,9 +138,15 @@ namespace Capstone.Web.Controllers
                 ItineraryDAL idal = new ItineraryDAL();
                 UserModel user = Session["user"] as UserModel;
                 List<ItineraryModel> userItinerary = idal.GetAllItinerary(user.UserId);
+                if (userItinerary.Count > 0) { 
                 var saveToItin = idal.AddPlaceToItinerary(userItinerary[0].Id, placeId);
 
                 return RedirectToAction("UserDashboard");
+                }
+                else
+                {
+                    return RedirectToAction("CreateItinerary");
+                }
             }
             return View("LoginRegister");
         }
@@ -199,6 +206,47 @@ namespace Capstone.Web.Controllers
             ItineraryDAL idal = new ItineraryDAL();
             idal.RemovePlaceFromItinerary(placeId, itineraryId);
 
+            return RedirectToAction("UserDashboard");
+        }
+
+        [HttpPost]
+        public ActionResult EditUserItinerary(int itineraryId, List<int> order)
+        {
+            UserModel user = Session["user"] as UserModel;
+            ItineraryDAL idal = new ItineraryDAL();
+            List<ItineraryPlacesModel> output = idal.GetAllItineraryPlacesForUser(user.UserId);
+            List<PlacesModel> places = new List<PlacesModel>();
+            List<PlacesModel> newOrderPlaces = new List<PlacesModel>();
+            Dictionary<int, PlacesModel> placeDictionary = new Dictionary<int, PlacesModel>();
+            
+            foreach(var i in output)
+            {
+                if(i.Itinerary.Id == itineraryId)
+                {
+                    foreach(var p in i.Places)
+                    {
+                        int counter = 0;
+                        places.Add(p);
+                        placeDictionary.Add(order[counter], p);
+                        counter++;
+                    }
+                    foreach (var p in i.Places)
+                    {                  
+                        idal.RemovePlaceFromItinerary(p.Id, itineraryId);
+                    }
+                    foreach(var kvp in placeDictionary)
+                    {
+                        for(int m = 1; m < placeDictionary.Count - 1; m++)
+                        {
+                            if(kvp.Key == m)
+                            {
+                                idal.AddPlaceToItinerary(itineraryId, kvp.Value.Id);
+                            }
+                        }
+                    }
+
+                }
+            }
             return RedirectToAction("UserDashboard");
         }
     }

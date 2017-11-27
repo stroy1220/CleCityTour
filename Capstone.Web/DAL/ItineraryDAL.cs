@@ -25,8 +25,27 @@ namespace Capstone.Web.DAL
         private const string SQL_GetAllItinerary = "select * from itinerary where userId = @userId order by id desc";
         private const string SQL_GetItinerary = "select placeId from itineraryPlaces where itineraryID = (select max(id) from itinerary where userId = @userId)";
         private const string SQL_GetAllItineraryPlaces = "select * from itineraryPlaces where itineraryID = @itineraryId";
+        private const string SQL_EditItineraryOrder = "delete from itineraryPlaces where itineraryID = @itineraryId";
 
 
+        public bool EditItineraryOrder(int itineraryId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_EditItineraryOrder, conn);
+                    cmd.Parameters.AddWithValue("@itineraryId", itineraryId);
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch(SqlException ex)
+            {
+                throw;
+            }
+        }
 
         public bool AddPlaceToItinerary(int itineraryId, int placeId)
         {
