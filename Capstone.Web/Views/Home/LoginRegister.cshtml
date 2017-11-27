@@ -11,15 +11,15 @@
         <div class="col-sm-4 col-md-5 text-center">
             <form action="@Url.Action("LoginRegister", "Home", new { logCode = 0})" method="post">
                 <h3>Login</h3>
-                <div class="input-lg">
+                <div class="input-lg register">
                     @Html.TextBoxFor(m => m.UserName, new { placeholder = "Email Address" })
                     @*@Html.ValidationMessageFor(m => m.UserName)*@
                 </div>
-                <div class="input-lg">
+                <div class="input-lg register">
                     @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
                     @*@Html.ValidationMessageFor(m => m.Password)*@
                 </div>
-                <button class="btn btn-default">Login</button>
+                <button class="btn btn-default register">Login</button>
             </form>
         </div>
 
@@ -28,20 +28,20 @@
             <form action="@Url.Action("LoginRegister", "Home", new { logCode = 1 })" method="post">
                 <h3>Register</h3>
 
-                <div class="input-lg">
+                <div class="input-lg register">
                     @Html.TextBoxFor(m => m.UserName, new { placeholder = "Email Address" })
                     <span>@ViewBag.ErrorMessage</span>
                     @Html.ValidationMessageFor(m => m.UserName)
                 </div>
-                <div class="input-lg">
+                <div class="input-lg register">
                     @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name" })
                     @Html.ValidationMessageFor(m => m.FirstName)
                 </div>
-                <div class="input-lg">
+                <div class="input-lg register">
                     @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name" })
                     @Html.ValidationMessageFor(m => m.LastName)
                 </div>
-                <div class="input-lg">
+                <div class="input-lg register">
                     @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
@@ -50,7 +50,7 @@
                         @Html.PasswordFor(m => m.ConfirmPassword, new { placeHolder = "Re-Type Password", @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.ConfirmPassword)
                     </div>*@
-                <button class="btn btn-default">Submit</button>
+                <button class="btn btn-default register">Submit</button>
             </form>
         </div>
     </div>
