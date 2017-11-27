@@ -34,6 +34,7 @@ namespace Capstone.Web.Controllers
         public ActionResult Route()
         {
             return View("Route");
+
         }
 
         public ActionResult LoginRegister()
@@ -101,7 +102,7 @@ namespace Capstone.Web.Controllers
                 ItineraryDAL idal = new ItineraryDAL();
                 List<ItineraryPlacesModel> model = idal.GetAllItineraryPlacesForUser(user.UserId);
 
-                
+
 
                 return View("UserDashboard", model);
             }
@@ -122,7 +123,7 @@ namespace Capstone.Web.Controllers
                 newPlaceForUser.UserId = user.UserId;
                 List<ItineraryModel> userItinerary = idal.GetAllItinerary(user.UserId);
                 var save = pdal.CreatePlaceForUser(newPlaceForUser);
-                var saveToItin = idal.AddPlaceToItinerary(userItinerary[0].Id ,save);
+                var saveToItin = idal.AddPlaceToItinerary(userItinerary[0].Id, save);
                 return Json(new { result = "OK" });
             }
             return View("LoginRegister");
