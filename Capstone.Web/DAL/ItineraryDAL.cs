@@ -26,6 +26,70 @@ namespace Capstone.Web.DAL
         private const string SQL_GetItinerary = "select placeId from itineraryPlaces where itineraryID = (select max(id) from itinerary where userId = @userId)";
         private const string SQL_GetAllItineraryPlaces = "select * from itineraryPlaces where itineraryID = @itineraryId";
         private const string SQL_EditItineraryOrder = "delete from itineraryPlaces where itineraryID = @itineraryId";
+        private const string SQL_GetAllItineraryInfo = "select * from itinerary where id = @itineraryId";
+        private const string SQL_GetMostRecentlyCreatedItinerary = "select Max(id) from itinerary where userId = @userId";
+
+
+
+        public int GetMostRecentlyCreatedItinerary(int userId)
+        {
+            try
+            {
+                ItineraryModel neededId = new ItineraryModel();
+                int output = 0;
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetMostRecentlyCreatedItinerary, conn);
+                    cmd.Parameters.AddWithValue("@userId", userId);
+
+                    output = Convert.ToInt32(cmd.ExecuteScalar());
+
+                }
+                return output;
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+        }
+
+
+
+        public ItineraryModel GetAllItineraryInfo(int itineraryId)
+        {
+            try
+            {
+                ItineraryModel output = new ItineraryModel();
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_GetAllItineraryInfo, conn);
+                    cmd.Parameters.AddWithValue("@itineraryId", itineraryId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        output.UserId = Convert.ToInt32(reader["UserId"]);
+                        output.Name = Convert.ToString(reader["Name"]);
+                        output.Date = Convert.ToDateTime(reader["Date"]);
+                        output.StartLocationLat = Convert.ToString(reader["startLocationLat"]);
+                        output.StartLocationLong = Convert.ToString(reader["startLocationLong"]);
+                    }
+
+                }
+                return output;
+
+
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+        }
 
 
         public bool EditItineraryOrder(int itineraryId)
