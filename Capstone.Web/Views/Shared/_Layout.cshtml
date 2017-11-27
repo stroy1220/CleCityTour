@@ -17,7 +17,7 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
- </head>
+</head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -40,51 +40,55 @@
                             <li><a href="@Url.Action("Sports", "Place")">Sports</a></li>
                             <li><a href="@Url.Action("Entertainment", "Place")">Entertainment</a></li>
                             <li><a href="@Url.Action("Landmarks", "Place")">Landmarks</a></li>
-                           
+
                         </ul>
-                        </li>
-                    </ul>
-                        @*<ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Restaurant", "Place")">Restaurants</a></li>
-                    <li><a href="@Url.Action("Shopping", "Place")">Shopping</a></li>
-                    <li><a href="@Url.Action("Sports", "Place")">Sports</a></li>
-                    <li><a href="@Url.Action("Entertainment", "Place")">Entertainment</a></li>
-                    <li><a href="@Url.Action("Landmarks", "Place")">Landmarks</a></li>
-                </ul>*@
-                        <ul class="nav navbar-nav navbar-right">
-                            @if (Session["user"] == null)
-                            {
-                                <li>@Html.ActionLink("Login", "LoginRegister", "Home")</li>
-                            }
-                            else
-                            {
-                                @*<li>@user.FirstName</li>*@
+                    </li>
+                </ul>
+                @*<ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Restaurant", "Place")">Restaurants</a></li>
+                        <li><a href="@Url.Action("Shopping", "Place")">Shopping</a></li>
+                        <li><a href="@Url.Action("Sports", "Place")">Sports</a></li>
+                        <li><a href="@Url.Action("Entertainment", "Place")">Entertainment</a></li>
+                        <li><a href="@Url.Action("Landmarks", "Place")">Landmarks</a></li>
+                    </ul>*@
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["user"] == null)
+                    {
+                        <li>@Html.ActionLink("Login", "LoginRegister", "Home")</li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@user.FirstName's Dashboard <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
                                 <li><a href="@Url.Action("UserDashboard", "Home")">@user.FirstName's Dashboard</a></li>
-                                <li><a href=" @Url.Action("Index", "Home", new { logCode = 1 })">Logout</a></li>
-                                @*<li><a href="@Url.Action("UserDashboard", "Home")">@user.FirstName's Dashboard</a></li>*@
                                 <li><a href="@Url.Action("CreateItinerary", "Home")">Create New Itinerary</a></li>
                                 <li><a href="@Url.Action("Route", "Home")">Load Itinerary Route</a></li>
-                            }
+                                <li><a href=" @Url.Action("Index", "Home", new { logCode = 1 })">Logout</a></li>
+                            </ul>
+                        </li>
+                    }
 
-                        </ul>
-</div>
+                </ul>
+
+                </div>
+            </div>
         </div>
-    </div>
 
-    @*<div class="container body-content">*@
-    @RenderBody()
-    <hr />
-    <footer class="col-xs-12">
-        <p class="text-center">
-            <br />&copy; @DateTime.Now.Year &bull;
-            <a class="poly-productions" href="https://www.linkedin.com/in/teddilyn-gavozzi/">Gavozzi </a>
-            <a class="poly-productions" href="https://www.linkedin.com/in/peter-rader/">Rader </a>
-            <a class="poly-productions" href="https://www.linkedin.com/in/richard-smith-ohio/"> Smith</a> &amp;
-            <a class="poly-productions" href="https://www.linkedin.com/in/samanthatroy1220/">Troy</a> Production
-            <br />Sales Assistance (800) 404-HTML <span class="hidden-xs">&bull;</span><span class="visible-xs"></span> Customer Service (301) 404-HTML
-        </p>
+        @*<div class="container body-content">*@
+                        @RenderBody()
+                        <hr />
+                        <footer class="col-xs-12">
+                            <p class="text-center">
+                                <br />&copy; @DateTime.Now.Year &bull;
+                                <a class="poly-productions" href="https://www.linkedin.com/in/teddilyn-gavozzi/">Gavozzi </a>
+                                <a class="poly-productions" href="https://www.linkedin.com/in/peter-rader/">Rader </a>
+                                <a class="poly-productions" href="https://www.linkedin.com/in/richard-smith-ohio/"> Smith</a> &amp;
+                                <a class="poly-productions" href="https://www.linkedin.com/in/samanthatroy1220/">Troy</a> Production
+                                <br />Sales Assistance (800) 404-HTML <span class="hidden-xs">&bull;</span><span class="visible-xs"></span> Customer Service (301) 404-HTML
+                            </p>
 
-    </footer>
-    @*</div>*@
-</body>
-</html>
+                        </footer>
+                        @*</div>*@
+                    </body>
+                </html>
