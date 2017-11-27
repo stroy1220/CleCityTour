@@ -5,6 +5,7 @@
 @{
     ViewBag.Title = "Entertainment";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<PlacesModel> test = new List<PlacesModel>();
 }
 
 <div class="entertainment-hero jumbotron">
@@ -19,6 +20,7 @@
                 {
                     if (p.Category == "Entertainment")
                     {
+                        test.Add(p);
                         <div class="col-xs-12 desc-bump">
                             <div class="col-md-4">
                                 <img class="img-responsive" src="@Url.Content("~/Content/places-pics/" + p.PlaceName + ".jpg")" />
@@ -27,9 +29,15 @@
                                 <h3>@p.PlaceName</h3>
                                 <h4>@p.Detail</h4>
                                 <p>@p.StreetAddress<br />@p.City, @p.State, @p.Zip</p>
+                                @if (Session["user"] != null)
+                                {
+                                    <form action="@Url.Action("SavePlaceToItineraryFromList", "Home", new { placeId = p.Id})" method="post">
+                                        <button>Save to Itinerary</button>
+                                    </form>
+                                }
                             </div>
-                            <hr />
                         </div>
+                        <hr />
                     }
                 }
             }
@@ -48,8 +56,8 @@
 
 </div>
 @*@if(Session["user"] != null)
-{
-<div>
-    @Html.Action("ItinPartial")
-</div>
-}*@
+    {
+    <div>
+        @Html.Action("ItinPartial")
+    </div>
+    }*@

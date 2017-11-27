@@ -123,6 +123,22 @@ namespace Capstone.Web.Controllers
             return View("LoginRegister");
         }
 
+        [HttpPost]
+        public ActionResult SavePlaceToItineraryFromList(int placeId)
+        {
+            if (Session["user"] != null)
+            {
+                PlacesDAL pdal = new PlacesDAL();
+                ItineraryDAL idal = new ItineraryDAL();
+                UserModel user = Session["user"] as UserModel;
+                List<ItineraryModel> userItinerary = idal.GetAllItinerary(user.UserId);
+                var saveToItin = idal.AddPlaceToItinerary(userItinerary[0].Id, placeId);
+
+                return RedirectToAction("UserDashboard");
+            }
+            return View("LoginRegister");
+        }
+
         public ActionResult CreateItinerary()
         {
             PlacesDAL pdal = new PlacesDAL();
@@ -159,6 +175,24 @@ namespace Capstone.Web.Controllers
 
             ItineraryDAL idal = new ItineraryDAL();
             idal.CreateNewItinerary(newItinerary);
+
+            return RedirectToAction("UserDashboard");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteItinerary(int itineraryId)
+        {
+            ItineraryDAL idal = new ItineraryDAL();
+            idal.DeleteItinerary(itineraryId);
+
+            return RedirectToAction("UserDashboard");
+        }
+
+        [HttpPost]
+        public ActionResult DeletePlaceFromItinerary(int placeId, int itineraryId)
+        {
+            ItineraryDAL idal = new ItineraryDAL();
+            idal.RemovePlaceFromItinerary(placeId, itineraryId);
 
             return RedirectToAction("UserDashboard");
         }
