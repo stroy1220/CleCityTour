@@ -1,6 +1,10 @@
 -- *****************************************************************************
 -- This script contains INSERT statements for populating tables with seed data
 -- *****************************************************************************
+--DROP TABLE itinerary;
+--DROP TABLE itineraryPlaces;
+--DROP TABLE places;
+--DROP TABLE userInfo;
 
 BEGIN;
 -- INSERT statements go here

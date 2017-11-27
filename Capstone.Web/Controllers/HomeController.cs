@@ -92,26 +92,11 @@ namespace Capstone.Web.Controllers
             if (Session["user"] != null)
             {
 
-                List<ItineraryPlacesModel> model = new List<ItineraryPlacesModel>();
                 UserModel user = Session["user"] as UserModel;
-                ItineraryDAL itdal = new ItineraryDAL();
-                List<ItineraryModel> itinerary = itdal.GetAllItinerary(user.UserId);
-                List<int> listOfPlaceIds = itdal.GetItinerary(user.UserId);
+                ItineraryDAL idal = new ItineraryDAL();
+                List<ItineraryPlacesModel> model = idal.GetAllItineraryPlacesForUser(user.UserId);
 
-                foreach (var i in itinerary)
-                {
-                    ItineraryPlacesModel singleIntinForUser = new ItineraryPlacesModel();
-                    singleIntinForUser.Itinerary = i;
-                    List<PlacesModel> listOfPlacesInItin = new List<PlacesModel>();
-                    foreach (var singlePlaceId in listOfPlaceIds)
-                    {
-                        PlacesModel newPlaceFromItin = new PlacesModel();
-                        newPlaceFromItin = pdal.GetSinglePlace(singlePlaceId);
-                        listOfPlacesInItin.Add(newPlaceFromItin);
-                    }
-                    singleIntinForUser.Places = listOfPlacesInItin;
-                    model.Add(singleIntinForUser);
-                }
+                
 
                 return View("UserDashboard", model);
             }
@@ -130,8 +115,9 @@ namespace Capstone.Web.Controllers
                 ItineraryDAL idal = new ItineraryDAL();
                 UserModel user = Session["user"] as UserModel;
                 newPlaceForUser.UserId = user.UserId;
+                List<ItineraryModel> userItinerary = idal.GetAllItinerary(user.UserId);
                 var save = pdal.CreatePlaceForUser(newPlaceForUser);
-                //var saveToItin = idal.AddPlaceToItinerary(,save);
+                var saveToItin = idal.AddPlaceToItinerary(userItinerary[0].Id ,save);
                 return Json(new { result = "OK" });
             }
             return View("LoginRegister");
