@@ -61,3 +61,4 @@ insert into places(streetAddress, city, state, latitude, longitude, detail, plac
  insert into itineraryPlaces values(2, 5)
  insert into itineraryPlaces values(2, 6)
 
+delete from itineraryPlaces where itineraryID = 1 delete from itinerary where id = 1
