@@ -31,6 +31,11 @@ namespace Capstone.Web.Controllers
             return View("Index");
         }
 
+        public ActionResult Route()
+        {
+            return View("Route");
+        }
+
         public ActionResult LoginRegister()
         {
             return View("LoginRegister");
