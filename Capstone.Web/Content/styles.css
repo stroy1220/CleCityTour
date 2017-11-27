@@ -1,6 +1,9 @@
 ﻿body {
    margin-top: 50px;
 }
+span .field-validation-error {
+    color: white;
+}
 
 .itin-container {
     border: 1px solid black;
