@@ -187,24 +187,26 @@
                     <h2>
                         @Model[i].Itinerary.Name
                     </h2>
+                       <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id})" method="post">
+                           <button>Delete Itinerary</button>
+                       </form>
                     <div class="container">
                         <div class="row itin-container">
                             @foreach (var t in Model[i].Places)
-                {
-
+                            {
                                 <img src="@Url.Content("~/Content/places-pics/" + t.PlaceName + ".jpg")" />
                                 <h4>@t.PlaceName</h4>
                                 <p>@t.StreetAddress @t.City , @t.State @t.Zip</p>
                                 <p>@t.Detail</p>
+                                <form action="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id})" method="post">
+                                    <button>Remove from Itinerary</button>
+                                </form>
                                 <hr />
-
-
                             }
                         </div>
                     </div>
                 </div>
                 }
-
             </div>
             <div class="col-xs-12">
                 <div class="row">

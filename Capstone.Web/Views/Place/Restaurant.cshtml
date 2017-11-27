@@ -28,6 +28,12 @@
                                 <h3>@p.PlaceName</h3>
                                 <h4>@p.Detail</h4>
                                 <p>@p.StreetAddress<br />@p.City, @p.State, @p.Zip</p>
+                                @if (Session["user"] != null)
+                                {
+                                    <form action="@Url.Action("SavePlaceToItineraryFromList", "Home", new { placeId = p.Id})" method="post">
+                                        <button>Save to Itinerary</button>
+                                    </form>
+                                }
                             </div>
                             <hr />
                         </div>

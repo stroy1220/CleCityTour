@@ -11,7 +11,7 @@ namespace Capstone.Web.DAL
         bool CreateNewItinerary(ItineraryModel itinerary);
         bool DeleteItinerary(int id);
         bool AddPlaceToItinerary(int itineraryId, int placeId);
-        bool RemovePlaceFromItinerary(int id);
+        bool RemovePlaceFromItinerary(int placeId, int itineraryId);
         bool UpdateStartLocation(decimal lat, decimal longg, int id);
         bool UpdateStartDate(DateTime startDate, int id);
         bool UpdateName(string name, int id);
