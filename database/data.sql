@@ -6,6 +6,8 @@ BEGIN;
 -- INSERT statements go here
 
 COMMIT;
+
+
 insert into places(streetAddress, city, state, latitude, longitude, detail, placeName, Category, Zip) values('1 Center Ct', 'Cleveland', 'OH', 41.496873,  -81.689694,'Large indoor venue for pro sports such as hockey, basketball & arena football plus various concerts','Quicken Loans Arena','Sports', 44113)
 
 insert into places(streetAddress, city, state, latitude, longitude, detail, placeName, Category, Zip) values('2401 Ontario St', 'Cleveland', 'OH', 41.494517, -81.685398, 'Cleveland Indians home field with a mezzanine-level kid''s club, concessions & youth workshops', 'Progressive Field','Sports', 44113)

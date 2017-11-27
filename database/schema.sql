@@ -26,30 +26,27 @@ admin		 bit	      not null,
 
 create table places
 (
-id				int				primary key			identity(1,1),
-streetAddress	varchar(max)	not null,
-city			varchar(max)	not null,
-state			varchar(max)	not null,
-latitude		varchar(max)	not null,
-longitude		varchar(max)	not null,
-googleID		varchar(max)	null,
-detail			varchar(max)	null,
-placeName		varchar(max)	not null,
-Category		varchar(max)	not null,
-Zip				int				null,
-UserID			int				null,
+id			  int		  primary key			identity(1,1),
+streetAddress varchar(max) not null,
+city          varchar(max) not null,
+state		  varchar(max) not null,
+latitude	  varchar(max)          not null,
+longitude     varchar(max)		   not null,
+googleID      varchar(max) null,
+detail        varchar(max) null,
+placeName     varchar(max) not null,
+Category      varchar(max) not null,
 );    
 
 
 create table itinerary
 (
-id						int				primary key			identity(1,1),
-userID					int				not null,
-name					varchar(max)	not null,
-date					datetime		null,
-startLocationLong		varchar(max)	not null,
-startLocationLat		varchar(max)	not null,
-
+id int primary key identity(1,1),
+userID int not null,
+name varchar(max) not null,
+date datetime null,
+startLocationLong varchar(max) not null,
+startLocationLat varchar(max) not null,
 
 constraint fk_itinerary_userInfo foreign key (userID) references userInfo(id),
 )
