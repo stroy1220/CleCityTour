@@ -63,6 +63,7 @@
 
         <title>Places search box</title>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc&libraries=places"></script>
+       
 
         <script>
 
@@ -84,7 +85,7 @@
                 map.fitBounds(defaultBounds);
 
                 //Create the search box and link it to the UI element.*/
-                var input =   @*@type*@ { HTMLInputElement } (
+                var input = @*@type*@ { HTMLInputElement } (
                     document.getElementById('pac-input'));
                 map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -142,6 +143,8 @@
             }
 
             google.maps.event.addDomListener(window, 'load', initialize);
+
+
 
         </script>
 
