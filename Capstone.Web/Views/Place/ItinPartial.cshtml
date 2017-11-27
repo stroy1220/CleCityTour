@@ -5,14 +5,13 @@
 {
     <h3 class="text-center">Itinerary for @Model[0].Itinerary.Name</h3>
 
-    @foreach (var m in Model[0].Places)
+    foreach (var m in Model[0].Places)
     {
         <div class="col-sm-4">
             <div class="row itin-item">
                 <div class="col-xs-12 col-sm-5">
                     <img class="img-responsive" src="@Url.Content("~/Content/places-pics/" + m.PlaceName + ".jpg")" />
 
-                    @*<img class="img-responsive" src="~/Content/quicken-loans2.jpg" alt="">*@
                 </div>
                 <div class="col-xs-12 col-sm-7">
                     <ul class="list-unstyled">
