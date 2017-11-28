@@ -15,10 +15,11 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
 
-        window.onload = function () {
+        $(document).ready(function () {
             $("#datepicker").datepicker();
-            $(".date").datepicker("setDate", test2);
-          };
+            $("#datepicker").datepicker("setDate", 'today');
+
+        });
     </script>
 </head>
 <body>
@@ -49,8 +50,7 @@
                     </div>
                     <div>
                         @Html.LabelFor(m => m.Date)
-                        @Html.TextBoxFor(m => m.Date)
-                        @*<p>Start Date: <input type="text" value="@Model.Date" id="datepicker" class="date"></p>*@
+                        @Html.TextBoxFor(m => m.Date, new { @id = "datepicker" })
                     </div>
                     <button>Create Itinerary</button>
                 </form>
