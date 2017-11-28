@@ -172,7 +172,6 @@ namespace Capstone.Web.Controllers
             List<SelectListItem> listOfPlaces = new List<SelectListItem>();
             foreach (var place in places)
             {
-                //string latLong = place.Latitude + "|" + place.Longitude;
                 listOfPlaces.Add(new SelectListItem() { Text = place.PlaceName, Value = place.Id.ToString() });
             }
             ViewBag.Places = listOfPlaces;
@@ -190,7 +189,7 @@ namespace Capstone.Web.Controllers
         {
             PlacesDAL dal = new PlacesDAL();
             PlacesModel p = new PlacesModel();
-
+            
             p = dal.GetSinglePlace(Convert.ToInt32(id));
 
             newItinerary.StartLocationLat = p.Latitude.ToString();
@@ -201,6 +200,9 @@ namespace Capstone.Web.Controllers
 
             ItineraryDAL idal = new ItineraryDAL();
             idal.CreateNewItinerary(newItinerary);
+
+            int neededIdNumber = idal.GetMostRecentlyCreatedItinerary(user.UserId);
+            idal.AddPlaceToItinerary(neededIdNumber, Convert.ToInt32(id));
 
             return RedirectToAction("UserDashboard");
         }
