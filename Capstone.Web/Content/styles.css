@@ -153,6 +153,11 @@
     margin: 10px auto;
 }
 
+.desc-bump-20{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .landmark-detail {
     text-align: center;
 }
@@ -173,6 +178,9 @@ span.field-validation-error::before {
 .register {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.detail {
+    min-height: 80px;
 }
 
 
