@@ -14,12 +14,14 @@
     <meta charset="utf-8">
     <title>Waypoints in directions</title>
     <script>
-        var testOrigin = "@Model[0].Itinerary.StartLocationLat,@Model[0].Itinerary.StartLocationLong";
-        var testWaypoints = [];
+     var testOrigin = "@Model[0].Itinerary.StartLocationLat,@Model[0].Itinerary.StartLocationLong";
+     var testWaypoints = [];
         @foreach(var place in Model[0].Places)
         {
-           @:testWaypoints.push({location: "@place.Latitude,@place.Longitude"}); 
+           @:testWaypoints.push({location: "@place.Latitude,@place.Longitude"});
         }
+        var itinerary = "@Model[0].Itinerary.Name";
+        
     </script>
     <style>
         #right-panel {
@@ -73,52 +75,49 @@
     </style>
 </head>
 <body>
-    <form action="tutorial007.html" method="get" onsubmit="selectAllOptions('sel2');">
 
-        <div id="map"></div>
-        <div id="right-panel">
-            <div style="display:none">
-                <b>Start:</b>
-                <select id="start">
-                    @*@foreach (var l in Model)
-                        {
-                            <option value=""></option>
-                        }*@
-                    @*<option value="Halifax, NS">Halifax, NS</option>*@
-                    <option value="41.499320,-81.694361">Cleveland, OH</option>
-                    @*<option value="41.498322,-81.689789">Red, The Steakhouse</option>*@
-                    @*<option value="Miami, FL">Miami, FL</option>*@
-                </select>
-                <br>
-                <b>Waypoints:</b> <br>
+
+    <div id="map"></div>
+    <div id="right-panel">
+        <div>
+            <b>Select Itinerary:</b>
+            <select id="start">
+              
+                <option value="itinerary">itinerary name goes here</option>
+                <option value="itinerary">Cleveland, OH</option>
+                @*<option value="41.498322,-81.689789">Red, The Steakhouse</option>*@
+                @*<option value="Miami, FL">Miami, FL</option>*@
+            </select>
+            <br>
+            @*<b>Waypoints:</b> <br>
                 <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br>
-                <select multiple id="waypoints">
+            @*<select multiple id="waypoints">*@
 
-                
-                    <option value="montreal, quebec">Montreal, QBC</option>
-                    <option value="41.499348,-81.699057">Blue Point Grill</option>
-                    <option value="chicago, il">Chicago</option>
-                    <option value="winnipeg, mb">Winnipeg</option>
-                    <option value="fargo, nd">Fargo</option>
-                    <option value="calgary, ab">Calgary</option>
-                    <option value="spokane, wa">Spokane</option>
-                </select>
 
-                <br>
-                <b>End:</b>
-                <select id="end">
-                    @*<option value="Vancouver, BC">Vancouver, BC</option>*@
-                    <option value="41.496762,-81.694051">Tower City Center</option>
-                    @*<option value="San Francisco, CA">San Francisco, CA</option>*@
-                    @*<option value="Los Angeles, CA">Los Angeles, CA</option>*@
-                </select>
-                <br>
+            @*<option value="montreal, quebec">Montreal, QBC</option>
+                <option value="41.499348,-81.699057">Blue Point Grill</option>
+                <option value="chicago, il">Chicago</option>
+                <option value="winnipeg, mb">Winnipeg</option>
+                <option value="fargo, nd">Fargo</option>
+                <option value="calgary, ab">Calgary</option>
+                <option value="spokane, wa">Spokane</option>
+            </select>*@
 
-            </div>
-            <input type="submit" id="submit">
-            <div id="directions-panel"></div>
+            @*<br>
+            <b>End:</b>
+            <select id="end">
+                <option value="Vancouver, BC">Vancouver, BC</option>
+                <option value="41.496762,-81.694051">Tower City Center</option>
+                <option value="San Francisco, CA">San Francisco, CA</option>
+                <option value="Los Angeles, CA">Los Angeles, CA</option>
+            </select>
+            <br>*@
+
         </div>
-        <script>
+        <input type="submit" id="submit">
+        <div id="directions-panel"></div>
+    </div>
+    <script>
             function initMap() {
                 var directionsService = new google.maps.DirectionsService;
                 var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -135,8 +134,8 @@
             }
 
             function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-                var waypts = [];
-                var checkboxArray = document.getElementById('waypoints');
+                var waypts = testWaypoints;
+                var checkboxArray = document.getElementById('testWaypoints');
                 for (var i = 0; i < checkboxArray.length; i++) {
                     if (checkboxArray.options[i].selected) {
                         waypts.push({
@@ -147,9 +146,9 @@
                 }
 
                 directionsService.route({
-                    origin: document.getElementById('start').value,
+                    origin: testOrigin,
                     destination: document.getElementById('end').value,
-                    waypoints: waypts,
+                    waypoints: testWaypoints,
                     optimizeWaypoints: true,
                     travelMode: 'DRIVING'
                 }, function (response, status) {
@@ -172,9 +171,9 @@
                     }
                 });
             }
-        </script>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc&callback=initMap">
-        </script>
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc&callback=initMap">
+    </script>
 </body>
 </html>

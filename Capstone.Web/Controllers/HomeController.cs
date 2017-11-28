@@ -36,12 +36,9 @@ namespace Capstone.Web.Controllers
             PlacesDAL pdal = new PlacesDAL();
             if (Session["user"] != null)
             {
-
                 UserModel user = Session["user"] as UserModel;
                 ItineraryDAL idal = new ItineraryDAL();
                 List<ItineraryPlacesModel> model = idal.GetAllItineraryPlacesForUser(user.UserId);
-
-
 
                 return View("Route", model);
             }
@@ -224,22 +221,43 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditUserItinerary(int itineraryId, List<int> placeIds)
+        public ActionResult EditUserItinerary(int itineraryId, List<int> order)
         {
             UserModel user = Session["user"] as UserModel;
             ItineraryDAL idal = new ItineraryDAL();
-
-            ItineraryModel newItin = idal.GetAllItineraryInfo(itineraryId);
-
-            idal.DeleteItinerary(itineraryId);
-            idal.CreateNewItinerary(newItin);
-            int neededIdNumber = idal.GetMostRecentlyCreatedItinerary(user.UserId);
-
-            foreach (var i in placeIds)
+            List<ItineraryPlacesModel> output = idal.GetAllItineraryPlacesForUser(user.UserId);
+            List<PlacesModel> places = new List<PlacesModel>();
+            List<PlacesModel> newOrderPlaces = new List<PlacesModel>();
+            Dictionary<int, PlacesModel> placeDictionary = new Dictionary<int, PlacesModel>();
+            
+            foreach(var i in output)
             {
-                idal.AddPlaceToItinerary(neededIdNumber, i);
-            }
+                if(i.Itinerary.Id == itineraryId)
+                {
+                    foreach(var p in i.Places)
+                    {
+                        int counter = 0;
+                        places.Add(p);
+                        placeDictionary.Add(order[counter], p);
+                        counter++;
+                    }
+                    foreach (var p in i.Places)
+                    {                  
+                        idal.RemovePlaceFromItinerary(p.Id, itineraryId);
+                    }
+                    foreach(var kvp in placeDictionary)
+                    {
+                        for(int m = 1; m < placeDictionary.Count - 1; m++)
+                        {
+                            if(kvp.Key == m)
+                            {
+                                idal.AddPlaceToItinerary(itineraryId, kvp.Value.Id);
+                            }
+                        }
+                    }
 
+                }
+            }
             return RedirectToAction("UserDashboard");
         }
     }
