@@ -19,6 +19,8 @@ namespace Capstone.Web.DAL
         List<ItineraryModel> GetAllItinerary(int userId);
         List<ItineraryPlacesModel> GetAllItineraryPlacesForUser(int userId);
         bool EditItineraryOrder(int itineraryId);
+        ItineraryModel GetAllItineraryInfo(int itineraryId);
+        int GetMostRecentlyCreatedItinerary(int userId);
 
     }
 }

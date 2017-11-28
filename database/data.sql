@@ -55,11 +55,14 @@ insert into places(streetAddress, city, state, latitude, longitude, detail, plac
  insert into itinerary values(2, 'fakename', '01/01/01', '41.499374', '-81.690238'); 
  insert into itinerary values(2, 'fakename2', '01/01/01', '41.499374', '-81.690238');
 
- insert into itineraryPlaces values(1, 1)
- insert into itineraryPlaces values(1, 2)
- insert into itineraryPlaces values(1, 3)
+ insert into itineraryPlaces values(3, 1)
+ insert into itineraryPlaces values(3, 2)
+ insert into itineraryPlaces values(3, 3)
 
- insert into itineraryPlaces values(2, 4)
- insert into itineraryPlaces values(2, 5)
- insert into itineraryPlaces values(2, 6)
+ insert into itineraryPlaces values(4, 4)
+ insert into itineraryPlaces values(4, 5)
+ insert into itineraryPlaces values(4, 6)
 
+delete from itineraryPlaces where itineraryID = 1 delete from itinerary where id = 1
+
+select * from itineraryPlaces

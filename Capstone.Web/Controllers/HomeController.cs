@@ -224,43 +224,22 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditUserItinerary(int itineraryId, List<int> order)
+        public ActionResult EditUserItinerary(int itineraryId, List<int> placeIds)
         {
             UserModel user = Session["user"] as UserModel;
             ItineraryDAL idal = new ItineraryDAL();
-            List<ItineraryPlacesModel> output = idal.GetAllItineraryPlacesForUser(user.UserId);
-            List<PlacesModel> places = new List<PlacesModel>();
-            List<PlacesModel> newOrderPlaces = new List<PlacesModel>();
-            Dictionary<int, PlacesModel> placeDictionary = new Dictionary<int, PlacesModel>();
-            
-            foreach(var i in output)
-            {
-                if(i.Itinerary.Id == itineraryId)
-                {
-                    foreach(var p in i.Places)
-                    {
-                        int counter = 0;
-                        places.Add(p);
-                        placeDictionary.Add(order[counter], p);
-                        counter++;
-                    }
-                    foreach (var p in i.Places)
-                    {                  
-                        idal.RemovePlaceFromItinerary(p.Id, itineraryId);
-                    }
-                    foreach(var kvp in placeDictionary)
-                    {
-                        for(int m = 1; m < placeDictionary.Count - 1; m++)
-                        {
-                            if(kvp.Key == m)
-                            {
-                                idal.AddPlaceToItinerary(itineraryId, kvp.Value.Id);
-                            }
-                        }
-                    }
 
-                }
+            ItineraryModel newItin = idal.GetAllItineraryInfo(itineraryId);
+
+            idal.DeleteItinerary(itineraryId);
+            idal.CreateNewItinerary(newItin);
+            int neededIdNumber = idal.GetMostRecentlyCreatedItinerary(user.UserId);
+
+            foreach (var i in placeIds)
+            {
+                idal.AddPlaceToItinerary(neededIdNumber, i);
             }
+
             return RedirectToAction("UserDashboard");
         }
     }

@@ -1,10 +1,6 @@
 ﻿body {
    margin-top: 50px;
 }
-span .field-validation-error {
-    color: white;
-}
-
 .itin-container {
     border: 1px solid black;
     border-radius: 5px;
@@ -161,6 +157,25 @@ span .field-validation-error {
     text-align: center;
 }
 
+span.field-validation-error {
+    color: red;
+    background-color: black;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+span.field-validation-error::before {
+    content: "\A";
+    white-space: pre;
+    margin-top: 20px;
+}
+.register {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
 /*Media Queries*/
 
 /* Small Devices, Tablets */
@@ -176,6 +191,12 @@ span .field-validation-error {
     .landmark-detail {
         text-align: left;
     }
+    span.field-validation-error::before {
+        content: "\A";
+        white-space: pre;
+    }
+
+    
 }
 
 /* Medium Devices, Desktops */
