@@ -33,8 +33,22 @@ namespace Capstone.Web.Controllers
 
         public ActionResult Route()
         {
-            return View("Route");
+            PlacesDAL pdal = new PlacesDAL();
+            if (Session["user"] != null)
+            {
 
+                UserModel user = Session["user"] as UserModel;
+                ItineraryDAL idal = new ItineraryDAL();
+                List<ItineraryPlacesModel> model = idal.GetAllItineraryPlacesForUser(user.UserId);
+
+
+
+                return View("Route", model);
+            }
+            else
+            {
+                return RedirectToAction("LoginRegister");
+            }
         }
 
         public ActionResult LoginRegister()
