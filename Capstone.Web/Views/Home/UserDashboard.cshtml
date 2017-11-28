@@ -25,7 +25,9 @@
         var uniqueId = 1;
 
         window.onload = function () {
-     
+            var boxItin = $("#itinModal");
+            boxItin.hide();
+
             $("#sortable").sortable();
             $(".test").sortable({
                 update: function (event, ui) { }
@@ -41,6 +43,16 @@
 
             $(".accordion").accordion();
 
+            $("#itinButton").on("click", function (e) {
+                if (boxItin.hasClass("aaa")) {
+                    boxItin.hide();
+                    boxItin.removeClass("aaa");
+                }
+                else{
+                    boxItin.show();
+                    boxItin.addClass("aaa");
+                }
+            });
             var mapOptions = {
                 center: new google.maps.LatLng(41.499320, -81.694361),
                 zoom: 15,
@@ -193,7 +205,10 @@
         <div class="row">
             <div class="col-xs-12 text-center">
                 <h2>User Dashboard</h2>
-                <button class="btn btn-default btn-lg"><a href="@Url.Action("CreateItinerary", "Home")">Create Itinerary</a></button>
+                <button id="itinButton">Create Itinerary</button>
+                <div id="itinModal">
+                    @Html.Action("CreateItinerary", "Home")
+                </div>
             </div>
 
         </div>
@@ -233,7 +248,7 @@
                 </div>
              }
             </div>
-
+            </div>
             <div class="col-xs-12">
                 <div class="row">
                     <div class="col-xs-12">
@@ -245,12 +260,7 @@
             </div>
 
         </div>
-        @*<div class="row">
-                <div class="col-md-12">
-                    <div id="dvMap" style="width: 50%; height: 500px">
-                    </div>
-                </div>
-            </div>*@
+     
         <br />
 </body>
 </html>

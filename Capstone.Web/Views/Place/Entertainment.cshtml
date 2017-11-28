@@ -45,16 +45,8 @@
     <div class="row itin-container">
         @if (Session["user"] != null)
         {
-            @*<div class="container">*@
-        @Html.Action("ItinPartial")
-            @*</div>*@
+        @Html.Action("ItinPartial")   
         }
     </div>
 
 </div>
-@*@if(Session["user"] != null)
-    {
-    <div>
-        @Html.Action("ItinPartial")
-    </div>
-    }*@
