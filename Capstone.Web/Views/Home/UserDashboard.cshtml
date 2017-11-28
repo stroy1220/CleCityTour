@@ -27,19 +27,17 @@
         window.onload = function () {
 
             $("#sortable").sortable();
-            $(".selector").sortable({
+            $(".test").sortable({
                 update: function (event, ui) {}
             });
-            $(".selector").on("sortupdate", function (event, ui) {
+            $(".test").on("sortupdate", function (event, ui) {
                 var inputs = $("#sortable").find("input[type='hidden']");
 
                 for (var i = 0; i < inputs.length; i++) {
 
                     $(inputs[i]).attr("name", `places[${i}]`)
-
                 }
             });
-
             var mapOptions = {
                 center: new google.maps.LatLng(41.499320, -81.694361),
                 zoom: 15,
@@ -195,9 +193,8 @@
             </div>
 
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-
+        <div class="row" >
+            <div class="col-xs-12" >
                 @for (int i = 0; i < Model.Count; i++)
                 {  <div>
                     <h2>
@@ -215,7 +212,7 @@
                                 @foreach (var t in Model[i].Places)
                                 {
                                     <div>
-                                        <input type="hidden" name="placeIds[@counter]" value="@t.Id" />
+                                        <input class="test" type="hidden" name="placeIds[@counter]" value="@t.Id" />
                                         <img src="@Url.Content("~/Content/places-pics/" + t.PlaceName + ".jpg")" />
                                         <h4>@t.PlaceName</h4>
                                         <p>@t.StreetAddress @t.City , @t.State @t.Zip</p>

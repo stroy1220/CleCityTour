@@ -4,40 +4,61 @@
     ViewBag.Title = "CreateItinerary";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
 
-<div class="create-itinerary-hero jumbotron">
-    <div class="container text-center">
-        <h1 class="h1 text-uppercase hero-text-drop-shadow">Create Your New Itinerary</h1>
-
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 text-center">
-
-            <h2>Create Itinerary</h2>
-
-            <form action="@Url.Action("CreateItinerary", "Home")" method="post">
-                <div>
-                    @Html.LabelFor(m => m.Name)
-                    @Html.TextBoxFor(m => m.Name)
-                </div>
-                @*<div>
-                @Html.HiddenFor(m => m.UserId)
-            </div>*@
-                <div>
-                    @Html.LabelFor(m => m.StartLocationLat)
-                    @Html.DropDownList("id", ViewBag.Places as List<SelectListItem>, "Starting Location")
-                </div>
-                <div>
-                    @Html.LabelFor(m => m.Date)
-                    @Html.TextBoxFor(m => m.Date)
-                </div>
-                <button>Create Itinerary</button>
-            </form>
+        window.onload = function () {
+            $("#datepicker").datepicker();
+            $(".date").datepicker({
+                gotoCurrent: true
+            });
+            var gotoCurrent = $(".date").datepicker("option", "gotoCurrent");
+            $(".date").datepicker("option", "gotoCurrent", true);
+        };
+    </script>
+</head>
+<body>
+    <div class="create-itinerary-hero jumbotron">
+        <div class="container text-center">
+            <h1 class="h1 text-uppercase hero-text-drop-shadow">Create Your New Itinerary</h1>
 
         </div>
     </div>
-</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+
+                <h2>Create Itinerary</h2>
+
+                <form action="@Url.Action("CreateItinerary", "Home")" method="post">
+                    <div>
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name)
+                    </div>
+                    @*<div>
+                            @Html.HiddenFor(m => m.UserId)
+                        </div>*@
+                    <div>
+                        @Html.LabelFor(m => m.StartLocationLat)
+                        @Html.DropDownList("id", ViewBag.Places as List<SelectListItem>, "Starting Location")
+                    </div>
+                    <div>
+                        @Html.LabelFor(m => m.Date)
+                        @Html.TextBoxFor(m => m.Date)
+                        @*<p>Start Date: <input type="text" value="@Model.Date" id="datepicker" class="date"></p>*@
+                    </div>
+                    <button>Create Itinerary</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
 
