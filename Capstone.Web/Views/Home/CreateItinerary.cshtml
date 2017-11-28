@@ -50,9 +50,9 @@
                         @Html.DropDownList("id", ViewBag.Places as List<SelectListItem>, "Starting Location")
                     </div>
                     <div>
-                        @Html.LabelFor(m => m.Date)
-                        @Html.TextBoxFor(m => m.Date)
-                        @*<p>Start Date: <input type="text" value="@Model.Date" id="datepicker" class="date"></p>*@
+                        @*@Html.LabelFor(m => m.Date)
+                        @Html.TextBoxFor(m => m.Date)*@
+                        <p>Start Date: <input type="text" value="@Model.Date" id="datepicker" class="date"></p>
                     </div>
                     <button>Create Itinerary</button>
                 </form>
