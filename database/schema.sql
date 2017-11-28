@@ -36,6 +36,8 @@ googleID      varchar(max) null,
 detail        varchar(max) null,
 placeName     varchar(max) not null,
 Category      varchar(max) not null,
+Zip			  int          null,
+UserID        int          null,
 );    
 
 
@@ -56,7 +58,6 @@ create table itineraryPlaces
 id				  int		  primary key			identity(1,1),
 itineraryID       int         not null,		
 placeID			  int		  not null,
-orderNumber       int         null,
 
 constraint fk_itineraryPlaces_itinerary foreign key (itineraryID) references itinerary(id),
 constraint fk_itineraryPlaces_places foreign key (placeID) references places(id)
