@@ -184,6 +184,14 @@ span.field-validation-error::before {
 }
 
 
+#standalone {
+    transform: scale(0.8);
+}
+
+.popup_visible #standalone {
+    transform: scale(1);
+}
+
 /*Media Queries*/
 
 /* Small Devices, Tablets */

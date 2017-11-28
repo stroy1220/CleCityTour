@@ -171,6 +171,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +214,7 @@
     <Content Include="Views\Home\UserDashboard.cshtml" />
     <Content Include="Views\Home\CreateItinerary.cshtml" />
     <Content Include="Views\Home\Route.cshtml" />
+    <Content Include="Views\Home\CreateItinPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

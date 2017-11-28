@@ -163,7 +163,7 @@ namespace Capstone.Web.Controllers
             return View("LoginRegister");
         }
 
-        public ActionResult CreateItinerary()
+        public ActionResult CreateItinPartial()
         {
             PlacesDAL pdal = new PlacesDAL();
             var places = pdal.GetAllPlaces();
@@ -177,13 +177,13 @@ namespace Capstone.Web.Controllers
             if (Session["user"] != null)
             {
                 ItineraryModel model = new ItineraryModel();
-                return View("CreateItinerary", model);
+                return View("CreateItinPartial", model);
             }
             return View("LoginRegister");
         }
 
         [HttpPost]
-        public ActionResult CreateItinerary(ItineraryModel newItinerary, string id)
+        public ActionResult CreateItinPartial(ItineraryModel newItinerary, string id)
         {
             PlacesDAL dal = new PlacesDAL();
             PlacesModel p = new PlacesModel();

@@ -1,0 +1,40 @@
+﻿@using Capstone.Web.Models;
+@model ItineraryModel
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script>
+        $(document).ready(function () {
+            $("#datepicker").datepicker();
+            $("#datepicker").datepicker("setDate", 'today');
+    });
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+
+            <h2>Create Itinerary</h2>
+
+            <form action="@Url.Action("CreateItinPartial", "Home")" method="post">
+                <div>
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name)
+                </div>
+                @*<div>
+                        @Html.HiddenFor(m => m.UserId)
+                    </div>*@
+                <div>
+                    @Html.LabelFor(m => m.StartLocationLat)
+                    @Html.DropDownList("id", ViewBag.Places as List<SelectListItem>, "Starting Location")
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.Date)
+                    @Html.TextBoxFor(m => m.Date, new { @id = "datepicker" })
+                </div>
+                <button>Create Itinerary</button>
+            </form>
+
+        </div>
+    </div>
+</div>
