@@ -20,22 +20,22 @@
     <div class="row">
         <div class="col-xs-12 text-center">
 
-            <h1 id="testing">Create A New Itinerary</h1>
+            <h1 id="intinPartHeader">Create A New Itinerary</h1>
 
             <form action="@Url.Action("CreateItinPartial", "Home")" method="post">
                 <div>
                     @Html.LabelFor(m => m.Name)
-                    @Html.TextBoxFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "itinPartDetail" })
                 </div>
                 <div>
                     @Html.LabelFor(m => m.Date)
-                    @Html.TextBoxFor(m => m.Date, new { @id = "datepicker" })
+                    @Html.TextBoxFor(m => m.Date, new { @class= "itinPartDetail", @id = "datepicker" })
                 </div>
                 <div>
                     @Html.LabelFor(m => m.StartLocationLat)
-                    @Html.DropDownList("id", ViewBag.Places as List<SelectListItem>, "Starting Location")
+                    @Html.DropDownList("id", ViewBag.Places as List<SelectListItem>, "Starting Location", new { @class = "itinPartDetail" })
                 </div>
-                <button>Create Itinerary</button>
+                <button class="btn-lg">Create Itinerary</button>
             </form>
 
         </div>
