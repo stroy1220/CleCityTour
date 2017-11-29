@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\cleveland-sign.png" />
+    <Content Include="Content\cleveland-skyline-lakeview.jpg" />
     <Content Include="Content\cleveland-skyline-lakeview.png" />
     <Content Include="Content\lebron-1024x768.jpg" />
     <Content Include="Content\lebron-1920x1440.jpg" />

@@ -68,3 +68,9 @@ delete from itineraryPlaces where itineraryID = 1 delete from itinerary where id
 select * from itineraryPlaces
 
 alter table places add userID int null
+
+insert into places(streetAddress, city, state, latitude, longitude, detail, placeName, Category, Zip) values('35300 Vine St', 'Willowick', 'OH', 41.640935, -81.435814, 'The Lake County Captains are a minor league baseball team in Eastlake, Ohio, a suburb of Cleveland', 'Classic Park', 'Sports', 44095)
+
+select * from places
+
+delete from places where Zip = 44095
