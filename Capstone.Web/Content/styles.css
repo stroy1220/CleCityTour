@@ -50,7 +50,6 @@
     color: white;
     padding-top: 20%;
     padding-bottom: 20%;
-    font-family: 'Coda Caption', sans-serif;
 }
 
     .index-hero p {
@@ -102,11 +101,9 @@
     color: white;
     padding-top: 5%;
     padding-bottom: 35%;
-    font-family: 'Coda Caption', sans-serif;
 }
 
 .dashboard-hero {
-    font-family: 'Coda Caption', sans-serif;
     background-image: url(cleveland-skyline-lakeview.png);
     background-size: cover;
     background-position: center;
@@ -122,7 +119,6 @@
     color: white;
     padding-top: 15%;
     padding-bottom: 20%;
-    font-family: 'Coda Caption', sans-serif;
 }
 
 .landmarks-hero {
@@ -132,7 +128,6 @@
     color: white;
     padding-top: 15%;
     padding-bottom: 20%;
-    font-family: 'Coda Caption', sans-serif;
 }
 
 .restaurant-hero {
@@ -142,7 +137,6 @@
     color: white;
     padding-top: 15%;
     padding-bottom: 20%;
-    font-family: 'Coda Caption', sans-serif;
 }
 
 .shopping-hero {
@@ -152,7 +146,6 @@
     color: white;
     padding-top: 15%;
     padding-bottom: 20%;
-    font-family: 'Coda Caption', sans-serif;
 }
 
 .sports-hero {
@@ -162,8 +155,7 @@
     color: white;
     padding-top: 15%;
     padding-bottom: 20%;
-    font-family: 'Coda Caption', sans-serif;
-}
+ }
 
 .hero-text-drop-shadow {
     text-shadow: 0px 4px 3px rgba(0,0,0,0.4), 0px 8px 13px rgba(0,0,0,0.1), 0px 18px 23px rgba(0,0,0,0.1);
@@ -214,7 +206,7 @@ span.field-validation-error {
 }
 
 #intinPartHeader {
-    font-family: 'Coda Caption', sans-serif;
+    /*font-family: 'Coda Caption', sans-serif;*/
     font-size: 90px;
     color: maroon;
 }
@@ -232,9 +224,9 @@ span.field-validation-error {
         border: 3px solid #555;
     }
 
-.intinPartHeader, .detailHeader {
+/*.intinPartHeader{
     font-family: 'Coda Caption', sans-serif;
-}
+}*/
 
 
 /*Media Queries*/

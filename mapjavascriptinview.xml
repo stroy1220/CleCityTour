@@ -1,0 +1,266 @@
+@using Capstone.Web.Models
+@model List<ItineraryPlacesModel>
+
+@{
+    ViewBag.Title = "UserDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<int> order = new List<int>();
+
+}
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc&sensor=false"></script>
+    @*<script src="https://code.jquery.com/jquery-3.1.0.js"></script>*@
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+
+        //var baseUrl = ""; http://localhost:52923/ samURL
+
+        var baseUrl = "http://localhost:55601/";
+
+        var markers = [];
+        var uniqueId = 1;
+
+        window.onload = function () {
+            //var boxItin = $("#itinModal");
+            //boxItin.hide();
+
+            $("#sortable").sortable();
+            $(".test").sortable({
+                update: function (event, ui) { }
+            });
+            $(".test").on("sortupdate", function (event, ui) {
+                var inputs = $("#sortable").find("input[type='hidden']");
+
+                for (var i = 0; i < inputs.length; i++) {
+
+                    $(inputs[i]).attr("name", `placeIds[${i}]`)
+                }
+            });
+
+            $(".accordion").accordion();
+
+            //$("#itinButton").on("click", function (e) {
+            //    if (boxItin.hasClass("aaa")) {
+            //        boxItin.hide();
+            //        boxItin.removeClass("aaa");
+            //    }
+            //    else{
+            //        boxItin.show();
+            //        boxItin.addClass("aaa");
+            //    }
+            //});
+            var mapOptions = {
+                center: new google.maps.LatLng(41.499320, -81.694361),
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+
+            //Attach click event handler to the map.
+            google.maps.event.addListener(map, 'click', function (e) {
+
+                //Determine the location where the user has clicked.
+                var location = e.latLng;
+
+                //Create a marker and placed it on the map.
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+
+                //Set unique id
+                marker.id = uniqueId;
+                uniqueId++;
+
+
+
+                //Attach click event handler to the marker.
+                google.maps.event.addListener(marker, "click", function (e) {
+                    var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
+                    content += `<br /><input data-id='name-${marker.id}' type = 'text' placeholder = 'Name your location' onclick = 'Save(${marker.id});' />`;
+                    content += `<br /><input type = 'button' value = 'Save to Itinerary' onclick = 'SaveMarker(${marker.id}, ${location.lat()}, ${location.lng()});' value = 'Save' />`;
+                    content += "<br /><input type = 'button' value = 'Delete' onclick = 'DeleteMarker(" + marker.id + ");' value = 'Delete' />";
+
+                    if (infoWindow) {
+                        infoWindow.close();
+                    }
+
+                    infoWindow = new google.maps.InfoWindow({
+                        content: content
+                    });
+                    infoWindow.open(map, marker);
+                });
+
+                //Add marker to the array.
+                markers.push(marker);
+            });
+        };
+
+        var infoWindow;
+
+        function DeleteMarker(id) {
+            //Find and remove the marker from the Array
+            for (var i = 0; i < markers.length; i++) {
+                if (markers[i].id == id) {
+                    //Remove the marker from Map
+                    markers[i].setMap(null);
+
+                    //Remove the marker from array.
+                    markers.splice(i, 1);
+                    return;
+                }
+            }
+        };
+
+
+        function SaveMarker(id, lat, lng) {
+            var name = $(`input[data-id=name-${id}]`).val();
+
+            var geocoder = new google.maps.Geocoder;
+
+            geocoder.geocode({
+                location: {
+                    lat: parseFloat(lat),
+                    lng: parseFloat(lng)
+                }
+            }, function (results, status) {
+                console.log(results);
+
+                infoWindow.close();
+                infoWindow = null;
+
+                if (status === 'OK') {
+
+                    var components = results[0].address_components;
+                    var city = $("#city").val();
+                    var streetAddress = $("#streetAddress").val();
+                    var streetName = $("#streetName").val();
+                    var state = $("#state").val();
+                    var zip = $("#zip").val();
+                    var fullAddress = $("#fullAddress").val();
+                    var total = $("#total").val();
+
+
+
+                    $.each(components, function (index, component) {
+                        if (component.types[0] === 'locality') {
+                            city = component.long_name;
+                        }
+                        if (component.types[0] === 'street_number') {
+                            streetAddress = component.long_name;
+                        }
+                        if (component.types[0] === 'route') {
+                            streetName = component.long_name;
+                        }
+                        if (component.types[0] === 'administrative_area_level_1') {
+                            state = component.long_name;
+                        }
+                        if (component.types[0] === 'postal_code') {
+                            zip = component.long_name;
+                        }
+                        fullAddress = streetAddress + streetName;
+                        total = { streetAddress: fullAddress, city: city, state: state, latitude: lat, longitude: lng, placeName: name, zip: zip }
+                    });
+
+                    console.log(`City = ${city}`);
+                    console.log(JSON.stringify(total));
+
+                    console.log(results[0].formatted_address);
+                }
+
+                $.ajax({
+                    url: baseUrl + 'Home/SavedItinerary',
+                    method: 'POST',
+                    data: {
+                        streetAddress: fullAddress,
+                        city: city,
+                        state: state,
+                        latitude: lat,
+                        longitude: lng,
+                        placeName: name,
+                        Category: name,
+                        zip: zip
+                    }
+                }).then(function (data) {
+
+                });
+            });
+
+        }
+    </script>
+</head>
+<body>
+    <div class="dashboard-hero jumbotron">
+        <div class="container text-center">
+            <h1 class="h1 text-uppercase hero-text-drop-shadow">User Dashboard</h1>
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h2>User Dashboard</h2>
+                <button id="itinButton">Create Itinerary</button>
+                <div id="itinModal">
+                    @Html.Action("CreateItinerary", "Home")
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                @for (int i = 0; i < Model.Count; i++)
+                {  <div>
+                    <h3>
+                        @Model[i].Itinerary.Name
+                    </h3>
+                    <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
+                        <button>Delete Itinerary</button>
+                    </form>
+                    <form>
+                        <input type="submit" name="save" value="Save Itinerary" formaction="@Url.Action("EditUserItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
+                        <div class="container">
+                            <div id="sortable" class="row itin-container test">
+                                @{ var counter = 0; }
+                                @foreach (var t in Model[i].Places)
+                                {
+                                    <div>
+                                        <input type="hidden" name="placeIds[@counter]" value="@t.Id" />
+                                        <img src="@Url.Content("~/Content/places-pics/" + t.PlaceName + ".jpg")" />
+                                        <h4>@t.PlaceName</h4>
+                                        <p>@t.StreetAddress @t.City , @t.State @t.Zip</p>
+                                        <p>@t.Detail</p>
+                                        <form action="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id })" method="post">
+                                            <input type="submit" name="remove" value="Remove from Itinerary" formaction="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
+                                        </form>
+                                        <hr />
+                                    </div>
+                                    counter++;
+                                }
+                            </div>
+                        </div>
+                    </form>
+                </div>
+             }
+            </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="dvMap" style="width: 50%; height: 500px">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+     
+        <br />
+</body>
+</html>
