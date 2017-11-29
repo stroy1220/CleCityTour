@@ -50,6 +50,10 @@ insert into places(streetAddress, city, state, latitude, longitude, detail, plac
 
 insert into places(streetAddress, city, state, latitude, longitude, detail, placeName, Category, Zip) values('230 W Huron Rd', 'Cleveland', 'OH', 41.496762, -81.694051, 'Tower City Center originally known as Cleveland Union Terminal is located on Public Square. Year built:1927 Area:15 acres', 'Tower City Center', 'Shopping', 44113)
 
+insert into places(streetAddress, city, state, latitude, longitude, detail, placeName, Category, Zip) values('35300 Vine St', 'Willowick', 'OH', 41.640935, -81.435814, 'The Lake County Captains are a minor league baseball team in Eastlake, Ohio, a suburb of Cleveland', 'Classic Park', 'Sports', 44095)
+
+delete from places where Zip = 44095
+
  insert into itinerary values(1, 'fakename', '01/01/01', '41.496873', '-81.689694'); 
  insert into itinerary values(1, 'fakename2', '01/01/01','41.496873', '-81.689694');
  insert into itinerary values(2, 'fakename', '01/01/01', '41.499374', '-81.690238'); 
@@ -65,6 +69,7 @@ insert into places(streetAddress, city, state, latitude, longitude, detail, plac
 
 delete from itineraryPlaces where itineraryID = 1 delete from itinerary where id = 1
 
-select * from itineraryPlaces
+select * from Places
 
 alter table places add userID int null
+
