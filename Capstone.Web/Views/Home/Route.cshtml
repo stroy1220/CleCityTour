@@ -16,10 +16,13 @@
     <script>
      var testOrigin = "@Model[0].Itinerary.StartLocationLat,@Model[0].Itinerary.StartLocationLong";
         var testWaypoints = [];
+       
         @{
+            var counter = 0;
             var count = 0;
             var numberOfPlaces = Model[0].Places.Count;
             var lastIndex = Model[0].Places.Count - 1;
+           
          }
         
         @foreach (var place in Model[0].Places)
@@ -31,7 +34,7 @@
             if (count == numberOfPlaces-1) { break; }
 
          }
-
+        
 
 
         var itinerary = "@Model[0].Itinerary.Name";
@@ -115,37 +118,40 @@
             <br>
 
         </div>
-        <input type="submit" id="submit">
         <div id="directions-panel"></div>
     </div>
     <script>
+        window.onload = function () {
+            initMap();
+
+        }
+
         function initMap() {
             var directionsService = new google.maps.DirectionsService;
             var directionsDisplay = new google.maps.DirectionsRenderer;
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 14,
                 center: { lat: 41.499320, lng: -81.694361 }
+
             });
             directionsDisplay.setMap(map);
 
-            document.getElementById('submit').addEventListener('click', function () {
+            function submit() {
                 calculateAndDisplayRoute(directionsService, directionsDisplay);
-            });
+            };
 
+            submit();
         }
-
         function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
-          
             for (var i = 0; i < testWaypoints.length; i++) {
-               
-                location: testWaypoints[i].value
 
+                location: testWaypoints[i].value
             }
 
             directionsService.route({
                 origin: testOrigin,
-                destination: end, 
+                destination: end,
                 waypoints: testWaypoints,
                 optimizeWaypoints: true,
                 travelMode: 'DRIVING'
@@ -156,19 +162,22 @@
                     var summaryPanel = document.getElementById('directions-panel');
                     summaryPanel.innerHTML = '';
                     // For each route, display summary information.
+                    
                     for (var i = 0; i < route.legs.length; i++) {
                         var routeSegment = i + 1;
-                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment @*'@Model[0].Places[counter].PlaceName'*@+
                             '</b><br>';
-                        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                        summaryPanel.innerHTML += route.legs[i].start_address + ' <br> TO <br>';
                         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-                        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+                        summaryPanel.innerHTML += '(approx)' + ' ' + route.legs[i].distance.text + '<br><br>';
+                       
                     }
                 } else {
                     window.alert('Directions request failed due to ' + status);
                 }
             });
         }
+
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc&callback=initMap">

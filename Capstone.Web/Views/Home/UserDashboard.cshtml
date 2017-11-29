@@ -44,7 +44,7 @@
                             <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
                                 <button class="btn-sm">Delete Itinerary</button>
                                 <input class="btn-sm" type="submit" name="save" value="Save Itinerary" formaction="@Url.Action("EditUserItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
-                                <input class="btn-sm" type="submit" name="route" value="See Travel Route" formaction="@Url.Action("CreateTravelRoute", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
+                                <input id="goToRoute" class="btn-sm" type="submit" name="route" value="See Travel Route" formaction="@Url.Action("CreateTravelRoute", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
                                 <div id="sortable" class="row itin-container sortableItems">
                                     @{ var counter = 0; }
                                     @{ var counter2 = 1;}
