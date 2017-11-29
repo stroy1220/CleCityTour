@@ -214,7 +214,6 @@
     <Content Include="Views\Place\Sports.cshtml" />
     <Content Include="Views\Place\ItinPartial.cshtml" />
     <Content Include="Views\Home\UserDashboard.cshtml" />
-    <Content Include="Views\Home\CreateItinerary.cshtml" />
     <Content Include="Views\Home\Route.cshtml" />
     <Content Include="Views\Home\CreateItinPartial.cshtml" />
     <None Include="Web.Debug.config">

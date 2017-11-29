@@ -18,10 +18,10 @@ function loadMap() {
     
 
     $("#sortable").sortable();
-    $(".test").sortable({
+    $(".sortableItems").sortable({
         update: function (event, ui) { }
     });
-    $(".test").on("sortupdate", function (event, ui) {
+    $(".sortableItems").on("sortupdate", function (event, ui) {
         var inputs = $("#sortable").find("input[type='hidden']");
 
         for (var i = 0; i < inputs.length; i++) {
@@ -37,11 +37,25 @@ function loadMap() {
         scrolllock: true
     });
 
+    var icons = {
+        header: "ui-icon-circle-arrow-e",
+        activeHeader: "ui-icon-circle-arrow-s"
+    };
+
     var mapOptions = {
         center: new google.maps.LatLng(41.499320, -81.694361),
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
+
+
+    $(".accordion").accordion({
+        header: "h3",
+        heightStyle: "content",
+        icons: { "header": "ui-icon-plus", "activeHeader": "ui-icon-minus" },
+    });
+    $(".itinName.ui-accordion-header").css("background", "maroon").css("height", "50px").css("color", "white").css("font-size", "25px");
+
 
     var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
 

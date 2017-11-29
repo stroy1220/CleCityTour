@@ -242,5 +242,24 @@ namespace Capstone.Web.Controllers
             return RedirectToAction("UserDashboard");
         }
 
+        [HttpPost]
+        public ActionResult CreateTravelRoute(int itineraryId, List<int> placeIds)
+        {
+            UserModel user = Session["user"] as UserModel;
+            ItineraryDAL idal = new ItineraryDAL();
+
+            ItineraryModel newItin = idal.GetAllItineraryInfo(itineraryId);
+            idal.DeleteItinerary(itineraryId);
+            idal.CreateNewItinerary(newItin);
+            int neededIdNumber = idal.GetMostRecentlyCreatedItinerary(user.UserId);
+
+            foreach (var i in placeIds)
+            {
+                idal.AddPlaceToItinerary(neededIdNumber, i);
+            }
+
+            return RedirectToAction("Route");
+        }
+
     }
 }
