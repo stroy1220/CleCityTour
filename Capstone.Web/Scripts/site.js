@@ -37,6 +37,12 @@ function loadMap() {
         scrolllock: true
     });
 
+    $('#delete_popup').popup({
+        backgroundactive: false,
+        scrolllock: true,
+
+    });
+
     var icons = {
         header: "ui-icon-circle-arrow-e",
         activeHeader: "ui-icon-circle-arrow-s"

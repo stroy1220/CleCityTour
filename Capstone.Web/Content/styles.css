@@ -213,6 +213,15 @@ span.field-validation-error {
     transform: scale(1);
 }
 
+.testing {
+    background-color: maroon;
+    opacity: .9;
+    color: white;
+    width: 400px;
+    height: 400px;
+
+}
+
 #intinPartHeader {
     font-family: 'Coda Caption', sans-serif;
     font-size: 70px;
