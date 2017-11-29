@@ -239,6 +239,10 @@ span.field-validation-error {
 .sortingPanels {
     background-color: lightgrey;
 }
+
+.route {
+    font-size: 25px;
+}
 /*Media Queries*/
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
