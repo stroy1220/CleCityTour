@@ -1,6 +1,7 @@
 ﻿body {
-   margin-top: 50px;
+    margin-top: 50px;
 }
+
 .itin-container {
     border: 1px solid black;
     border-radius: 5px;
@@ -31,13 +32,15 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
 .partial-view {
     border: 1px solid black;
     background-color: lightgrey;
 }
-.partial-view ul {
-    list-style-type: none;
-}
+
+    .partial-view ul {
+        list-style-type: none;
+    }
 
 
 .index-hero {
@@ -67,13 +70,13 @@
         text-decoration: none;
         color: black;
     }
+
 .login {
     background-image: url(lebron-435x768.jpg);
     background-size: cover;
     background-position: top, center;
     background-repeat: no-repeat;
     color: black;
-    
     padding-top: 5%;
     padding-bottom: 30%;
 }
@@ -81,11 +84,11 @@
     .login h3 {
         color: white;
     }
-    /*.login{
+/*.login{
         min-height:700px;
        /*max-width: 95%;*/
-        /*margin: 0px auto;*/
-        /*background-color: tomato;
+/*margin: 0px auto;*/
+/*background-color: tomato;
     }*/
 .create-itinerary-hero {
     background-image: url(cleveland-sign.png);
@@ -95,6 +98,7 @@
     padding-top: 5%;
     padding-bottom: 35%;
 }
+
 .dashboard-hero {
     background-image: url(cleveland-skyline-lakeview.png);
     background-size: cover;
@@ -103,6 +107,7 @@
     padding-top: 15%;
     padding-bottom: 20%;
 }
+
 .entertainment-hero {
     background-image: url(playhouse-square.jpg);
     background-size: cover;
@@ -120,6 +125,7 @@
     padding-top: 15%;
     padding-bottom: 20%;
 }
+
 .restaurant-hero {
     background-image: url(michael-symons-mabels-hero-.jpg);
     background-size: cover;
@@ -128,6 +134,7 @@
     padding-top: 15%;
     padding-bottom: 20%;
 }
+
 .shopping-hero {
     background-image: url(tower-city-xmas.jpg);
     background-size: cover;
@@ -136,6 +143,7 @@
     padding-top: 15%;
     padding-bottom: 20%;
 }
+
 .sports-hero {
     background-image: url(quicken-loans2.jpg);
     background-size: cover;
@@ -153,7 +161,7 @@
     margin: 10px auto;
 }
 
-.desc-bump-20{
+.desc-bump-20 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -170,27 +178,36 @@ span.field-validation-error {
     margin-bottom: 10px;
 }
 
-span.field-validation-error::before {
-    content: "\A";
-    white-space: pre;
-    margin-top: 20px;
-}
+    span.field-validation-error::before {
+        content: "\A";
+        white-space: pre;
+        margin-top: 20px;
+    }
+
 .register {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 .detail {
     min-height: 80px;
 }
 
-
-#standalone {
+#my_popup {
     transform: scale(0.8);
 }
 
-.popup_visible #standalone {
+.popup_visible #my_popup {
     transform: scale(1);
 }
+
+#testing {
+    font-family: 'Denk One', sans-serif;
+    font-size: 90px;
+    color: maroon;
+    text-shadow: 1px 10px 9px #f8c31f
+}
+
 
 /*Media Queries*/
 
@@ -204,15 +221,15 @@ span.field-validation-error::before {
         padding-top: 15%;
         padding-bottom: 30%;
     }
+
     .landmark-detail {
         text-align: left;
     }
+
     span.field-validation-error::before {
         content: "\A";
         white-space: pre;
     }
-
-    
 }
 
 /* Medium Devices, Desktops */
@@ -238,4 +255,3 @@ span.field-validation-error::before {
         padding-bottom: 20%;
     }
 }
-

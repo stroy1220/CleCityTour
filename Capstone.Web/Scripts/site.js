@@ -14,6 +14,9 @@ function loadMap() {
     var boxItin = $("#itinModal");
     boxItin.hide();
 
+    var wholeThing = $('.wholePage');
+    
+
     $("#sortable").sortable();
     $(".test").sortable({
         update: function (event, ui) { }
@@ -27,23 +30,9 @@ function loadMap() {
         }
     });
 
-    //$("#itinButton").on("click", function (e) {
-    //    if (boxItin.hasClass("aaa")) {
-    //        boxItin.hide();
-    //        boxItin.removeClass("aaa");
-    //    }
-    //    else{
-    //        boxItin.show();
-    //        boxItin.addClass("aaa");
-    //    }
-    //});
-
-    $('#my_popup').popup();
-
-
-    $('#standalone').popup({
+    $('#my_popup').popup({
         color: 'white',
-        opacity: 1,
+        opacity: .95,
         transition: '0.3s',
         scrolllock: true
     });

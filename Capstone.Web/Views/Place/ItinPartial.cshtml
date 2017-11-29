@@ -1,6 +1,8 @@
 ﻿@using Capstone.Web.Models;
 @model List<ItineraryPlacesModel>
 
+@{ var counter = 1;}
+
 @if (Model.Count > 0)
 {
     <h3 class="text-center">Itinerary for @Model[0].Itinerary.Name</h3>
@@ -9,19 +11,15 @@
     {
         <div class="col-sm-4">
             <div class="row itin-item">
-                <div class="col-xs-12 col-sm-5">
-                    <img class="img-responsive" src="@Url.Content("~/Content/places-pics/" + m.PlaceName + ".jpg")" />
-
-                </div>
                 <div class="col-xs-12 col-sm-7">
                     <ul class="list-unstyled">
-                        <li><h4>@m.PlaceName</h4></li>
+                        <li><h4>Stop @counter @m.PlaceName</h4></li>
                         <li><p>@m.StreetAddress<br />@m.City, @m.State @m.Zip</p></li>
                     </ul>
                 </div>
             </div>
         </div>
-
+        counter++;
     }
 }
 else {
