@@ -1,13 +1,13 @@
 ﻿var baseUrl = "http://localhost:55601/";
 var infoWindow;
-
+var markers = [];
 
 function loadMap() {
 
     //var baseUrl = ""; http://localhost:52923/ samURL
 
 
-    var markers = [];
+    
     var uniqueId = 1;
 
 
@@ -68,7 +68,7 @@ function loadMap() {
             var content = 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng();
             content += `<br /><input data-id='name-${marker.id}' type = 'text' placeholder = 'Name your location' onclick = 'Save(${marker.id});' />`;
             content += `<br /><input type = 'button' value = 'Save to Itinerary' onclick = 'SaveMarker(${marker.id}, ${location.lat()}, ${location.lng()});' value = 'Save' />`;
-            content += "<br /><input type = 'button' value = 'Delete' onclick = 'DeleteMarker(" + marker.id + ");' value = 'Delete' />";
+            content += `<br /><input type = 'button' value = 'Delete' onclick = 'DeleteMarker(${marker.id});' value = 'Delete' />`;
 
             if (infoWindow) {
                 infoWindow.close();
@@ -83,7 +83,6 @@ function loadMap() {
         //Add marker to the array.
         markers.push(marker);
     });
-
 
 }
 

@@ -13,6 +13,7 @@
     window.onload = function () {
         loadMap();
         $('#my_popup').popup();
+        $(".accordion").accordion();
     }
 </script>
 
@@ -30,7 +31,7 @@
                 <button class="my_popup_open btn-lg">Create New Itinerary</button>
             </div>
             <div id="my_popup">
-                @Html.Action("CreateItinPartial")
+                @Html.Action("CreateItinPartial", "Home")
             </div>
             <div class="wholePage">
             </div>
@@ -39,38 +40,41 @@
         <div class="row">
             <div class="col-xs-12">
                 @for (int i = 0; i < Model.Count; i++)
-            {  <div>
-                <h3>
-                    @Model[i].Itinerary.Name
-                </h3>
-                <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
-                    <button>Delete Itinerary</button>
-                </form>
-                <form>
-                    <input type="submit" name="save" value="Save Itinerary" formaction="@Url.Action("EditUserItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
-                    <div class="container">
-                        <div id="sortable" class="row itin-container test">
-                            @{ var counter = 0; }
-                            @foreach (var t in Model[i].Places)
-                            {
-                                <div>
-                                    <input type="hidden" name="placeIds[@counter]" value="@t.Id" />
-                                    <img src="@Url.Content("~/Content/places-pics/" + t.PlaceName + ".jpg")" />
-                                    <h4>@t.PlaceName</h4>
-                                    <p>@t.StreetAddress @t.City , @t.State @t.Zip</p>
-                                    <p>@t.Detail</p>
-                                    <form action="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id })" method="post">
-                                        <input type="submit" name="remove" value="Remove from Itinerary" formaction="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
-                                    </form>
-                                    <hr />
+                {
+                    <div class="accordion">
+                        <h3>
+                            @Model[i].Itinerary.Name
+                        </h3>
+                        <div>
+                            <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
+                                <button>Delete Itinerary</button>
+                            </form>
+                            <form>
+                                <input type="submit" name="save" value="Save Itinerary" formaction="@Url.Action("EditUserItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
+                                <div class="container">
+                                    <div id="sortable" class="row itin-container test">
+                                        @{ var counter = 0; }
+                                        @foreach (var t in Model[i].Places)
+                                        {
+                                            <div>
+                                                <input type="hidden" name="placeIds[@counter]" value="@t.Id" />
+                                                <img src="@Url.Content("~/Content/places-pics/" + t.PlaceName + ".jpg")" />
+                                                <h4>@t.PlaceName</h4>
+                                                <p>@t.StreetAddress @t.City , @t.State @t.Zip</p>
+                                                <p>@t.Detail</p>
+                                                <form action="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id })" method="post">
+                                                    <input type="submit" name="remove" value="Remove from Itinerary" formaction="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
+                                                </form>
+                                                <hr />
+                                            </div>
+                                            counter++;
+                                        }
+                                    </div>
                                 </div>
-                                counter++;
-                            }
+                            </form>
                         </div>
                     </div>
-                </form>
-            </div>
-                                }
+                  }
             </div>
         </div>
         <div class="col-xs-12">
