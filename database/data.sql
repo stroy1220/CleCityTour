@@ -66,3 +66,5 @@ insert into places(streetAddress, city, state, latitude, longitude, detail, plac
 delete from itineraryPlaces where itineraryID = 1 delete from itinerary where id = 1
 
 select * from itineraryPlaces
+
+alter table places add userID int null
