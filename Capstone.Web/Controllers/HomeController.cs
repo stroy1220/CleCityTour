@@ -188,21 +188,24 @@ namespace Capstone.Web.Controllers
             PlacesDAL dal = new PlacesDAL();
             PlacesModel p = new PlacesModel();
 
-            p = dal.GetSinglePlace(Convert.ToInt32(id));
+           
+                p = dal.GetSinglePlace(Convert.ToInt32(id));
 
-            newItinerary.StartLocationLat = p.Latitude.ToString();
-            newItinerary.StartLocationLong = p.Longitude.ToString();
+                newItinerary.StartLocationLat = p.Latitude.ToString();
+                newItinerary.StartLocationLong = p.Longitude.ToString();
 
-            UserModel user = Session["user"] as UserModel;
-            newItinerary.UserId = user.UserId;
+                UserModel user = Session["user"] as UserModel;
+                newItinerary.UserId = user.UserId;
 
-            ItineraryDAL idal = new ItineraryDAL();
-            idal.CreateNewItinerary(newItinerary);
+                ItineraryDAL idal = new ItineraryDAL();
+                idal.CreateNewItinerary(newItinerary);
 
-            int neededIdNumber = idal.GetMostRecentlyCreatedItinerary(user.UserId);
-            idal.AddPlaceToItinerary(neededIdNumber, Convert.ToInt32(id));
+                int neededIdNumber = idal.GetMostRecentlyCreatedItinerary(user.UserId);
+                idal.AddPlaceToItinerary(neededIdNumber, Convert.ToInt32(id));
+                return RedirectToAction("UserDashboard");
 
-            return RedirectToAction("UserDashboard");
+            
+            
         }
 
         [HttpPost]
@@ -211,7 +214,7 @@ namespace Capstone.Web.Controllers
             ItineraryDAL idal = new ItineraryDAL();
             idal.DeleteItinerary(itineraryId);
 
-            return Json(new { result = "OK"});
+           // return Json(new { result = "OK"});
             return RedirectToAction("UserDashboard");
         }
 
