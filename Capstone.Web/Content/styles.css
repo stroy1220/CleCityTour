@@ -59,7 +59,7 @@
 .index-hero {
     background-image: url(cle-skyline-night.jpeg);
     background-size: cover;
-    background-position: center;
+    background-position: bottom;
     color: white;
     padding-top: 20%;
     padding-bottom: 20%;
