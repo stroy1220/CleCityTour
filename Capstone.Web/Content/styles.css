@@ -2,6 +2,19 @@
     margin-top: 50px;
 }
 
+.index-destinations a {
+    text-decoration: none;
+    color: black;
+}
+.index-destinations a:hover {
+    text-decoration: underline;
+    color: black;
+}
+    .index-destinations a:visited {
+        text-decoration: none;
+        color: black;
+    }
+
 .itin-container {
     /*border: 1px solid black;*/
     border-radius: 5px;
