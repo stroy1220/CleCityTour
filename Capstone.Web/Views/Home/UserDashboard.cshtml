@@ -71,11 +71,6 @@
 
 
 
-
-
-
-
-
                             <input class="btn-sm" type="submit" name="save" value="Save Itinerary" formaction="@Url.Action("EditUserItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
                             <input id="goToRoute" class="btn-sm" type="submit" name="route" value="See Travel Route" formaction="@Url.Action("CreateTravelRoute", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
                             <div id="sortable" class="row itin-container sortableItems">
@@ -105,7 +100,7 @@
         </div>
 
 
-        @*<div class="row text-center">
+        <div class="row text-center">
                 <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Delete Itinerary</a>
             </div>
             <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -120,13 +115,13 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">No, DONT Delete</button>
-                            <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[0].Itinerary.Id })" method="post">
-                                <button id="iHateModals"type="button" class="btn btn-primary">Yes!</button>
+                            <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[0].Itinerary.Id })" method="post">                                
+                                <button id="iHateModals"type="button" class="btn btn-primary" data-id="@Model[0].Itinerary.Id">Yes!</button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>*@
+            </div>
 
 
 

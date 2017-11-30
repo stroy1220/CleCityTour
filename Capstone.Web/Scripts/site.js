@@ -42,9 +42,14 @@ function loadMap() {
         $.ajax({
             url: "http://localhost:55601/" + "Home/DeleteItinerary",
             method: "POST",
-            data: $("#iHateModals").serialize(),
+            data: {
+                itineraryId: 10
+            },
             success: function (data) {
                 alert("Successfully deleted.")
+            },
+            error: function (err) {
+                alert(err);
             }
         });
     });

@@ -16,26 +16,30 @@
     <script>
      var testOrigin = "@Model[0].Itinerary.StartLocationLat,@Model[0].Itinerary.StartLocationLong";
         var testWaypoints = [];
+        var names = [];
        
         @{
             var counter = 0;
             var count = 0;
             var numberOfPlaces = Model[0].Places.Count;
             var lastIndex = Model[0].Places.Count - 1;
-           
+
          }
         
         @foreach (var place in Model[0].Places)
         {
-            if (Model[0].Places[0] != place) { 
+            @:names.push("@place.PlaceName");
+
+            if (Model[0].Places[0] != place)
+            {
            @:testWaypoints.push({ location: "@place.Latitude,@place.Longitude" });
            }
             count++;
-            if (count == numberOfPlaces-1) { break; }
+            if (count == numberOfPlaces - 1) { break; }
 
-         }
+        }
         
-
+        names.push("@Model[0].Places[lastIndex].PlaceName");
 
         var itinerary = "@Model[0].Itinerary.Name";
         var end = "@Model[0].Places[lastIndex].Latitude,@Model[0].Places[lastIndex].Longitude";
@@ -164,13 +168,10 @@
                     // For each route, display summary information.
                     
                     for (var i = 0; i < route.legs.length; i++) {
-                        var routeSegment = i + 1;
-                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment @*'@Model[0].Places[counter].PlaceName'*@+
-                            '</b><br>';
-                        summaryPanel.innerHTML += route.legs[i].start_address + ' <br> TO <br>';
+                        summaryPanel.innerHTML += '<b>Route Segment: ' + names[i] + ' to ' + names[ i + 1 ] + '</b><br>';
+                        summaryPanel.innerHTML += route.legs[i].start_address + ' <br> <b>TO <br>';
                         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
                         summaryPanel.innerHTML += '(approx)' + ' ' + route.legs[i].distance.text + '<br><br>';
-                       
                     }
                 } else {
                     window.alert('Directions request failed due to ' + status);
