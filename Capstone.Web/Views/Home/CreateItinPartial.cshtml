@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script>
-        $(document).ready(function () {
-            $("#datepicker").datepicker();
-            $("#datepicker").datepicker("setDate", 'today');
+    $(document).ready(function () {
+        $("#datepicker").datepicker();
+        $("#datepicker").datepicker("setDate", 'today');
     });
 </script>
 <style>
@@ -17,10 +17,12 @@
         align-content: center;
         text-align: center;
     }
-    .popup{
-        max-height:10%;
+
+    .popup {
+        max-height: 10%;
     }
 </style>
+
 
 <div class="container popup">
     <div class="row popup">
@@ -28,18 +30,21 @@
 
             <h1 id="intinPartHeader">Create A New Itinerary</h1>
 
-            <form action="@Url.Action("CreateItinPartial", "Home")" method="post">
+            <form id="registration" action="@Url.Action("CreateItinPartial", "Home")" method="post">
                 <div>
                     @Html.LabelFor(m => m.Name)
-                    @Html.TextBoxFor(m => m.Name, new { @class = "itinPartDetail" })
+                    @Html.TextBoxFor(m => m.Name, new { @class = "itinPartDetail"})
+                    @Html.ValidationMessageFor(m => m.Name)
                 </div>
                 <div>
                     @Html.LabelFor(m => m.Date)
-                    @Html.TextBoxFor(m => m.Date, new { @class= "itinPartDetail", @id = "datepicker" })
+                    @Html.TextBoxFor(m => m.Date, new { @class = "itinPartDetail", @id = "datepicker"})
+                    @Html.ValidationMessageFor(m => m.Date)
                 </div>
                 <div>
-                    @Html.LabelFor(m => m.StartLocationLat)
-                    @Html.DropDownList("id", ViewBag.Places as List<SelectListItem>, "Starting Location", new { @class = "itinPartDetail" })
+                    @Html.LabelFor(m => m.StartingLocationId)
+                    @Html.DropDownList("StartingLocationId", ViewBag.Places as List<SelectListItem>, "Starting Location", new { @class = "itinPartDetail"})
+                    @Html.ValidationMessageFor(m => m.StartingLocationId)
                 </div>
                 <button class="btn-lg">Create Itinerary</button>
                 <button class="my_popup_close btn-lg">Cancel</button>
@@ -47,3 +52,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Initialize form validation on the registration form.
+    // It has the name attribute "registration"
+    $("#registration").validate({
+        // Specify validation rules
+        rules: {
+            // The key name on the left side is the name attribute
+            // of an input field. Validation rules are defined
+            // on the right side
+            Name: "required",
+            Date: "required",
+            StartingLocationId: {
+                required: true,
+            },
+        },
+        // Specify validation error messages
+        messages: {
+            Name: "Please enter a name for your itinerary",
+            Date: "Please select a start date.",
+            StartingLocationId: "Please select a start location."
+        },
+        // Make sure the form is submitted to the destination defined
+        // in the "action" attribute of the form when valid
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+</script>

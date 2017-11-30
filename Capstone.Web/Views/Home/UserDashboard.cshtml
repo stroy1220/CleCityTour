@@ -5,34 +5,19 @@
     ViewBag.Title = "UserDashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<int> order = new List<int>();
+    UserModel user = Session["user"] as UserModel;
 }
 
 <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
 <script type="text/javascript">
     window.onload = function () {
         loadMap();
-
-        var testingButton = $(".testingButton");
-        var popup = $(".petersPopup");
-        popup.hide();
-
-        testingButton.click(function () {
-            popup.show();
-        });
-
-        $(".peterClose").click(function () {
-            popup.hide();
-        });
-
-
-
-
     }
 </script>
 
 <div class="dashboard-hero jumbotron">
     <div class="container text-center">
-        <h1 class="h1 text-uppercase hero-text-drop-shadow">User Dashboard</h1>
+        <h1 class="h1 text-uppercase hero-text-drop-shadow">@user.FirstName's Dashboard</h1>
     </div>
 </div>
 <div class="container">
@@ -53,14 +38,8 @@
                 <h3 class="itinName">@Model[i].Itinerary.Name</h3>
                 <div>
                     <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
-                        <div class="petersPopup">
-                            <button type="button" class="btn btn-primary peterClose">Yes!</button>
-                        </div>
-                    </form>
-                    <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
-                        @*<button type="button" class="testingButton btn-primary">Delete Itinerary</button>*@
                         <div class="row text-center">
-                            <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Delete Itinerary</a>
+                            <a href="#"  data-toggle="modal" data-target="#basicModal"><button class="btn-sm">Delete Itinerary</button></a>
                         </div>
                         <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                             <div class="modal-dialog">
@@ -75,12 +54,14 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">No, DONT Delete</button>
                                         <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[0].Itinerary.Id })" method="post">
-                                            <button id="iHateModals" type="button" class="btn btn-primary" data-id="@Model[0].Itinerary.Id">Yes!</button>
+                                            <button id="iHateModals" type="button" class="btn btn-primary" data-dismiss="modal" data-id="@Model[0].Itinerary.Id">Yes!</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </form>
+                    <form>
                         <input class="btn-sm" type="submit" name="save" value="Save Itinerary" formaction="@Url.Action("EditUserItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
                         <input id="goToRoute" class="btn-sm" type="submit" name="route" value="See Travel Route" formaction="@Url.Action("CreateTravelRoute", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
                         <div id="sortable" class="row itin-container sortableItems">
@@ -105,33 +86,12 @@
                         </div>
                     </form>
                 </div>
-                                }
+           }
         </div>
     </div>
 
-    @*<div class="row text-center">
-            <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Delete Itinerary</a>
-        </div>
-        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Delete Itinerary</h4>
-                    </div>
-                    <div class="modal-body">
-                        <h3>Are you sure you want to delete?</h3>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">No, DONT Delete</button>
-                        <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[0].Itinerary.Id })" method="post">
-                            <button id="iHateModals"type="button" class="btn btn-primary" data-id="@Model[0].Itinerary.Id">Yes!</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>*@
-
+    <h1 class="text-center">Click on the map to add a location to your itinerary.</h1>
+ 
     <div class="col-xs-12">
         <div class="row">
             <div class="col-xs-12">

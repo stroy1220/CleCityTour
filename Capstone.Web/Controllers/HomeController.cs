@@ -183,13 +183,18 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateItinPartial(ItineraryModel newItinerary, string id)
+        public ActionResult CreateItinPartial(ItineraryModel newItinerary)
         {
             PlacesDAL dal = new PlacesDAL();
             PlacesModel p = new PlacesModel();
 
-           
-                p = dal.GetSinglePlace(Convert.ToInt32(id));
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("UserDashboard");
+            }
+            else
+            {
+                p = dal.GetSinglePlace(newItinerary.StartingLocationId);
 
                 newItinerary.StartLocationLat = p.Latitude.ToString();
                 newItinerary.StartLocationLong = p.Longitude.ToString();
@@ -201,11 +206,11 @@ namespace Capstone.Web.Controllers
                 idal.CreateNewItinerary(newItinerary);
 
                 int neededIdNumber = idal.GetMostRecentlyCreatedItinerary(user.UserId);
-                idal.AddPlaceToItinerary(neededIdNumber, Convert.ToInt32(id));
+                idal.AddPlaceToItinerary(neededIdNumber, newItinerary.StartingLocationId);
                 return RedirectToAction("UserDashboard");
 
-            
-            
+            }
+
         }
 
         [HttpPost]
@@ -214,7 +219,6 @@ namespace Capstone.Web.Controllers
             ItineraryDAL idal = new ItineraryDAL();
             idal.DeleteItinerary(itineraryId);
 
-           // return Json(new { result = "OK"});
             return RedirectToAction("UserDashboard");
         }
 

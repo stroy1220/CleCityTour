@@ -45,13 +45,9 @@ function loadMap() {
             data: {
                 itineraryId: $('#iHateModals').attr('data-id')
             },
-            success: function (data) {
-                alert("Successfully deleted.")
-            },
-            error: function (err) {
-                alert(err);
-            }
-        });
+        }).then(function () {
+            location.reload();
+                });
     });
 
     var icons = {
@@ -193,7 +189,7 @@ function SaveMarker(id, lat, lng) {
                 zip: zip
             }
         }).then(function (data) {
-
+            location.reload();
         });
     });
 }
