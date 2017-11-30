@@ -51,81 +51,97 @@
             @for (int i = 0; i < Model.Count; i++)
             {
                 <h3 class="itinName">@Model[i].Itinerary.Name</h3>
-                    <div>
-                        <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
-                            <div class="petersPopup">
-                                <button type="button" class="btn btn-primary peterClose">Yes!</button>
-                            </div>
-                        </form>
-                        <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
-
-
-                            <button type="button" class="testingButton btn-primary">Delete Itinerary</button>
-
-
-
-
-                            <input class="btn-sm" type="submit" name="save" value="Save Itinerary" formaction="@Url.Action("EditUserItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
-                            <input id="goToRoute" class="btn-sm" type="submit" name="route" value="See Travel Route" formaction="@Url.Action("CreateTravelRoute", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
-                            <div id="sortable" class="row itin-container sortableItems">
-                                @{ var counter = 0; }
-                                @{ var counter2 = 1;}
-                                @foreach (var t in Model[i].Places)
-                                {
-                                    <div class="sortingPanels">
-                                        <input type="hidden" name="placeIds[@counter]" value="@t.Id" />
-                                        <h2>Stop @counter2</h2>
-                                        <h4>@t.PlaceName</h4>
-                                        <p>@t.StreetAddress @t.City , @t.State @t.Zip</p>
-                                        <p>@t.Detail</p>
-                                        <form action="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id })" method="post">
-                                            <input type="submit" name="remove" value="Remove from Itinerary" formaction="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
-                                        </form>
-                                        <hr />
+                <div>
+                    <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
+                        <div class="petersPopup">
+                            <button type="button" class="btn btn-primary peterClose">Yes!</button>
+                        </div>
+                    </form>
+                    <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
+                        @*<button type="button" class="testingButton btn-primary">Delete Itinerary</button>*@
+                        <div class="row text-center">
+                            <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Delete Itinerary</a>
+                        </div>
+                        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">Delete Itinerary</h4>
                                     </div>
-                                    counter++;
-                                    counter2++;
-                                }
+                                    <div class="modal-body">
+                                        <h3>Are you sure you want to delete?</h3>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">No, DONT Delete</button>
+                                        <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[0].Itinerary.Id })" method="post">
+                                            <button id="iHateModals" type="button" class="btn btn-primary" data-id="@Model[0].Itinerary.Id">Yes!</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <input class="btn-sm" type="submit" name="save" value="Save Itinerary" formaction="@Url.Action("EditUserItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
+                        <input id="goToRoute" class="btn-sm" type="submit" name="route" value="See Travel Route" formaction="@Url.Action("CreateTravelRoute", "Home", new { itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
+                        <div id="sortable" class="row itin-container sortableItems">
+                            @{ var counter = 0; }
+                            @{ var counter2 = 1;}
+                            @foreach (var t in Model[i].Places)
+                            {
+                                <div class="sortingPanels">
+                                    <input type="hidden" name="placeIds[@counter]" value="@t.Id" />
+                                    <h2>Stop @counter2</h2>
+                                    <h4>@t.PlaceName</h4>
+                                    <p>@t.StreetAddress @t.City , @t.State @t.Zip</p>
+                                    <p>@t.Detail</p>
+                                    <form action="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id })" method="post">
+                                        <input type="submit" name="remove" value="Remove from Itinerary" formaction="@Url.Action("DeletePlaceFromItinerary", "Home", new { placeId = t.Id, itineraryId = Model[i].Itinerary.Id })" formmethod="post" />
+                                    </form>
+                                    <hr />
+                                </div>
+                                counter++;
+                                counter2++;
+                            }
+                        </div>
+                    </form>
+                </div>
+                                }
+        </div>
+    </div>
+
+    @*<div class="row text-center">
+            <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Delete Itinerary</a>
+        </div>
+        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Delete Itinerary</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Are you sure you want to delete?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No, DONT Delete</button>
+                        <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[0].Itinerary.Id })" method="post">
+                            <button id="iHateModals"type="button" class="btn btn-primary" data-id="@Model[0].Itinerary.Id">Yes!</button>
                         </form>
                     </div>
-                                    }
-        </div>
-    </div>
-
-        <div class="row text-center">
-                <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Delete Itinerary</a>
-            </div>
-            <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Delete Itinerary</h4>
-                        </div>
-                        <div class="modal-body">
-                            <h3>Are you sure you want to delete?</h3>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">No, DONT Delete</button>
-                            <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[0].Itinerary.Id })" method="post">                                
-                                <button id="iHateModals"type="button" class="btn btn-primary" data-id="@Model[0].Itinerary.Id">Yes!</button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
+        </div>*@
 
-        <div class="col-xs-12">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div id="dvMap" style="width: 100%; height: 500px">
-                    </div>
-
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="dvMap" style="width: 100%; height: 500px">
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 
 <br />
 

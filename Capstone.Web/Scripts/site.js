@@ -43,7 +43,7 @@ function loadMap() {
             url: "http://localhost:55601/" + "Home/DeleteItinerary",
             method: "POST",
             data: {
-                itineraryId: 10
+                itineraryId: $('#iHateModals').attr('data-id')
             },
             success: function (data) {
                 alert("Successfully deleted.")
