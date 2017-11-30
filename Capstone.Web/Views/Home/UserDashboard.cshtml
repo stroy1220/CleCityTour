@@ -5,7 +5,6 @@
     ViewBag.Title = "UserDashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<int> order = new List<int>();
-
 }
 
 <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
@@ -31,32 +30,27 @@
     }
 </script>
 
-<div class="wholePage">
-    <div class="dashboard-hero jumbotron">
-        <div class="container text-center">
-            <h1 class="h1 text-uppercase hero-text-drop-shadow">User Dashboard</h1>
+<div class="dashboard-hero jumbotron">
+    <div class="container text-center">
+        <h1 class="h1 text-uppercase hero-text-drop-shadow">User Dashboard</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h2 class="detailHeader">Your Itineraries</h2>
+            <button class="my_popup_open btn-lg">Create New Itinerary</button>
+        </div>
 
+        <div id="my_popup">
+            @Html.Action("CreateItinPartial", "Home")
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <h2 class="detailHeader">Your Itineraries</h2>
-                <button class="my_popup_open btn-lg">Create New Itinerary</button>
-
-            </div>
-            <div id="my_popup">
-                @Html.Action("CreateItinPartial", "Home")
-            </div>
-            <div class="wholePage">
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-xs-12 accordion">
-                @for (int i = 0; i < Model.Count; i++)
-                {
-                    <h3 class="itinName">@Model[i].Itinerary.Name</h3>
+    <div class="row">
+        <div class="col-xs-12 accordion">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <h3 class="itinName">@Model[i].Itinerary.Name</h3>
                     <div>
                         <form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[i].Itinerary.Id })" method="post">
                             <div class="petersPopup">
@@ -96,9 +90,8 @@
                         </form>
                     </div>
                                     }
-            </div>
         </div>
-
+    </div>
 
         <div class="row text-center">
                 <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Delete Itinerary</a>
@@ -123,20 +116,17 @@
                 </div>
             </div>
 
-
-
         <div class="col-xs-12">
             <div class="row">
                 <div class="col-xs-12">
                     <div id="dvMap" style="width: 100%; height: 500px">
                     </div>
+
                 </div>
             </div>
-
         </div>
-
     </div>
-</div>
+
 <br />
 
 
