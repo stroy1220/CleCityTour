@@ -5,15 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-@*<html>
-
-<head>
-
-   
-
-<body>*@
-
 <script type="text/javascript">
     window.onload = function () {
         initialize();
@@ -22,64 +13,56 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2wsKDwwsmQryulGyDA0r128lPT3oVdvc&libraries=places"></script>
 
-    <div class="index-hero jumbotron">
-        <div class="container text-center">
-            <h1 class="h1 text-uppercase hero-text-drop-shadow">Where To Be In The CLE</h1>
-            <p class="hero-text-drop-shadow hidden-xs">Your Guide To The Best of Cleveland</p>
+<div class="index-hero jumbotron">
+    <div class="container text-center">
+        <h1 class="h1 text-uppercase hero-text-drop-shadow">Where To Be In The CLE</h1>
+        <p class="hero-text-drop-shadow hidden-xs">Your Guide To The Best of Cleveland</p>
+    </div>
+</div>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-xs-6">
+            <a href="@Url.Action("Restaurant", "Place")">
+
+                <div class="text-center">
+                    <img src="~/Content/places-pics/index-mabels.jpg" alt="Restaurants" width="100%" height="auto">
+                    <h2 class="h5">Restaurants</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="@Url.Action("Shopping", "Place")">
+                <div class="text-center">
+                    <img src="~/Content/places-pics/index-tower-city.jpg" alt="Shopping" width="100%" height="auto" />
+                    <h2 class="h5">Shopping</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="@Url.Action("Sports", "Place")">
+                <div class="text-center">
+                    <img src="~/Content/places-pics/index-quicken-loans2.jpg" alt="Sports" width="100%" height="auto">
+                    <h2 class="h5">Sports</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="@Url.Action("Entertainment", "Place")">
+                <div class="text-center">
+                    <img src="~/Content/places-pics/index-playhouse-square.jpg" alt="Entertainment" width="100%" height="auto">
+                    <h2 class="h5">Entertainment</h2>
+                </div>
+            </a>
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3 col-xs-6">
-                <a href="@Url.Action("Restaurant", "Place")">
-
-
-
-                    <div class="callout-sm text-center">
-                        <img src="~/Content/places-pics/index-mabels.jpg" alt="" width="100%" height="auto">
-                        <h2 class="h5">Restaurants</h2>
-                    </div>
-                </a>
-            </div>
-
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="@Url.Action("Shopping", "Place")">
-                    <div class="callout-sm text-center">
-                        <img src="~/Content/places-pics/index-tower-city.jpg" alt="" width="100%" height="auto" />
-                        <h2 class="h5">Shopping</h2>
-                    </div>
-                </a>
-            </div>
-
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="@Url.Action("Sports", "Place")">
-                    <div class="callout-sm text-center">
-                        <img src="~/Content/places-pics/index-quicken-loans2.jpg" alt="" width="100%" height="auto">
-                        <h2 class="h5">Sports</h2>
-                    </div>
-                </a>
-            </div>
-
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="@Url.Action("Entertainment", "Place")">
-                    <div class="callout-sm text-center">
-                        <img src="~/Content/places-pics/index-playhouse-square.jpg" alt="" width="100%" height="auto">
-                        <h2 class="h5">Entertainment</h2>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-                <div id="map-canvas"></div>
-            </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+            <div id="map-canvas"></div>
         </div>
     </div>
-
-</body>
-</html>
+</div>
