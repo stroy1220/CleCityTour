@@ -260,6 +260,7 @@ span.field-validation-error {
 
 .sortingPanels {
     background-color: lightgrey;
+    margin-bottom: 20px;
 }
 
 .route {
