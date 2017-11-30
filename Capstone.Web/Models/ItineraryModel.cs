@@ -11,10 +11,17 @@ namespace Capstone.Web.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
+
+        [Required(ErrorMessage = "Please name your itinerary.")]
         public string Name { get; set; }
+
+        [Display(Name="Starting Location")]
+        [Required(ErrorMessage ="Please select a starting location.")]
         public string StartLocationLat { get; set; }
+
         public string StartLocationLong { get; set; }
 
+        [Required(ErrorMessage = "Please select a starting date.")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
