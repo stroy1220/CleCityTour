@@ -43,6 +43,20 @@ function loadMap() {
 
     });
 
+    $('#iHateModals').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "http://localhost:55601/" + "Home/DeleteItinerary",
+            method: "POST",
+            data: $("#iHateModals").serialize(),
+            success: function (data) {
+                alert("Successfully deleted.")
+            }
+        });
+    });
+
+
+
     var icons = {
         header: "ui-icon-circle-arrow-e",
         activeHeader: "ui-icon-circle-arrow-s"

@@ -211,6 +211,7 @@ namespace Capstone.Web.Controllers
             ItineraryDAL idal = new ItineraryDAL();
             idal.DeleteItinerary(itineraryId);
 
+            return Json(new { result = "OK"});
             return RedirectToAction("UserDashboard");
         }
 

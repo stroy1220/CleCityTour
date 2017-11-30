@@ -72,6 +72,33 @@
                                     }
             </div>
         </div>
+
+
+        <div class="row text-center">
+            <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">Delete Itinerary</a>
+        </div>
+        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Delete Itinerary</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Are you sure you want to delete?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No, DONT Delete</button>
+                        @*<form action="@Url.Action("DeleteItinerary", "Home", new { itineraryId = Model[0].Itinerary.Id })" method="post">*@
+                            <button id="iHateModals"type="button" class="btn btn-primary">Yes!</button>
+                        @*</form>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="col-xs-12">
             <div class="row">
                 <div class="col-xs-12">
