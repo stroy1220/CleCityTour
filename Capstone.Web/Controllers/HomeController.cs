@@ -24,10 +24,11 @@ namespace Capstone.Web.Controllers
         // GET: Home
         public ActionResult Index([DefaultValue(0)]int logCode)
         {
-            if (logCode == 1)
+            if (logCode == 2)
             {
                 Session["user"] = null;
             }
+          
             return View("Index");
         }
 
@@ -64,14 +65,15 @@ namespace Capstone.Web.Controllers
                     HashSalt h = new HashSalt();
                     newUser.Password = h.HashPassword(newUser.Password);
                     newUser.PasswordSalt = h.SaltValue;
-
-                    if (dal.SaveUser(newUser))
+                    dal.SaveUser(newUser);
+                    UserModel createdUser = dal.SelectUser(newUser.UserName);
+                    if (createdUser != null)
                     {
                         if (Session["user"] == null)
                         {
                             Session["user"] = newUser;
                         }
-                        return RedirectToAction("Index", new { firstName = newUser.FirstName });
+                        return RedirectToAction("UserDashboard", new { firstName = newUser.FirstName });
                     }
                     else
                     {
