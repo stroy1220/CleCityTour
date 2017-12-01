@@ -254,9 +254,14 @@ span.field-validation-error {
         border: 3px solid #555;
     }
 
-.itinName, .detailHeader {
+.itinName {
     font-family: 'Coda Caption', sans-serif;
 }
+
+.detailHeader {
+    font-size: 50px;
+}
+
 
 .sortingPanels {
     background-color: lightgrey;
@@ -268,6 +273,14 @@ span.field-validation-error {
     font-size: 25px;
 }
 
+.createItinDiv {
+    padding-bottom: 20px;
+}
+
+.deleteDiv {
+   padding-right: 1.5%;
+
+}
 /*index map*/
 #map-canvas {
     width: 100%;
