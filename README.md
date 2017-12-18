@@ -1,3 +1,9 @@
+<h1>Personalized Cleveland City Tour!</h1>
+Take a look around town and create personal itineraries to see the most efficient travel route!
+
+Google Maps API, ASP.NET MVC 5, C#, Javascript, HTML, CSS, JSON, Jquery, AJAX, Bootstrap, SQL
+
+
 # Capstone Starter Project
 
 ## Database 
